@@ -3,7 +3,7 @@ import * as React from "react";
 
 const Footer = () => {
   return (
-    <div className="py-20 px-24 flex flex-col bg-white shadow-2xl text-black">
+    <div className="p-[60px] flex flex-col bg-white shadow-2xl text-black">
       <div className="flex justify-between">
         <div className="flex flex-col w-72 gap-4">
           <img src="Logo3.png" alt="" className="h-[140px] w-[140px]" />
@@ -60,7 +60,7 @@ const Footer = () => {
           </div>
         </div>
       </div>
-      <div className="border my-16"></div>
+      <div className="border my-[36px]"></div>
       <div className="flex flex-row justify-between">
         <h1 className="text-lg font-semibold">
           ©2024 TEAMONE. All rights reserved

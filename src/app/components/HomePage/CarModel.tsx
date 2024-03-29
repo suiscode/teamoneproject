@@ -22,9 +22,7 @@ export default function CarModel() {
       style={{
         width: "100%",
         height: "100%",
-        // backgroundColor: "#54a6ff",
         opacity: "2",
-        borderRadius: "13px",
       }}
     >
       <ambientLight intensity={2} />
