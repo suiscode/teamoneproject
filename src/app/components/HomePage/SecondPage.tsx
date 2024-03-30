@@ -17,7 +17,7 @@ function SecondPage() {
 
   return (
     <div
-      className="w-full flex-col relative flex h-[2500px] gap-10 py-[360px]"
+      className="w-full flex-col relative flex h-[3200px] gap-10 py-[360px]"
       style={{ backgroundImage: 'url("/testbg.jpg")', backgroundSize: "cover" }}
     >
       <motion.div
@@ -39,6 +39,24 @@ function SecondPage() {
         reliable transportation for your daily commute, our fleet of top-quality
         vehicles has you covered.
       </p>
+
+      <motion.div
+        ref={ref}
+        variants={{
+          hidden: { opacity: 0 },
+          visible: { opacity: 1 },
+        }}
+        initial="hidden"
+        animate={mainControls}
+        transition={{ ease: "linear", duration: 2, x: { duration: 1 } }}
+        className="text-5xl font-bold text-white  ml-[120px] pt-[50%]"
+      >
+        <p>"What we drive says a lot about who we are.</p>
+        <p>
+          There are only two types of people that can drive cars: cowards and
+          fools."
+        </p>
+      </motion.div>
     </div>
   );
 }

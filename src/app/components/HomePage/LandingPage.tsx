@@ -19,7 +19,7 @@ const LandingPage = () => {
   return (
     <div
       ref={ref}
-      className="w-full items-center flex-col flex h-screen bg-[#0D0D0D] "
+      className="w-full items-center flex-col flex h-screen bg-[#000] "
     >
       <div className="font-bold mt-[200px] relative flex text-[100px]">
         Rent the
@@ -47,14 +47,16 @@ const LandingPage = () => {
         >
           basic.
         </motion.div>
-         Own the <span className="bg-white text-black">thrill</span>.
+        Own the <span className="bg-white text-black">thrill</span>.
       </div>
-      <div className="h-full  w-full absolute">
+      <div className="h-full w-full absolute top-[100px]">
         <CarModel />
       </div>
-      <button className="absolute text-xl bottom-[300px] right-[400px] border-2 rounded-xl px-4 py-2 hover:bg-white hover:text-black hover:border-black">
-        Order now
-      </button>
+      <Link href={"/cars"}>
+        <button className="absolute text-xl bottom-[200px] right-[400px] border-2 rounded-xl px-4 py-2 hover:bg-white hover:text-black hover:border-black">
+          Explore now
+        </button>
+      </Link>
     </div>
   );
 };
