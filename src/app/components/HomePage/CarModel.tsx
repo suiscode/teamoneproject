@@ -1,16 +1,10 @@
 "use client";
 
 import { Canvas } from "@react-three/fiber";
-import {
-  Stage,
-  PresentationControls,
-  Environment,
-  useGLTF,
-} from "@react-three/drei";
-// import { Mercedes } from "../../public/Mercedes";
+import { Stage, PresentationControls, useGLTF } from "@react-three/drei";
 
 function Model(props: any) {
-  const { scene } = useGLTF("/bmw.glb");
+  const { scene } = useGLTF("/redbenz.glb");
   return <primitive object={scene} {...props} />;
 }
 
@@ -25,14 +19,13 @@ export default function CarModel() {
         opacity: "2",
       }}
     >
-      <ambientLight intensity={2} />
+      <ambientLight intensity={1} />
 
-      <Environment preset="forest" />
       <PresentationControls
         speed={1.5}
         global
         polar={[-1, Math.PI / 4]}
-        rotation={[0.3, 4, 0]}
+        rotation={[0.2, -0.8, 0]}
       >
         <Stage>
           <Model />

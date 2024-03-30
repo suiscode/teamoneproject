@@ -1,13 +1,14 @@
+import { SliderDemo } from "@/components/range";
 import { Stack, Typography, Checkbox } from "@mui/material";
-import Divider from "@mui/material/Divider";
 
-const Category = () => {
+const AllCategory = () => {
   const carMark = [
     { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Sedan" },
     { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Coupe" },
     { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Hatchback" },
+    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "SUV" },
+    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Truck" },
     { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Camping vans" },
-    // { icon: <Checkbox />, title: "" },
   ];
   const carCapacity = [
     { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "2 person" },
@@ -17,23 +18,31 @@ const Category = () => {
     { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "15+ person" },
   ];
   return (
-    <Stack width={"40%"} height={"100%"} direction={"row"}>
-      <Stack pl={4}>
-        <Typography>Type</Typography>
+    <Stack
+      width={"15%"}
+      height={"100%"}
+      justifyContent={"center"}
+      paddingLeft={6}
+      fontSize={18}
+    >
+      <Typography fontSize={20} color={"#cccccc"}>
+        Type
+      </Typography>
+      {carMark.map(({ icon, title }, index) => {
+        return (
+          <Stack key={index}>
+            <div className="flex items-center pr-16 ">
+              {icon}
+              {title}
+            </div>
+          </Stack>
+        );
+      })}
 
-        {carMark.map(({ icon, title }, index) => {
-          return (
-            <Stack key={index}>
-              <div className="flex items-center pr-16 ">
-                {icon}
-                {title}
-              </div>
-            </Stack>
-          );
-        })}
-      </Stack>
-      <Stack pl={4} pt={20}>
-        <Stack>Capacity</Stack>
+      <Stack pt={20}>
+        <Stack fontSize={20} color={"#cccccc"}>
+          Capacity
+        </Stack>
         {carCapacity.map(({ icon, title }, index) => {
           return (
             <Stack key={index}>
@@ -45,9 +54,11 @@ const Category = () => {
           );
         })}
       </Stack>
-      <Divider orientation={"vertical"} flexItem />
+      <Stack mt={10}>
+        <SliderDemo />
+      </Stack>
     </Stack>
   );
 };
 
-export default Category;
+export default AllCategory;
