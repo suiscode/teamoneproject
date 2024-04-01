@@ -16,15 +16,20 @@ function Category() {
   const [category, setCategory] = useState([]);
   const [refresh, setRefresh] = useState(false);
   const [input, setInput] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    const res = await axios.post("/api/category", {
-      name: input,
-    });
-    setRefresh((prev: any) => prev + 1);
-    setInput("");
-    console.log(res);
+    try {
+      const res = await axios.post("/api/category", {
+        name: input,
+      });
+      setRefresh((prev: any) => prev + 1);
+      setInput("");
+      setError("");
+    } catch (e:any) {
+      setError(e.response.data);
+    }
   };
 
   useEffect(() => {
@@ -41,7 +46,7 @@ function Category() {
     if (name == categoryParam) {
       console.log(pathname);
       replace(`${pathname}`);
-      console.log('worked');
+      console.log("worked");
     }
     const res = axios.put("/api/category", {
       id,
@@ -69,6 +74,7 @@ function Category() {
           autoComplete="false"
           required
         />
+        <h1 className="text-red-500 -mt-3">{error}</h1>
         <button className="bg-[#3563e8] w-1/2 text-white rounded-md py-1">
           ADD CATEGORY
         </button>
