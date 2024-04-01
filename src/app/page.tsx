@@ -6,10 +6,9 @@ import HomeHeader from "./components/HomePage/HomeHeader";
 export default function Home() {
   return (
     <div className="w-screen flex items-center justify-center flex-col z-10 text-white">
-      <HomeHeader/>
+      <HomeHeader />
       <LandingPage />
       <SecondPage />
-
     </div>
   );
 }

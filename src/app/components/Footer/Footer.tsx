@@ -6,7 +6,7 @@ const Footer = () => {
     <div className="p-[60px] flex flex-col bg-white shadow-2xl text-black">
       <div className="flex justify-between">
         <div className="flex flex-col w-72 gap-4">
-          <img src="Logo3.png" alt="" className="h-[140px] w-[140px]" />
+          <img src="RentCar.png" alt="" className="h-[140px] w-[140px]" />
           <h1>
             Бидний алсын хараа бол дэлхийд үнэлэгдсэн шилдэг Software Developer
             болох.

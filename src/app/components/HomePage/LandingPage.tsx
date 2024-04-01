@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from "react";
 import CarModel from "./CarModel";
 import Link from "next/link";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { useRouter } from "next/navigation";
 
 const LandingPage = () => {
   const ref: any = useRef();
@@ -47,7 +48,7 @@ const LandingPage = () => {
         >
           basic.
         </motion.div>
-         Own the <span className="bg-white text-black">thrill</span>.
+        Own the <span className="bg-white text-black">thrill</span>.
       </div>
       <div className="h-full  w-full absolute">
         <CarModel />
