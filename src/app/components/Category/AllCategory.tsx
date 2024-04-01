@@ -39,7 +39,7 @@ const AllCategory = () => {
         );
       })}
 
-      <Stack pt={20}>
+      <Stack pt={20} sx={{ bgcolor: "white" }}>
         <Stack fontSize={20} color={"#cccccc"}>
           Capacity
         </Stack>
