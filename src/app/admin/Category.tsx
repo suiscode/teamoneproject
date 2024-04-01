@@ -27,7 +27,7 @@ function Category() {
       setRefresh((prev: any) => prev + 1);
       setInput("");
       setError("");
-    } catch (e:any) {
+    } catch (e: any) {
       setError(e.response.data);
     }
   };
@@ -88,7 +88,7 @@ function Category() {
               onClick={() => handleChange(item.name)}
               key={crypto.randomUUID()}
               className={`${
-                item.name === categoryParam && `bg-[#3563e8] ml-0 text-white`
+                item.name === categoryParam && `bg-[#3563e8] -ml-0 text-white`
               } flex border-2 rounded-md border-[#3563e8] px-2 ml-4 text-xl cursor-pointer justify-between`}
             >
               <p>{item.name}</p>
