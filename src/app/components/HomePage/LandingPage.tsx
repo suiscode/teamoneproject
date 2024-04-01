@@ -49,11 +49,11 @@ const LandingPage = () => {
         </motion.div>
         Own the <span className="bg-white text-black">thrill</span>.
       </div>
-      <div className="h-full w-full absolute top-[100px]">
+      <div className="h-full w-full absolute top-[200px]">
         <CarModel />
       </div>
       <Link href={"/cars"}>
-        <button className="absolute text-xl bottom-[200px] right-[400px] border-2 rounded-xl px-4 py-2 hover:bg-white hover:text-black hover:border-black">
+        <button className="absolute text-xl bottom-[100px] right-[400px] border-2 rounded-xl px-4 py-2 hover:bg-white hover:text-black hover:border-black">
           Explore now
         </button>
       </Link>
