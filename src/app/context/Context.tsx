@@ -1,4 +1,3 @@
-
 "use client";
 
 import { ReactNode } from "react";
@@ -15,7 +14,6 @@ export const GlobalContextProvider = ({
   children,
 }: GlobalContextProviderProps) => {
   const [refresh, setRefresh] = useState(1);
-
 
   return (
     <GlobalContext.Provider
