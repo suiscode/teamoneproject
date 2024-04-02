@@ -20,7 +20,9 @@ const Footer = () => {
     >
       <div className="flex flex-col w-72 gap-4">
         <img src="RentCar.png" alt="" className="h-[140px] w-[140px]" />
-        <h1>Our vision is to become the world's best software developer.</h1>
+        <h1>
+          Our vision is to become the world&apos;s best software developer.
+        </h1>
       </div>
       <div className="flex flex-row gap-6 border border-black">
         <div className="flex flex-col gap-6">
