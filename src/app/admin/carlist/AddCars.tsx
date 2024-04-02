@@ -110,7 +110,7 @@ function AddCars({ data }: any) {
     const response = await axios.post("/api/car/", {
       ...values,
       images: Object.values(images),
-      type:data._id
+      type: data._id,
     });
     console.log(response);
     actions.setSubmitting(false);
@@ -180,7 +180,7 @@ function AddCars({ data }: any) {
                   </div>
                   <div className="flex gap-4">
                     {imageArray.map((item) => (
-                      <label>
+                      <label key={item}>
                         <input
                           type="file"
                           onChange={(e) => handleUpload(e, item)}
