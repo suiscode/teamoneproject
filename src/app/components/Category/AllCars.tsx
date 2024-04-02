@@ -4,8 +4,15 @@ import React from "react";
 import { FaGasPump } from "react-icons/fa6";
 import { TbSteeringWheel } from "react-icons/tb";
 import { MdPeopleAlt } from "react-icons/md";
+import Link from "next/link";
+import Router, { useRouter } from "next/navigation";
 
 export const AllCars = () => {
+  const { push } = useRouter();
+  const handlePush = () => {
+    push("/carddetail");
+  };
+
   const carData = [
     {
       name: "Toyota Camry",
@@ -70,7 +77,10 @@ export const AllCars = () => {
                 <p>{car.price}</p>
                 <p>{car.salePrice}</p>
               </div>
-              <button className="w-24 h-10 bg-black text-white ">
+              <button
+                onClick={() => handlePush()}
+                className="w-24 h-10 bg-black text-white "
+              >
                 Rent now
               </button>
             </div>
