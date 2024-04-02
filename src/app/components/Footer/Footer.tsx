@@ -1,80 +1,73 @@
 "use client";
-import * as React from "react";
+import { Stack } from "@mui/material";
 
 const Footer = () => {
+  const Social = [
+    { title: "Discord" },
+    { title: "Instagram" },
+    { title: "Twitter" },
+    { title: "Facebook" },
+  ];
   return (
-    <div className="p-[60px] flex flex-col bg-white shadow-2xl text-black">
-      <div className="flex justify-between">
-        <div className="flex flex-col w-72 gap-4">
-          <img src="Logo3.png" alt="" className="h-[140px] w-[140px]" />
-          <h1>
-            Бидний алсын хараа бол дэлхийд үнэлэгдсэн шилдэг Software Developer
-            болох.
+    <Stack
+      display={"flex"}
+      flexDirection={"row"}
+      justifyContent={"space-between"}
+      alignItems={"center"}
+      fontSize={18}
+      border={1}
+      padding={10}
+    >
+      <div className="flex flex-col w-72 gap-4">
+        <img src="RentCar.png" alt="" className="h-[140px] w-[140px]" />
+        <h1>Our vision is to become the world's best software developer.</h1>
+      </div>
+      <div className="flex flex-row gap-6 border border-black">
+        <div className="flex flex-col gap-6">
+          <h1 className="text-lg font-semibold">About</h1>
+          <h1 className="font-base font-normal text-[#13131399]">
+            How it works
+          </h1>
+          <h1 className="font-base font-normal text-[#13131399]">Featured</h1>
+          <h1 className="font-base font-normal text-[#13131399]">
+            Partnership
+          </h1>
+          <h1 className="font-base font-normal text-[#13131399]">
+            Bussiness Relation
           </h1>
         </div>
-        <div className="flex flex-row justify-between gap-32 mr-14">
-          <div className="flex flex-col gap-6">
-            <h1 className="text-lg font-semibold">About</h1>
-            <a href="#" className="font-base font-normal">
-              How it works
-            </a>
-            <a href="#" className="font-base font-normal">
-              Featured
-            </a>
-            <a href="#" className="font-base font-normal">
-              Partnership
-            </a>
-            <a href="#" className="font-base font-normal">
-              Bussiness Relation
-            </a>
-          </div>
-          <div className="flex flex-col gap-6">
-            <h1 className="text-lg font-semibold">Community</h1>
-            <a href="#" className="font-base font-normal">
-              Events
-            </a>
-            <a href="#" className="font-base font-normal">
-              Blog
-            </a>
-            <a href="#" className="font-base font-normal">
-              Podcast
-            </a>
-            <a href="#" className="font-base font-normal">
-              Invite a friends
-            </a>
-          </div>
-          <div className="flex flex-col gap-6">
-            <h1 className="text-lg font-semibold">Socials</h1>
-            <a href="#" className="font-base font-normal">
-              Discord
-            </a>
-            <a href="#" className="font-base font-normal">
-              Instagram
-            </a>
-            <a href="#" className="font-base font-normal">
-              Twitter
-            </a>
-            <a href="#" className="font-base font-normal">
-              Facebook
-            </a>
-          </div>
+        <div className="flex flex-col gap-6">
+          <h1 className="text-lg font-semibold">Community</h1>
+          <h1 className="font-base font-normal text-[#13131399]">Events</h1>
+          <h1 className="font-base font-normal text-[#13131399]">Blog</h1>
+          <h1 className="font-base font-normal text-[#13131399]">Podcast</h1>
+          <h1 className="font-base font-normal text-[#13131399]">
+            Invite a friends
+          </h1>
         </div>
+        <Stack
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+            gap: "25px",
+          }}
+        >
+          <Stack sx={{ fontSize: "18px", fontWeight: 600 }}>Social</Stack>
+          {Social.map(({ title }, index) => {
+            return (
+              <Stack key={index}>
+                <a href="#">
+                  <div className="flex items-center pr-16 text-[#13131399]">
+                    {title}
+                  </div>
+                </a>
+              </Stack>
+            );
+          })}
+        </Stack>
       </div>
-      <div className="border my-[36px]"></div>
-      <div className="flex flex-row justify-between">
-        <h1 className="text-lg font-semibold">
-          ©2024 TEAMONE. All rights reserved
-        </h1>
-        <div className="flex flex-row gap-10">
-          <a href="#" className="text-base font-medium">
-            Privacy & Policy
-          </a>
-          <a href="#" className="text-base font-medium">
-            Terms & Condition
-          </a>
-        </div>
-      </div>
-    </div>
+    </Stack>
   );
 };
+
 export default Footer;
