@@ -11,12 +11,12 @@ function CardDetail() {
     >
       <Stack sx={{ gap: "24px" }}>
         <Stack>
-          <Image src="/View.png" alt="" width={492} height={360} />
+          <Image src="/car.png" alt="" width={492} height={360} />
         </Stack>
         <Stack direction="row" sx={{ gap: "23px" }}>
-          <Image src="/View.png" alt="" width={148} height={124} />
-          <Image src="/View.png" alt="" width={148} height={124} />
-          <Image src="/View.png" alt="" width={148} height={124} />
+          <Image src="/car.png" alt="" width={148} height={124} />
+          <Image src="/car.png" alt="" width={148} height={124} />
+          <Image src="/car.png" alt="" width={148} height={124} />
         </Stack>
       </Stack>
 
@@ -81,14 +81,17 @@ function CardDetail() {
           </Stack>
         </Stack>
         <Stack direction="row" sx={{ mt: "50px", gap: "150px" }}>
-          <Stack direction="row">
-            <Typography sx={{ fontSize: "28px" }}>$80.00/</Typography>
-            <Typography sx={{ fontSize: "20px", mt: "5px" }}>days</Typography>
+          <Stack>
+            <Stack direction="row">
+              <Typography sx={{ fontSize: "28px" }}>$80.00/</Typography>
+              <Typography sx={{ fontSize: "20px", mt: "5px" }}>days</Typography>
+            </Stack>
+            <Stack sx={{ fontSize: "20px" }}>$100.00</Stack>
           </Stack>
           <Stack>
-            <Button className="bg-[#3563E9] w-[140px] h-[56px] text-[white]">
+            <button className="rounded-lg bg-[#3563E9] w-[140px] h-[56px] text-[white]">
               Rent Now
-            </Button>
+            </button>
           </Stack>
         </Stack>
       </Stack>
