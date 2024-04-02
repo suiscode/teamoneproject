@@ -36,6 +36,7 @@ function Category() {
     const fetchData = async () => {
       const result: any = await axios.get("/api/category");
       setCategory(result.data);
+      console.log("fetched");
     };
     fetchData();
   }, [refresh]);
@@ -57,7 +58,7 @@ function Category() {
   const handleChange = (name: any) => {
     const params = new URLSearchParams(searchParams);
     params.set("category", name);
-    replace(`${pathname}?${params}`);
+    push(`${pathname}?${params}`);
   };
 
   return (
@@ -88,8 +89,9 @@ function Category() {
               onClick={() => handleChange(item.name)}
               key={crypto.randomUUID()}
               className={`${
-                item.name === categoryParam && `bg-[#3563e8] ml-0 text-white`
-              } flex border-2 rounded-md border-[#3563e8] px-2 ml-4 text-xl cursor-pointer justify-between`}
+                item.name === categoryParam &&
+                `bg-[#3563e8] ml-0 text-2xl text-white`
+              } flex border-2 rounded-md border-[#3563e8] px-2 ml-4 text-sm cursor-pointer justify-between`}
             >
               <p>{item.name}</p>
               <div className="flex gap-4">
