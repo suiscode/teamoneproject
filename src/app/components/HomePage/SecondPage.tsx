@@ -35,7 +35,7 @@ function SecondPage() {
       </motion.div>
 
       <p className="text-3xl ml-[120px] w-1/2 flex">
-        Whether you're embarking on a cross-country adventure or simply need
+        Whether you&apos;re embarking on a cross-country adventure or simply need
         reliable transportation for your daily commute, our fleet of top-quality
         vehicles has you covered.
       </p>
@@ -51,10 +51,10 @@ function SecondPage() {
         transition={{ ease: "linear", duration: 2, x: { duration: 1 } }}
         className="text-5xl font-bold text-white  ml-[120px] pt-[50%]"
       >
-        <p>"What we drive says a lot about who we are.</p>
+        <p>What we drive says a lot about who we are.</p>
         <p>
           There are only two types of people that can drive cars: cowards and
-          fools."
+          fools.
         </p>
       </motion.div>
     </div>

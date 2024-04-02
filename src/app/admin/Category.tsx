@@ -27,7 +27,7 @@ function Category() {
       setRefresh((prev: any) => prev + 1);
       setInput("");
       setError("");
-    } catch (e:any) {
+    } catch (e: any) {
       setError(e.response.data);
     }
   };
@@ -40,7 +40,7 @@ function Category() {
     fetchData();
   }, [refresh]);
 
-  const handleDelete = async (id, name) => {
+  const handleDelete = async (id: string, name: string) => {
     console.log(name);
     console.log(categoryParam);
     if (name == categoryParam) {
