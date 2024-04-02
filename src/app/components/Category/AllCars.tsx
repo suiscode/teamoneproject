@@ -42,31 +42,34 @@ export const AllCars = () => {
     <div className="flex gap-8 flex-wrap ml-10 ">
       {carData.map((car, index) => {
         return (
-          <div key={index} className="border bg-white rounded-xl w-80 h-96 p-4">
+          <div
+            key={index}
+            className="border bg-white rounded-xl w-80 h-96 p-4 flex flex-col justify-between"
+          >
             <div>
               <p className="font-bold text-lg">{car.name}</p>
-              <p className="text-[#cccccc] text-sm">{car.type}</p>
+              <p className="text-[#595959] text-sm">{car.type}</p>
             </div>
             <Image src={car.img} width={400} height={200} alt="" />
-            <div className="flex gap-4">
-              <div className="flex items-center gap-2 text-[#d9d9d9]">
+            <div className="flex justify-between gap-4 text-[#595959]">
+              <div className="flex items-center gap-2 ">
                 <FaGasPump />
                 <p>{car.gasoline}</p>
               </div>
-              <div className="flex items-center gap-2 text-[#d9d9d9]">
+              <div className="flex items-center gap-2 ">
                 <TbSteeringWheel />
                 <p>{car.steering}</p>
               </div>
-              <div className="flex items-center gap-2 text-[#d9d9d9]">
+              <div className="flex items-center gap-2 ">
                 <MdPeopleAlt />
                 <p>{car.capacity}</p>
               </div>
             </div>
-            <div className="text-sm">
-              <p>{car.price}</p>
-              <p>{car.salePrice}</p>
-            </div>
-            <div className="flex justify-end">
+            <div className="flex justify-between ">
+              <div className="text-sm">
+                <p>{car.price}</p>
+                <p>{car.salePrice}</p>
+              </div>
               <button className="w-24 h-10 bg-black text-white ">
                 Rent now
               </button>
