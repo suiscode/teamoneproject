@@ -19,13 +19,15 @@ const AllCategory = () => {
   ];
   return (
     <Stack
-      width={"15%"}
+      width={"25%"}
       height={"100%"}
       justifyContent={"center"}
-      paddingLeft={6}
+      paddingX={2}
       fontSize={18}
+      border={"1px solid #d9d9d9"}
+      borderRadius={"10px"}
     >
-      <Typography fontSize={20} color={"#cccccc"}>
+      <Typography fontSize={20} color={"#595959"}>
         Type
       </Typography>
       {carMark.map(({ icon, title }, index) => {
@@ -40,7 +42,7 @@ const AllCategory = () => {
       })}
 
       <Stack pt={20} sx={{ bgcolor: "white" }}>
-        <Stack fontSize={20} color={"#cccccc"}>
+        <Stack fontSize={20} color={"#595959"}>
           Capacity
         </Stack>
         {carCapacity.map(({ icon, title }, index) => {
@@ -54,7 +56,7 @@ const AllCategory = () => {
           );
         })}
       </Stack>
-      <Stack mt={10}>
+      <Stack mt={10} justifyContent={"center"} pl={4}>
         <SliderDemo />
       </Stack>
     </Stack>
