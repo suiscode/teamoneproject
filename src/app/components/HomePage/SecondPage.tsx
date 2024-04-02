@@ -35,12 +35,12 @@ function SecondPage() {
       </motion.div>
 
       <p className="text-3xl ml-[120px] w-1/2 flex">
-        Whether you&apos;re embarking on a cross-country adventure or simply need
-        reliable transportation for your daily commute, our fleet of top-quality
-        vehicles has you covered.
+        Whether you&apos;re embarking on a cross-country adventure or simply
+        need reliable transportation for your daily commute, our fleet of
+        top-quality vehicles has you covered.
       </p>
 
-      <motion.div
+      {/* <motion.div
         ref={ref}
         variants={{
           hidden: { opacity: 0 },
@@ -56,7 +56,7 @@ function SecondPage() {
           There are only two types of people that can drive cars: cowards and
           fools.
         </p>
-      </motion.div>
+      </motion.div> */}
     </div>
   );
 }
