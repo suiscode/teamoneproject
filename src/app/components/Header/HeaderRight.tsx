@@ -1,3 +1,4 @@
+import Link from "next/link";
 import * as React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
@@ -16,9 +17,9 @@ const HeaderRight = () => {
         </button>
       </div>
       <div className="flex gap-2 items-center">
-        <div className="border rounded-full p-3 bg-white">
+        <Link href='/cars/favorites' className="border rounded-full p-3 bg-white">
           <FaRegHeart className="h-[24px] w-[24px]" />
-        </div>
+        </Link>
         <div>
           <button>
             <div className="border border-black p-6 rounded-full bg-white"></div>

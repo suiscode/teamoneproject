@@ -4,8 +4,8 @@ import { Car, CarCategory } from "./models";
 export const fetchCars = async () => {
   try {
     connectToDB();
-    const users = await Car.find();
-    return users;
+    const cars = await Car.find();
+    return cars;
   } catch (e) {
     console.log(e);
   }
@@ -32,11 +32,23 @@ export const fetchCategory = async () => {
 };
 
 export const getCategory = async (name) => {
-  try {
-    connectToDB();
-    const category = await CarCategory.find({ name: name }).populate('cars');
-    return category;
-  } catch (e) {
-    console.log(e);
+  if (!name) {
+    try {
+      connectToDB();
+      const cars = await Car.find();
+      return {data:cars};
+    } catch (e) {
+      console.log(e);
+    }
+  } else {
+    try {
+      connectToDB();
+      const category = await CarCategory.findOne({ name: name }).populate(
+        "cars"
+      );
+      return category;
+    } catch (e) {
+      console.log(e);
+    }
   }
 };

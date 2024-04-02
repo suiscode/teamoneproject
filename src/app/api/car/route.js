@@ -6,12 +6,14 @@ import { CarCategory } from "../../models";
 
 export const POST = async (req, res) => {
     const body = await req.json();
-    console.log(body);
     try {
       connectToDB();
       const carUploaded = await Car.create({...body});
-      const carAddedToCategory = await CarCategory.findByIdAndUpdate(body.type,{});
-      console.log(carUploaded);
+      const carAddedToCategory = await CarCategory.findByIdAndUpdate(
+        body.type,
+        { $push: { cars: carUploaded._id } },
+        { new: true }
+      );
       return NextResponse.json("Car added", { status: 200 });
     } catch (e) {
       console.log(e);
