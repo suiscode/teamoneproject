@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/app/components/Header/Header";
 import Footer from "@/app/components/Footer/Footer";
 import { GlobalContextProvider } from "./context/Context";
+import { AuthProdiver } from "./Providers";
+import { db } from "@/lib/db";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,10 +19,14 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+
+
   return (
     <html lang="en">
-      <body className={`${inter.className}`}>
-        <GlobalContextProvider>{children}</GlobalContextProvider>
+      <body className={`${inter.className} flex justify-center`}>
+        <AuthProdiver>
+          <GlobalContextProvider>{children}</GlobalContextProvider>
+        </AuthProdiver>
       </body>
     </html>
   );

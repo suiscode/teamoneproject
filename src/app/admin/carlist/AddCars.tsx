@@ -29,15 +29,7 @@ const style = {
   borderRadius: "10px",
 };
 
-const initialValues = {
-  name: "",
-  description: "",
-  price: "",
-  salePrice: "",
-  gasoline: "",
-  steering: "",
-  capacity: "",
-};
+
 
 const validationSchema = object({
   name: string().required("Must fill"),
@@ -51,6 +43,17 @@ const validationSchema = object({
 });
 
 function AddCars({ data }: any) {
+
+  const initialValues = {
+    name: "",
+    description: "",
+    price: "",
+    salePrice: "",
+    gasoline: "",
+    steering: "",
+    capacity: "",
+  };
+
   const [open, setOpen] = useState(false);
   const [images, setImages] = useState<{ [key: number]: string }>({
     1: "",
@@ -83,8 +86,6 @@ function AddCars({ data }: any) {
     const uploadUrl = res.data.uploadUrl;
     const accessUrl = res.data.accessUrl;
     const id = res.data.id;
-    console.log(res);
-
     const img = event.target.files?.[0];
 
     try {
@@ -93,7 +94,6 @@ function AddCars({ data }: any) {
           "Content-Type": img?.type,
         },
       });
-      console.log(res);
 
       setImages((prev) => ({
         ...prev,
@@ -103,16 +103,14 @@ function AddCars({ data }: any) {
       console.error("Error uploading file:", error);
     }
   };
-
   const imageArray = [1, 2, 3];
-
   const handleSubmit = async (values: any, actions: any) => {
-    const response = await axios.post("/api/car/", {
+    const requestBody = {
       ...values,
-      images: Object.values(images),
       type: data._id,
-    });
-    console.log(response);
+      images: Object.values(images),
+    }
+    const response = await axios.post("/api/car/", requestBody);
     actions.setSubmitting(false);
   };
 
