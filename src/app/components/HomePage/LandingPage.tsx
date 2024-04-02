@@ -21,7 +21,7 @@ const LandingPage = () => {
       ref={ref}
       className="w-full items-center flex-col flex h-screen bg-[#000] "
     >
-      <div className="font-bold mt-[200px] relative flex text-[100px]">
+      <div className="font-bold mt-[100px] relative flex text-[100px]">
         Rent the
         <motion.div
           variants={{
@@ -49,7 +49,7 @@ const LandingPage = () => {
         </motion.div>
         Own the <span className="bg-white text-black">thrill</span>.
       </div>
-      <div className="h-full w-full absolute top-[200px]">
+      <div className="h-full w-full absolute top-[70px]">
         <CarModel />
       </div>
       <Link href={"/cars"}>
