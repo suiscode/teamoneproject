@@ -7,6 +7,9 @@ import { LoginSchema } from "@/lib/schema";
 import { DEFAULT_LOGIN_REDIRECT } from "../../../../../routes";
 import { error } from "console";
 import { AuthError } from "next-auth";
+import { getUserByEmail } from "@/lib/user-data";
+import { generateVerificationToken } from "@/lib/tokens";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
@@ -16,6 +19,31 @@ export const POST = async (req: NextRequest) => {
   }
 
   const { email, password } = validatedFields.data;
+
+  const existingUser = await getUserByEmail(email);
+  if (!existingUser || !existingUser.email || !existingUser.password) {
+    return NextResponse.json(
+      { error: "Email does not exists!" },
+      { status: 400 }
+    );
+  }
+
+  if (!existingUser.emailVerified) {
+    const verificationToken = await generateVerificationToken(
+      existingUser.email
+    );
+
+    await sendVerificationEmail(
+      verificationToken.email,
+      verificationToken.token
+    );
+
+    return NextResponse.json(
+      { success: "Confirmation email sent" },
+      { status: 400 }
+    );
+  }
+
   try {
     await signIn("credentials", {
       email,

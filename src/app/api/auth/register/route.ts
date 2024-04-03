@@ -4,15 +4,15 @@ import * as z from "zod";
 import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 import { RegisterSchema } from "@/lib/schema";
-import { connectToDB } from "@/app/utils";
-import { User } from "@/app/models";
 import { getUserByEmail } from "@/lib/user-data";
+import { connectToDB } from "@/app/utils";
 import { db } from "@/lib/db";
+import { generateVerificationToken } from "@/lib/tokens";
+import { sendVerificationEmail } from "@/lib/mail";
 
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
   const validatedFields = RegisterSchema.safeParse(body);
-  console.log(body);
 
   if (!validatedFields.success) {
     return NextResponse.json({ error: "Invalid fields" }, { status: 400 });
@@ -34,8 +34,17 @@ export const POST = async (req: NextRequest) => {
         password: hashedPassword,
       },
     });
+
+    const verificationToken = await generateVerificationToken(email);
+    await sendVerificationEmail(
+      verificationToken.email,
+      verificationToken.token
+    );
     console.log(newUser);
-    return NextResponse.json({ success: "Email sent" }, { status: 200 });
+    return NextResponse.json(
+      { success: "Confirmation email sent" },
+      { status: 200 }
+    );
   } catch (e) {
     console.log(e);
     return NextResponse.json({ error: "Invalid fields" }, { status: 400 });
