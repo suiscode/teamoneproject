@@ -1,9 +1,15 @@
+"use client";
 import React from "react";
 import { FaCar } from "react-icons/fa";
 import { IoPeopleCircle } from "react-icons/io5";
 import { ImLocation2 } from "react-icons/im";
+import { useRouter } from "next/navigation";
 
 export const ThirdPage = () => {
+  const { push } = useRouter();
+  const handlePush = () => {
+    push("/aboutUs");
+  };
   return (
     <div
       className="w-full flex-col relative justify-center items-center flex h-[1200px] gap-10 py-[360px]"
@@ -22,7 +28,7 @@ export const ThirdPage = () => {
           </div>
           Explore Cars
         </div>
-        <div className="flex flex-col items-center gap-8 ">
+        <div onClick={handlePush} className="flex flex-col items-center gap-8 ">
           <div className="text-4xl">
             <IoPeopleCircle />
           </div>

@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-export const publicRoutes = ["/", "/cars"];
-=======
 export const publicRoutes = ["/", "/cars", "/cartdetail", "/aboutUs"];
->>>>>>> ade3764 (ehhe)
 
 export const authRoutes = [
     '/auth/login',
