@@ -1,4 +1,3 @@
-import { NextRequest } from "next/server";
 import authConfig from "../auth.config";
 import NextAuth from "next-auth";
 import {
@@ -25,10 +24,10 @@ export default auth((req) => {
     }
     return;
   }
-  // if (!isLoggedIn && !isPublicRoute) {
-  //   return Response.redirect(new URL("/auth/login", nextUrl));
-  // }
-  // return
+  if (!isLoggedIn && !isPublicRoute) {
+    return Response.redirect(new URL("/auth/login", nextUrl));
+  }
+  return
 });
 
 export const config = {
