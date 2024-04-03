@@ -1,9 +1,12 @@
+import { Suspense } from "react";
 import NewVerificationForm from "./new-verification";
 
 const newVerificationPage = () => {
   return (
     <div>
-      <NewVerificationForm />
+      <Suspense>
+        <NewVerificationForm />
+      </Suspense>
     </div>
   );
 };

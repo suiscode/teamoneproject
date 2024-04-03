@@ -36,9 +36,9 @@ function NewVerificationForm() {
 
   return (
     <div className="flex flex-col">
-      {!success && !error && <BeatLoader />}
-      <FormSuccess message={success} />
-      {!success && <FormError message={error} />}
+        {!success && !error && <BeatLoader />}
+        <FormSuccess message={success} />
+        {!success && <FormError message={error} />}
     </div>
   );
 }
