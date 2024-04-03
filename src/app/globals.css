@@ -84,3 +84,15 @@ input::-webkit-inner-spin-button {
 input[type="file"] {
   display: none;
 }
+
+#home {
+  background-image: radial-gradient(
+    closest-side at 60% 55%,
+
+    #660000,
+    black
+  );
+}
+/* #banner {
+  background-image: radial-gradient(closest-side at 50% 55%, #660000, #000);
+} */

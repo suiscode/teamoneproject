@@ -2,8 +2,8 @@ import React from "react";
 
 function HomeHeader() {
   return (
-    <div className="fixed top-0 z-30 bg-[#0D0D0D] h-[48px] border-b-2 items-center border-gray-500 w-full flex justify-center ">
-      <div className="w-[1440px] flex justify-between">
+    <div className="fixed top-0 z-30 bg-black h-[50px] items-center w-full flex justify-center">
+      <div className="flex justify-between w-full  mx-[10%]">
         <p>CAR RENT</p>
         <button>Log in</button>
       </div>

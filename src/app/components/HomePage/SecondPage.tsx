@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from "react";
 import { motion, useInView, useAnimation } from "framer-motion";
 import Image from "next/image";
+import Link from "next/link";
 
 function SecondPage() {
   const ref: any = useRef();
@@ -17,8 +18,12 @@ function SecondPage() {
 
   return (
     <div
-      className="w-full flex-col relative flex h-[3200px] gap-10 py-[360px]"
-      style={{ backgroundImage: 'url("/testbg.jpg")', backgroundSize: "cover" }}
+      className="w-full flex-col relative flex h-[1400px] gap-10 py-[360px]"
+      style={{
+        backgroundImage: 'url("/carr.jpeg")',
+        backgroundSize: "cover",
+        // backgroundRepeat: "no-repeat",
+      }}
     >
       <motion.div
         ref={ref}
@@ -57,6 +62,11 @@ function SecondPage() {
           fools.
         </p>
       </motion.div> */}
+      <Link href={"/cars"}>
+        <button className="w-[250px] ml-[120px] flex items-center gap-8 border-2 rounded-xl px-16 py-4 hover:bg-white hover:text-black hover:border-black">
+          Discover more
+        </button>
+      </Link>
     </div>
   );
 }
