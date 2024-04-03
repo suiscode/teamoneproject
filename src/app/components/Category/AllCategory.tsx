@@ -57,6 +57,7 @@ const AllCategory = () => {
         })}
       </Stack>
       <Stack mt={10} justifyContent={"center"} pl={4}>
+        Price
         <SliderDemo />
       </Stack>
     </Stack>

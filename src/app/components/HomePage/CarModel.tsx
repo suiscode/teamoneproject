@@ -4,7 +4,7 @@ import { Canvas } from "@react-three/fiber";
 import { Stage, PresentationControls, useGLTF } from "@react-three/drei";
 
 function Model(props: any) {
-  const { scene } = useGLTF("/mercedes.glb");
+  const { scene } = useGLTF("/redbenz.glb");
   return <primitive object={scene} {...props} />;
 }
 
@@ -14,9 +14,9 @@ export default function CarModel() {
       dpr={[1, 2]}
       camera={{ fov: 10 }}
       style={{
-        width: "100%",
+        width: "60%",
         height: "100%",
-        opacity: "2",
+        opacity: "1",
       }}
     >
       <ambientLight intensity={1} />
@@ -25,7 +25,7 @@ export default function CarModel() {
         speed={1.5}
         global
         polar={[-1, Math.PI / 4]}
-        rotation={[0.2, -0.8, 0]}
+        rotation={[0.1, -0.8, 0]}
       >
         <Stage>
           <Model />

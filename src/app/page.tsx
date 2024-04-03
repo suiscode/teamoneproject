@@ -1,7 +1,7 @@
 import LandingPage from "./components/HomePage/LandingPage";
 import SecondPage from "./components/HomePage/SecondPage";
 import HomeHeader from "./components/HomePage/HomeHeader";
-import { Stack } from "@mui/material";
+import { ThirdPage } from "./components/HomePage/ThirdPage";
 
 export default function Home() {
   return (
@@ -9,6 +9,7 @@ export default function Home() {
       <HomeHeader />
       <LandingPage />
       <SecondPage />
+      <ThirdPage />
     </div>
   );
 }

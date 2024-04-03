@@ -1,8 +1,8 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import CarModel from "./CarModel";
-import Link from "next/link";
 import { motion, useAnimation, useInView } from "framer-motion";
+import { AiOutlineArrowDown } from "react-icons/ai";
 
 const LandingPage = () => {
   const ref: any = useRef();
@@ -19,15 +19,11 @@ const LandingPage = () => {
   return (
     <div
       ref={ref}
-      className="w-full items-center flex-col flex h-screen bg-[#000] "
-      // style={{
-      //   backgroundImage: 'url("/smoke.avif")',
-      //   backgroundSize: "cover",
-      // }}
+      id="home"
+      className="w-full flex-col flex h-screen items-center justify-center bg-[#000] "
     >
-      <div className="border-stone-800 border-[15px] w-[1400px] h-[900px] mt-20">
-        <div className="font-bold mt-[80px] relative flex text-[80px] pl-2">
-          Rent the
+      <div className="border-[8px] rounded-md border-[#660000] w-[80%] md:h-[700px] h-[50%] flex flex-col gap-[100px] ">
+        <div className="font-bold mt-[80px] relative pl-4 ">
           <motion.div
             variants={{
               hidden: { opacity: 0, y: -75 },
@@ -36,9 +32,10 @@ const LandingPage = () => {
             initial="hidden"
             animate={mainControls}
             transition={{ duration: 0.5, delay: 2.25 }}
-            className="bg-white text-black"
+            className="md:text-[80px] text-[40px]"
           >
-            luxury.
+            Rent the luxury.
+            <p className="md:text-[40px] text-[20px]">Own the thrill</p>
           </motion.div>
           <motion.div
             variants={{
@@ -48,20 +45,22 @@ const LandingPage = () => {
             initial="hidden"
             animate="visible"
             transition={{ duration: 0.5, delay: 2 }}
-            className="bg-white text-black absolute left-[410px]"
+            className=" absolute left-[10px] top-0 text-red-700 md:text-[80px] text-[40px]"
           >
-            basic.
+            Rent the basic.
           </motion.div>
-          Own the <span className="bg-white text-black">thrill</span>.
         </div>
-        <div className="h-full w-full absolute top-[70px]">
-          <CarModel />
+        <div className="md:text-2xl text-[20px] pl-6 ">
+          <p>Experience the Unprecedented, Drive with Uniqueness</p>
+          <p>Drive and Laugh, Like Nobody's Business</p>
         </div>
-        {/* <Link href={"/cars"}>
-          <button className="absolute text-xl bottom-[100px] right-[400px] border-2 rounded-xl px-4 py-2 hover:bg-white hover:text-black hover:border-black">
-            Explore now
-          </button>
-        </Link> */}
+        <button className="w-[12%] ml-6 flex items-center gap-8 border-red-600 border-2 rounded-xl px-8 py-4 hover:bg-white hover:text-black hover:border-black">
+          Scroll down
+          <AiOutlineArrowDown />
+        </button>
+      </div>
+      <div className="h-full w-full absolute top-[150px] right-0 flex justify-end items-center">
+        <CarModel />
       </div>
     </div>
   );
