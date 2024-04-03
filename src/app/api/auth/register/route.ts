@@ -1,7 +1,7 @@
 import * as z from "zod";
 
 // import { loginSchema } from "../../../../lib/schema";
-import bcrypt from "bcrypt";
+import bcrypt from "bcryptjs";
 import { NextRequest, NextResponse } from "next/server";
 import { RegisterSchema } from "@/lib/schema";
 import { connectToDB } from "@/app/utils";
