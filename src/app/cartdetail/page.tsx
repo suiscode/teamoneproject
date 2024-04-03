@@ -2,8 +2,9 @@ import React from "react";
 import CardDetail from "../components/CardDetail/CardDetail";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
-import Category from "../admin/Category";
+// import Category from "../admin/Category";
 import AllCategory from "../components/Category/AllCategory";
+import AboutUs from "../components/aboutUs/AboutUs";
 
 function page() {
   return (

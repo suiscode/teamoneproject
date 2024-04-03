@@ -1,9 +1,16 @@
+"use client";
+
 import React from "react";
 import { Stack, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
+import { useRouter } from "next/navigation";
 
 function CardDetail() {
+  const { push } = useRouter();
+  const handlePush = () => {
+    push("/aboutUs");
+  };
   return (
     <Stack
       direction="row"
@@ -113,7 +120,10 @@ function CardDetail() {
             <Stack sx={{ fontSize: "20px" }}>$100.00</Stack>
           </Stack>
           <Stack>
-            <button className="rounded-lg bg-[#3563E9] w-[140px] h-[56px] text-[white]">
+            <button
+              onClick={handlePush}
+              className="rounded-lg bg-[#3563E9] w-[140px] h-[56px] text-[white]"
+            >
               Rent Now
             </button>
           </Stack>
