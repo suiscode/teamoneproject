@@ -16,7 +16,7 @@ export const ThirdPage = () => {
         id="banner"
         className="w-[100%] h-[200px]  absolute top-0 flex items-center justify-evenly text-2xl text-[#d9d9d9]"
       >
-        <div className="flex flex-col items-center gap-8 ">
+        <div className="flex flex-col items-center gap-8">
           <div className="text-4xl">
             <FaCar />
           </div>
