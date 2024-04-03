@@ -11,12 +11,36 @@ function CardDetail() {
     >
       <Stack sx={{ gap: "24px" }}>
         <Stack>
-          <Image src="/car.png" alt="" width={492} height={360} />
+          <Image
+            src="/download.jpeg"
+            alt=""
+            width={492}
+            height={360}
+            className="rounded-xl"
+          />
         </Stack>
-        <Stack direction="row" sx={{ gap: "23px" }}>
-          <Image src="/car.png" alt="" width={148} height={124} />
-          <Image src="/car.png" alt="" width={148} height={124} />
-          <Image src="/car.png" alt="" width={148} height={124} />
+        <Stack direction="row" sx={{ gap: "24px" }}>
+          <Image
+            src="/download.jpeg"
+            alt=""
+            width={148}
+            height={124}
+            className="rounded-xl"
+          />
+          <Image
+            src="/download.jpeg"
+            alt=""
+            width={148}
+            height={124}
+            className="rounded-xl"
+          />
+          <Image
+            src="/download.jpeg"
+            alt=""
+            width={148}
+            height={124}
+            className="rounded-xl"
+          />
         </Stack>
       </Stack>
 
