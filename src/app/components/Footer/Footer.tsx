@@ -1,7 +1,12 @@
 "use client";
 import { Stack } from "@mui/material";
+import { useRouter } from "next/navigation";
 
 const Footer = () => {
+  const { push } = useRouter();
+  const handlePush = () => {
+    push("/aboutUs");
+  };
   const Social = [
     { title: "Discord" },
     { title: "Instagram" },
@@ -30,7 +35,9 @@ const Footer = () => {
       <div className="flex flex-row gap-48">
         <div className="flex flex-col gap-6">
           <h1 className="text-xl font-semibold">About</h1>
-          <h1 className="font-base font-normal">Team member</h1>
+          <h1 onClick={handlePush} className="font-base font-normal">
+            Team member
+          </h1>
           <h1 className="font-base font-normal">About project</h1>
         </div>
         <Stack

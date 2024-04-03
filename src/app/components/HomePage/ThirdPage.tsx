@@ -67,8 +67,24 @@ export const ThirdPage = () => {
           <div className="text-3xl">
             <FaMoneyCheckDollar />
           </div>
+<<<<<<< HEAD
           Deals for every budget
           <p className="text-sm">Incredible price</p>
+=======
+          Explore Cars
+        </div>
+        <div onClick={handlePush} className="flex flex-col items-center gap-8 ">
+          <div className="text-4xl">
+            <IoPeopleCircle />
+          </div>
+          About us
+        </div>
+        <div className="flex flex-col items-center gap-8 ">
+          <div className="text-4xl">
+            <ImLocation2 />
+          </div>
+          Our address
+>>>>>>> 458bdca (4-3 hiiv bilegt)
         </div>
       </div>
 
