@@ -10,7 +10,7 @@ const HeaderRight = () => {
         <input
           type="search"
           placeholder="Search something here"
-          className="w-full h-10 pl-4 rounded-3xl"
+          className="w-full h-10 pl-4 rounded-3xl bg-gray-300"
         />
         <button className="absolute right-4">
           <IoIosSearch className="h-[24px] w-[24px]" />

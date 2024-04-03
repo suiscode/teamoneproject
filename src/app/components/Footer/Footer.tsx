@@ -15,37 +15,23 @@ const Footer = () => {
       justifyContent={"space-between"}
       alignItems={"center"}
       fontSize={18}
-      border={1}
-      padding={10}
+      paddingBottom={10}
+      paddingTop={10}
+      border={"1px solid black"}
+      bgcolor={"#000"}
+      color={"white"}
     >
-      <div className="flex flex-col w-72 gap-4">
-        <img src="RentCar.png" alt="" className="h-[140px] w-[140px]" />
+      <div className="flex flex-col w-72 gap-4 ml-10">
+        <img src="ASD.png" alt="" className="h-[90px] w-[300px]" />
         <h1>
           Our vision is to become the world&apos;s best software developer.
         </h1>
       </div>
-      <div className="flex flex-row gap-6 border border-black">
+      <div className="flex flex-row gap-48">
         <div className="flex flex-col gap-6">
-          <h1 className="text-lg font-semibold">About</h1>
-          <h1 className="font-base font-normal text-[#13131399]">
-            How it works
-          </h1>
-          <h1 className="font-base font-normal text-[#13131399]">Featured</h1>
-          <h1 className="font-base font-normal text-[#13131399]">
-            Partnership
-          </h1>
-          <h1 className="font-base font-normal text-[#13131399]">
-            Bussiness Relation
-          </h1>
-        </div>
-        <div className="flex flex-col gap-6">
-          <h1 className="text-lg font-semibold">Community</h1>
-          <h1 className="font-base font-normal text-[#13131399]">Events</h1>
-          <h1 className="font-base font-normal text-[#13131399]">Blog</h1>
-          <h1 className="font-base font-normal text-[#13131399]">Podcast</h1>
-          <h1 className="font-base font-normal text-[#13131399]">
-            Invite a friends
-          </h1>
+          <h1 className="text-xl font-semibold">About</h1>
+          <h1 className="font-base font-normal">Team member</h1>
+          <h1 className="font-base font-normal">About project</h1>
         </div>
         <Stack
           sx={{
@@ -54,14 +40,12 @@ const Footer = () => {
             gap: "25px",
           }}
         >
-          <Stack sx={{ fontSize: "18px", fontWeight: 600 }}>Social</Stack>
+          <Stack sx={{ fontSize: "20px", fontWeight: 600 }}>Social</Stack>
           {Social.map(({ title }, index) => {
             return (
               <Stack key={index}>
                 <a href="#">
-                  <div className="flex items-center pr-16 text-[#13131399]">
-                    {title}
-                  </div>
+                  <div className="flex items-center pr-16">{title}</div>
                 </a>
               </Stack>
             );
