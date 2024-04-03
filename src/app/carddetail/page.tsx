@@ -9,7 +9,7 @@ function page() {
   return (
     <div>
       <Header />
-      <div className="flex justify-center w-full">
+      <div className="flex gap-[32px] justify-center items-center">
         <AllCategory />
         <CardDetail />
       </div>
