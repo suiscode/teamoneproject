@@ -6,6 +6,8 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema } from "../../../lib/schema";
 import { Input } from "../../../components/ui/input";
 import { useTransition } from "react";
+import GoogleIcon from '@mui/icons-material/Google';
+import GitHubIcon from '@mui/icons-material/GitHub';
 import {
   Form,
   FormControl,
@@ -18,6 +20,7 @@ import { Button } from "../../../components/ui/button";
 import { FormError } from "../../../lib/form-error";
 import { FormSuccess } from "../../../lib/form-success";
 import axios from "axios";
+import ButtonAuth from "@/app/cars/components/Button/ButtonOauth";
 
 export default function RegisterForm() {
   const [error, setError] = useState<string | undefined>("");
@@ -29,7 +32,7 @@ export default function RegisterForm() {
     defaultValues: {
       email: "",
       password: "",
-      name:""
+      name: ""
     },
   });
 
@@ -40,7 +43,7 @@ export default function RegisterForm() {
       try {
         const res = await axios.post("/api/auth/register", values);
         setSuccess(res.data.success);
-      } catch (e:any) {
+      } catch (e: any) {
         console.log(e);
         setError(e.response.data.error);
       }
@@ -48,22 +51,25 @@ export default function RegisterForm() {
   };
 
   return (
-    <div>
-      <div>
+    <div className="absolute top-[33%] left-[44%] w-[350px] h-[500px] backdrop-blur-md flex justify-center">
+      <div className=" flex flex-col justify-center items-center gap-5 text-white">
+        <h1 className="text-2xl">Sign up</h1>
         <Form {...form}>
           <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="space-y-2">
+            <div className="space-y-2 flex flex-col  gap-5 text-white ">
               <FormField
+
                 control={form.control}
                 name="email"
                 render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
+                  <FormItem >
+
                     <FormControl>
                       <Input
+                        className="text-white w-[250px] "
                         disabled={isPending}
                         {...field}
-                        placeholder="john.doe@example.com"
+                        placeholder="Your Email"
                         type="email"
                       />
                     </FormControl>
@@ -76,7 +82,7 @@ export default function RegisterForm() {
                 name="name"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Name</FormLabel>
+
                     <FormControl>
                       <Input
                         disabled={isPending}
@@ -90,16 +96,17 @@ export default function RegisterForm() {
                 )}
               />
               <FormField
+
                 control={form.control}
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Password</FormLabel>
+
                     <FormControl>
                       <Input
                         disabled={isPending}
                         {...field}
-                        placeholder="********"
+                        placeholder="Password"
                         type="password"
                       />
                     </FormControl>
@@ -115,6 +122,8 @@ export default function RegisterForm() {
             </Button>
           </form>
         </Form>
+        <ButtonAuth />
+
       </div>
     </div>
   );
