@@ -94,5 +94,10 @@ input[type="file"] {
   );
 }
 #thirdBack {
-  background-image: radial-gradient(closest-side at 50% 55%, #990000, #1b1b1b);
+  background-image: radial-gradient(closest-side at 50% 55%, #990000, #0b0b0b);
 }
+/* input[type="date"]::-webkit-inner-spin-button,
+input[type="date"]::-webkit-calendar-picker-indicator {
+ 
+  -webkit-appearance: "white";
+} */
