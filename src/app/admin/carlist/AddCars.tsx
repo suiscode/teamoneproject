@@ -29,8 +29,6 @@ const style = {
   borderRadius: "10px",
 };
 
-
-
 const validationSchema = object({
   name: string().required("Must fill"),
   description: string().required("Must fill"),
@@ -43,7 +41,6 @@ const validationSchema = object({
 });
 
 function AddCars({ data }: any) {
-
   const initialValues = {
     name: "",
     description: "",
@@ -109,7 +106,7 @@ function AddCars({ data }: any) {
       ...values,
       type: data._id,
       images: Object.values(images),
-    }
+    };
     const response = await axios.post("/api/car/", requestBody);
     actions.setSubmitting(false);
   };

@@ -14,6 +14,12 @@ export const NewPasswordSchema = z.object({
   }),
 });
 
+export const newCategorySchema = z.object({
+  category: z.string().min(1, {
+    message: "Name is required",
+  }),
+});
+
 export const ResetSchema = z.object({
   email: z.string().email({ message: "Email is required" }),
 });

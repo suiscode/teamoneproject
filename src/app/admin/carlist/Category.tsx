@@ -1,10 +1,25 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useTransition } from "react";
 import axios from "axios";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
-import { TextField } from "@mui/material";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { useForm } from "react-hook-form";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { FormError } from "@/lib/form-error";
+import { FormSuccess } from "@/lib/form-success";
+import { Button } from "@/components/ui/button";
+import * as z from "zod";
+import { newCategorySchema } from "@/lib/schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CategoryType } from "@/lib/interfaces";
 
 function Category() {
   const searchParams = useSearchParams();
@@ -13,24 +28,11 @@ function Category() {
 
   const categoryParam = searchParams.get("category");
 
-  const [category, setCategory] = useState([]);
+  const [category, setCategory] = useState<CategoryType[]>([]);
   const [refresh, setRefresh] = useState(false);
-  const [input, setInput] = useState("");
   const [error, setError] = useState("");
-
-  const handleSubmit = async (e: any) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post("/api/category", {
-        name: input,
-      });
-      setRefresh((prev: any) => prev + 1);
-      setInput("");
-      setError("");
-    } catch (e: any) {
-      setError(e.response.data);
-    }
-  };
+  const [success, setSuccess] = useState("");
+  const [isPending, startTransition] = useTransition();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -61,27 +63,60 @@ function Category() {
     push(`${pathname}?${params}`);
   };
 
+  const form = useForm<z.infer<typeof newCategorySchema>>({
+    resolver: zodResolver(newCategorySchema),
+    defaultValues: {
+      category: "",
+    },
+  });
+
+  const onSubmit = (values: z.infer<typeof newCategorySchema>) => {
+    setSuccess("");
+    setError("");
+
+    startTransition(async () => {
+      try {
+        const res = await axios.post("/api/category", { values });
+        setSuccess(res.data.success);
+        setCategory((prev: CategoryType[]) => [...prev, res.data.data]);
+      } catch (e: any) {
+        setError(e.response.data.error);
+      }
+    });
+  };
+
   return (
     <div className="w-[28%] p-4 flex flex-col rounded-md gap-4">
-      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
-        <TextField
-          id="outlined-basic"
-          label="Category"
-          variant="outlined"
-          type="text"
-          onChange={(e) => setInput(e.target.value)}
-          value={input}
-          className="w-full"
-          autoComplete="false"
-          required
-        />
-        <h1 className="text-red-500 -mt-3">{error}</h1>
-        <button className="bg-[#3563e8] w-1/2 text-white rounded-md py-1">
-          ADD CATEGORY
-        </button>
-      </form>
+      <Form {...form}>
+        <form className="space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="space-y-2">
+            <FormField
+              control={form.control}
+              name="category"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      {...field}
+                      placeholder="Category name"
+                      type="text"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <FormError message={error} />
+          <FormSuccess message={success} />
+          <Button className="w-full" type="submit" disabled={isPending}>
+            Add category
+          </Button>
+        </form>
+      </Form>
       <div className="flex flex-col gap-4 border-t-2 border-[#3563e8] pt-2 min-h-[600px]">
-        {category.length === 0 ? (
+        {category.length == 0 ? (
           <h1 className="text-center">No category</h1>
         ) : (
           category.map((item: any) => (
