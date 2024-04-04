@@ -1,8 +1,11 @@
-import React from "react";
+import React, { Suspense } from "react";
 import NewPasswordForm from "./password-form";
 
 function NewPasswordPage() {
-  return <NewPasswordForm />;
+  return;
+  <Suspense>
+    <NewPasswordForm />;
+  </Suspense>;
 }
 
 export default NewPasswordPage;
