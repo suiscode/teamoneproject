@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/popover";
 import { Button } from "@mui/material";
 import { CalendarIcon } from "@radix-ui/react-icons";
-import { cn } from "@/lib/utils";
+import { cn } from "@lib/utils";
 import { format } from "date-fns";
 import Link from "next/link";
 

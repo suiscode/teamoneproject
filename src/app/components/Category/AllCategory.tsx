@@ -1,5 +1,6 @@
 import { SliderDemo } from "@/components/range";
 import { Stack, Typography, Checkbox } from "@mui/material";
+import React from "react";
 
 const AllCategory = () => {
   const carMark = [

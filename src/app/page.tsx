@@ -7,6 +7,7 @@ import { useScroll } from "framer-motion";
 import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { Link } from "react-scroll";
+import React from "react";
 
 // const Section = ({ children }: { children: React.ReactNode }) => (
 //   <motion.div
