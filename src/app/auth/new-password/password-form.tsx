@@ -19,6 +19,7 @@ import { FormError } from "../../../lib/form-error";
 import { FormSuccess } from "../../../lib/form-success";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
+import Wrapper from "../Wrapper";
 
 export default function NewPasswordForm() {
   const searchParam = useSearchParams();
@@ -51,39 +52,40 @@ export default function NewPasswordForm() {
   };
 
   return (
-    <div>
-      <div>
-        <h1>forgot password?</h1>
-        <Form {...form}>
-          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="space-y-2">
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>New password</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={isPending}
-                        {...field}
-                        placeholder="********"
-                        type="password"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <FormError message={error} />
-            <FormSuccess message={success} />
-            <Button className="w-full" type="submit" disabled={isPending}>
-              Reset password
-            </Button>
-          </form>
-        </Form>
-      </div>
-    </div>
+    <Wrapper
+      label={"Email verification"}
+      backbutton={"Back to log in"}
+      backurl={"/auth/login"}
+    >
+      <Form {...form}>
+        <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="space-y-2">
+            <FormField
+              control={form.control}
+              name="password"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>New password</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      {...field}
+                      placeholder="********"
+                      type="password"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <FormError message={error} />
+          <FormSuccess message={success} />
+          <Button className="w-full" type="submit" disabled={isPending}>
+            Reset password
+          </Button>
+        </form>
+      </Form>
+    </Wrapper>
   );
 }
