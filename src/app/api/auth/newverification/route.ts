@@ -6,7 +6,6 @@ import { NextRequest, NextResponse } from "next/server";
 export const POST = async (req: NextRequest) => {
   const body = await req.json();
   const { token } = body;
-  
 
   const existingToken = await getVerificationByToken(token);
 
@@ -40,5 +39,5 @@ export const POST = async (req: NextRequest) => {
   await db.verificationToken.delete({
     where: { id: existingToken.id },
   });
-  return NextResponse.json({success:'Email verified'}, { status: 200 });
+  return NextResponse.json({ success: "Email verified" }, { status: 200 });
 };
