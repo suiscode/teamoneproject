@@ -93,6 +93,6 @@ input[type="file"] {
     black
   );
 }
-/* #banner {
-  background-image: radial-gradient(closest-side at 50% 55%, #660000, #000);
-} */
+#thirdBack {
+  background-image: radial-gradient(closest-side at 50% 55%, #990000, #1b1b1b);
+}
