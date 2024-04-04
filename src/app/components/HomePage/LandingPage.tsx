@@ -1,8 +1,14 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import CarModel from "./CarModel";
-import { motion, useAnimation, useInView } from "framer-motion";
+import {
+  motion,
+  useAnimation,
+  useInView,
+  useMotionValueEvent,
+} from "framer-motion";
 import { AiOutlineArrowDown } from "react-icons/ai";
+import { useScroll } from "framer-motion";
 
 const LandingPage = () => {
   const ref: any = useRef();
@@ -15,6 +21,9 @@ const LandingPage = () => {
       mainControls.start("visible");
     }
   }, [isInView]);
+  const { scrollY } = useScroll();
+
+
 
   return (
     <div
