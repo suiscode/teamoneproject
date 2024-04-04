@@ -1,32 +1,196 @@
 import { SliderDemo } from "@/components/range";
 import { Stack, Typography, Checkbox } from "@mui/material";
-import React from "react";
+import { grey } from "@mui/material/colors";
+
+// const Style = {
+//   background: "transparent",
+//   backdropFilter: "blur(20px)",
+// };
 
 const AllCategory = () => {
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
   const carMark = [
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Sedan" },
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Coupe" },
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Hatchback" },
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "SUV" },
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Truck" },
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "Camping vans" },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "Sedan",
+    },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "Coupe",
+    },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "Hatchback",
+    },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "SUV",
+    },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "Truck",
+    },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "Camping vans",
+    },
   ];
   const carCapacity = [
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "2 person" },
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "4 person" },
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "7 person" },
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "8 person" },
-    { icon: <Checkbox sx={{ color: "#f2f2f2" }} />, title: "15+ person" },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "2 person",
+    },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "4 person",
+    },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "7 person",
+    },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "8 person",
+    },
+    {
+      icon: (
+        <Checkbox
+          {...label}
+          defaultChecked
+          sx={{
+            color: grey[900],
+            "&.Mui-checked": {
+              color: grey[900],
+            },
+          }}
+        />
+      ),
+      title: "15+ person",
+    },
   ];
   return (
     <Stack
-      width={"25%"}
+      // style={Style}
+      width={"15%"}
       height={"100%"}
       justifyContent={"center"}
       paddingX={2}
       fontSize={18}
       border={"1px solid #d9d9d9"}
       borderRadius={"10px"}
+      // bgcolor={"white"}
+      className="backdrop-blur-md"
     >
       <Typography fontSize={20} color={"#595959"}>
         Type
@@ -41,8 +205,7 @@ const AllCategory = () => {
           </Stack>
         );
       })}
-
-      <Stack pt={20} sx={{ bgcolor: "white" }}>
+      <Stack pt={20}>
         <Stack fontSize={20} color={"#595959"}>
           Capacity
         </Stack>

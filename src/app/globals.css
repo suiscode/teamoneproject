@@ -101,3 +101,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
  
   -webkit-appearance: "white";
 } */
+
+.blur {
+  background: transparent;
+  backdrop-filter: blur(30px);
+}

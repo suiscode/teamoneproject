@@ -5,7 +5,7 @@ import { AllCars } from "../components/Category/AllCars";
 
 function CarsPage() {
   return (
-    <div className="w-full h-[100%] flex justify-center">
+    <div className="w-full h-[100%] flex justify-center bg-white">
       <AllCategory />
       {/* <Divider orientation={"vertical"} flexItem /> */}
       <AllCars />

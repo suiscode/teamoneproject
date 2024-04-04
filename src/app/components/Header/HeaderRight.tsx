@@ -17,7 +17,10 @@ const HeaderRight = () => {
         </button>
       </div>
       <div className="flex gap-2 items-center">
-        <Link href='/cars/favorites' className="border rounded-full p-3 bg-white">
+        <Link
+          href="/cars/favorites"
+          className="border rounded-full p-3 bg-white"
+        >
           <FaRegHeart className="h-[24px] w-[24px]" />
         </Link>
         <div>
