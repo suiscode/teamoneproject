@@ -3,7 +3,7 @@ import NewVerificationForm from "./new-verification";
 
 const newVerificationPage = () => {
   return (
-    <div>
+    <div className="w-full h-full">
       <Suspense>
         <NewVerificationForm />
       </Suspense>

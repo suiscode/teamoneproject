@@ -19,13 +19,17 @@ import { FormError } from "../../../lib/form-error";
 import { FormSuccess } from "../../../lib/form-success";
 import axios from "axios";
 import ButtonAuth from "@/app/components/Button/ButtonOauth";
- 
- 
+import Wrapper from "../Wrapper";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+
 export default function LoginForm() {
+  const router = useRouter();
+  const [showTwoFactor, setShowTwoFactor] = useState(false);
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
- 
+
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
     defaultValues: {
@@ -33,7 +37,7 @@ export default function LoginForm() {
       password: "",
     },
   });
- 
+
   const onSubmit = (values: z.infer<typeof LoginSchema>) => {
     setSuccess("");
     setError("");
@@ -41,68 +45,107 @@ export default function LoginForm() {
       try {
         const res = await axios.post("/api/auth/login", values);
         setSuccess(res.data.success);
-      } catch (e:any) {
-        console.log(e);
+        router.push("/dashboard");
+        if (res.data.twoFactor) {
+          setShowTwoFactor(true);
+        }
+      } catch (e: any) {
+        if (e.response.data.error) {
+          form.reset();
+        }
         setError(e.response.data.error);
       }
     });
   };
- 
+
   return (
-    <div className="absolute top-[33%] left-[47%] backdrop-blur-md w-[300px] h-[450px] flex justify-center">
-      <div className="flex flex-col justify-center items-center gap-5 text-white">
-      <h1 className="text-2xl">Login</h1>
-        <Form {...form}>
-          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="space-y-2 flex flex-col gap-5">
+    <Wrapper
+      label={"Log in"}
+      backbutton={"Dont have an account?"}
+      backurl={"/auth/register"}
+    >
+      <Form {...form}>
+        <form
+          className="space-y-6 w-full px-8"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
+          <div className="space-y-2 flex flex-col gap-5">
+            {showTwoFactor && (
               <FormField
                 control={form.control}
-                name="email"
+                name="code"
                 render={({ field }) => (
                   <FormItem>
-                   
+                    <FormLabel>Two Factor Code</FormLabel>
                     <FormControl>
                       <Input
                         disabled={isPending}
                         {...field}
-                        placeholder="Your Email"
-                        type="email"
+                        placeholder="123456"
+                        type="text"
                       />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                 
-                    <FormControl>
-                      <Input
-                      className="w-[250px]"
-                        disabled={isPending}
-                        {...field}
-                        placeholder="Password"
-                        type="password"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <FormError message={error} />
-            <FormSuccess message={success} />
-            <Button className="w-full" type="submit" disabled={isPending}>
-              Login
-            </Button>
-          </form>
-        </Form>
-       <ButtonAuth/>
-      </div>
-    </div>
+            )}
+            {!showTwoFactor && (
+              <>
+                <FormField
+                  control={form.control}
+                  name="email"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          disabled={isPending}
+                          {...field}
+                          placeholder="Your Email"
+                          type="email"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="password"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormControl>
+                        <Input
+                          disabled={isPending}
+                          {...field}
+                          placeholder="Password"
+                          type="password"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </>
+            )}
+          </div>
+          <FormSuccess message={success} />
+          <FormError message={error} />
+          <Button className="w-full" type="submit" disabled={isPending}>
+            {showTwoFactor ? "Confirm" : "Login"}
+          </Button>
+        </form>
+        <Button
+          variant="link"
+          size="sm"
+          className="ml-[-230px] w-full mt-[-23px] text-white"
+          type="button"
+        >
+          <Link href="/auth/reset">Forgot password?</Link>
+        </Button>
+      </Form>
+
+      <ButtonAuth />
+    </Wrapper>
   );
 }
- 

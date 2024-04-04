@@ -5,6 +5,7 @@ import { useCallback, useEffect, useState } from "react";
 import { BeatLoader } from "react-spinners";
 import { FormError } from "@/lib/form-error";
 import { FormSuccess } from "@/lib/form-success";
+import Wrapper from "../Wrapper";
 
 function NewVerificationForm() {
   const [error, setError] = useState<string | undefined>();
@@ -35,11 +36,15 @@ function NewVerificationForm() {
   });
 
   return (
-    <div className="flex flex-col">
-        {!success && !error && <BeatLoader />}
-        <FormSuccess message={success} />
-        {!success && <FormError message={error} />}
-    </div>
+    <Wrapper
+      label={"Email verification"}
+      backbutton={"Back to log in"}
+      backurl={"/auth/login"}
+    >
+      {!success && !error && <BeatLoader color="white" />}
+      <FormSuccess message={success} />
+      {!success && <FormError message={error} />}
+    </Wrapper>
   );
 }
 

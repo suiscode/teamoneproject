@@ -18,6 +18,7 @@ import { Button } from "../../../components/ui/button";
 import { FormError } from "../../../lib/form-error";
 import { FormSuccess } from "../../../lib/form-success";
 import axios from "axios";
+import Wrapper from "../Wrapper";
 
 export default function ResetForm() {
   const [error, setError] = useState<string | undefined>("");
@@ -47,39 +48,40 @@ export default function ResetForm() {
   };
 
   return (
-    <div>
-      <div>
-        <h1>forgot password?</h1>
-        <Form {...form}>
-          <form className="space-y-6" onSubmit={form.handleSubmit(onSubmit)}>
-            <div className="space-y-2">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input
-                        disabled={isPending}
-                        {...field}
-                        placeholder="john.doe@example.com"
-                        type="email"
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-            </div>
-            <FormError message={error} />
-            <FormSuccess message={success} />
-            <Button className="w-full" type="submit" disabled={isPending}>
-              Send reset email
-            </Button>
-          </form>
-        </Form>
-      </div>
-    </div>
+    <Wrapper
+      label={"Forgot password?"}
+      backbutton={"Back to log in"}
+      backurl={"/auth/login"}
+    >
+      <Form {...form}>
+        <form className="space-y-6 w-full px-8" onSubmit={form.handleSubmit(onSubmit)}>
+          <div className="space-y-2">
+            <FormField
+              control={form.control}
+              name="email"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>Email</FormLabel>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      {...field}
+                      placeholder="john.doe@example.com"
+                      type="email"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          </div>
+          <FormError message={error} />
+          <FormSuccess message={success} />
+          <Button className="w-full" type="submit" disabled={isPending}>
+            Send reset email
+          </Button>
+        </form>
+      </Form>
+    </Wrapper>
   );
 }
