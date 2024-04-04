@@ -54,7 +54,7 @@ const LandingPage = () => {
           <p>Experience the Unprecedented, Drive with Uniqueness</p>
           <p>Drive and Laugh, Like Nobody&apos;s Business</p>
         </div>
-        <button className="w-[12%] ml-6 flex items-center gap-8 border-red-600 border-2 rounded-xl px-8 py-4 hover:bg-white hover:text-black hover:border-black">
+        <button className="scroll-smooth w-[12%] ml-6 flex items-center gap-8 border-red-600 border-2 rounded-xl px-8 py-4 hover:bg-white hover:text-black hover:border-black">
           Scroll down
           <AiOutlineArrowDown />
         </button>

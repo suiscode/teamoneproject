@@ -63,7 +63,7 @@ function SecondPage() {
         </p>
       </motion.div> */}
       <Link href={"/cars"}>
-        <button className="w-[250px] ml-[120px] flex items-center gap-8 border-2 rounded-xl px-16 py-4 hover:bg-white hover:text-black hover:border-black">
+        <button className="w-[12%] ml-[120px] flex items-center gap-8 border-2 rounded-xl px-8 py-4 hover:bg-white hover:text-black hover:border-black">
           Discover more
         </button>
       </Link>
