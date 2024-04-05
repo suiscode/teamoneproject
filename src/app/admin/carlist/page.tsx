@@ -10,12 +10,10 @@ type SearchPageType = {
 async function page({ searchParams }: SearchPageType) {
   const q = searchParams?.category || "";
   const data = await getCategory(q);
-  
-
 
   return (
-    <div className="flex gap-4 p-8 border-2 w-full">
-      <Cars data={JSON.parse(JSON.stringify(data))} q={q}/>
+    <div className="flex gap-4 p-8 w-full">
+      <Cars data={JSON.parse(JSON.stringify(data))} q={q} />
       <Category />
     </div>
   );

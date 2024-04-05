@@ -4,16 +4,22 @@ import { CarCategory } from "../../models";
 
 export const POST = async (req, res) => {
   const body = await req.json();
+  const { category } = body.values;
+  console.log(category);
+
   try {
     connectToDB();
-    const categoryFind = await CarCategory.find({ name: body.name });
+    const categoryFind = await CarCategory.find({ name: category });
     if (categoryFind.length >= 1)
-      return NextResponse.json("Category exists", { status: 500 });
+      return NextResponse.json({ error: "Category exists" }, { status: 500 });
     const newCategory = await CarCategory.create({
-      name: body.name,
+      name: category,
       cars: [],
     });
-    return NextResponse.json(newCategory, { status: 200 });
+    return NextResponse.json(
+      { success: "Category added", data: newCategory },
+      { status: 200 }
+    );
   } catch (e) {
     console.log(e);
     return NextResponse.json(e, { status: 500 });
@@ -35,7 +41,7 @@ export const PUT = async (req, res) => {
 export const GET = async () => {
   try {
     connectToDB();
-    const categoryFind = await CarCategory.find();
+    const categoryFind = await CarCategory.find().sort({ _id: -1 });
     return NextResponse.json(categoryFind, { status: 200 });
   } catch (e) {
     console.log(e);
