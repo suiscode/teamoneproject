@@ -3,7 +3,6 @@ import CardDetail from "../components/CardDetail/CardDetail";
 import Header from "../components/Header/Header";
 import Footer from "../components/Footer/Footer";
 // import Category from "../admin/Category";
-import AllCategory from "../components/Category/AllCategory";
 import AboutUs from "../components/aboutUs/AboutUs";
 
 function page() {
@@ -11,7 +10,7 @@ function page() {
     <div>
       <Header />
       <div className="flex gap-[32px] justify-center items-center">
-        <AllCategory />
+        {/* <AllCategory /> */}
         <CardDetail />
       </div>
       <Footer />
