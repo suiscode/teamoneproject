@@ -35,8 +35,8 @@ export const getCategory = async (name) => {
   if (!name) {
     try {
       connectToDB();
-      const cars = await Car.find();
-      return {data:cars};
+      const cars = await Car.find().sort({ _id: -1 });
+      return { data: cars };
     } catch (e) {
       console.log(e);
     }

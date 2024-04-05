@@ -30,16 +30,16 @@ export const {
 
       const existingUser = await getUserById(user.id);
       if (!existingUser?.emailVerified) return false;
-      if (existingUser.isTwoFactorEnabled) {
-        const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
-          existingUser.id
-        );
-        if (!twoFactorConfirmation) return false;
+      // if (existingUser.isTwoFactorEnabled) {
+      //   const twoFactorConfirmation = await getTwoFactorConfirmationByUserId(
+      //     existingUser.id
+      //   );
+      //   if (!twoFactorConfirmation) return false;
 
-        await db.twoFactorConfirmation.delete({
-          where: { id: twoFactorConfirmation.id },
-        });
-      }
+      //   await db.twoFactorConfirmation.delete({
+      //     where: { id: twoFactorConfirmation.id },
+      //   });
+      // }
       return true;
     },
 

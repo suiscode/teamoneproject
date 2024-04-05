@@ -7,7 +7,7 @@ async function page() {
 
   return (
     <div className="flex gap-4 p-8 border-2 w-full">
-      {JSON.stringify(session)}
+      {JSON.stringify(session?.user)}
     </div>
   );
 }

@@ -1,6 +1,5 @@
 "use client";
 import {
-  Button,
   FormControlLabel,
   Input,
   Modal,
@@ -10,11 +9,27 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
-import React, { ChangeEvent, useState } from "react";
-import { string, object, number, array } from "yup";
-import { Formik, Form, Field, ErrorMessage } from "formik";
+import React, { ChangeEvent, useState, useTransition } from "react";
+// import { string, object, number, array } from "yup";
+// import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
+import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { NewCarSchema } from "@/lib/schema";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { FormError } from "@/lib/form-error";
+import { FormSuccess } from "@/lib/form-success";
+import { Textarea } from "@/components/ui/textarea";
 
 const style = {
   position: "absolute" as "absolute",
@@ -29,54 +44,31 @@ const style = {
   borderRadius: "10px",
 };
 
-
-
-const validationSchema = object({
-  name: string().required("Must fill"),
-  description: string().required("Must fill"),
-  // img: array().of(string()).required("Must fill"),
-  price: number().min(0).required("Must fill"),
-  salePrice: string(),
-  gasoline: number().min(30, "Must be higher than 30").required("Must fill"),
-  steering: string().oneOf(["manual", "auto"]).required("Must fill"),
-  capacity: number().required("Must fill"),
-});
-
 function AddCars({ data }: any) {
-
-  const initialValues = {
-    name: "",
-    description: "",
-    price: "",
-    salePrice: "",
-    gasoline: "",
-    steering: "",
-    capacity: "",
-  };
-
   const [open, setOpen] = useState(false);
   const [images, setImages] = useState<{ [key: number]: string }>({
     1: "",
     2: "",
     3: "",
   });
+  const [error, setError] = useState<string | undefined>("");
+  const [success, setSuccess] = useState<string | undefined>("");
+  const [isPending, startTransition] = useTransition();
+
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const fields = [
-    { name: "name", label: "Name", type: "text" },
-    { name: "description", label: "Description", type: "text" },
-    { name: "price", label: "Price", type: "number" },
-    { name: "salePrice", label: "Sale Price", type: "text" },
-    { name: "gasoline", label: "Gasoline", type: "number" },
-    { name: "capacity", label: "Capacity", type: "number" },
-    {
-      name: "steering",
-      label: "Steering",
-      type: "radio",
-      options: ["manual", "auto"],
+  const form = useForm<z.infer<typeof NewCarSchema>>({
+    resolver: zodResolver(NewCarSchema),
+    defaultValues: {
+      name: "",
+      description: "",
+      price: undefined,
+      gasoline: undefined,
+      steering: "",
+      capacity: 2,
     },
-  ];
+  });
 
   const handleUpload = async (
     event: ChangeEvent<HTMLInputElement>,
@@ -104,14 +96,35 @@ function AddCars({ data }: any) {
     }
   };
   const imageArray = [1, 2, 3];
-  const handleSubmit = async (values: any, actions: any) => {
-    const requestBody = {
-      ...values,
-      type: data._id,
-      images: Object.values(images),
-    }
-    const response = await axios.post("/api/car/", requestBody);
-    actions.setSubmitting(false);
+  // const onSubmit = async (values: any, actions: any) => {
+  //   const requestBody = {
+  //     ...values,
+  //     type: data._id,
+  //     images: Object.values(images),
+  //   };
+  //   const response = await axios.post("/api/car/", requestBody);
+  //   actions.setSubmitting(false);
+  // };
+
+  const onSubmit = (values: z.infer<typeof NewCarSchema>) => {
+    console.log("hello");
+
+    setSuccess("");
+    setError("");
+    startTransition(async () => {
+      try {
+        const res = await axios.post("/api/car", {
+          ...values,
+          type: data._id,
+          images: Object.values(images),
+        });
+        setSuccess(res.data.success);
+        form.reset();
+      } catch (e: any) {
+        console.log(e);
+        setError(e.response.data.error);
+      }
+    });
   };
 
   return (
@@ -125,88 +138,180 @@ function AddCars({ data }: any) {
       >
         <Stack sx={style}>
           <div className="p-4">
-            <Formik
-              initialValues={initialValues}
-              validationSchema={validationSchema}
-              onSubmit={(values, actions) => handleSubmit(values, actions)}
-            >
-              {({ isSubmitting, handleChange, handleBlur, values }) => (
-                <Form>
-                  <div className="grid grid-cols-3 grid-rows-3 gap-4">
-                    {fields.map(({ name, label, type, options }) => (
-                      <div key={name}>
-                        <div className="flex justify-between w-full">
-                          {type === "radio" ? (
-                            <RadioGroup
-                              row
-                              aria-label={name}
-                              name={name}
-                              value={values[name as keyof typeof values]}
-                              onChange={handleChange}
-                            >
-                              {options &&
-                                options.map((option) => (
-                                  <FormControlLabel
-                                    key={option}
-                                    value={option}
-                                    control={<Radio />}
-                                    label={option}
-                                  />
-                                ))}
-                            </RadioGroup>
-                          ) : (
-                            <TextField
-                              id="outlined-basic"
-                              label={name}
-                              variant="outlined"
-                              className="w-full"
-                              autoComplete="false"
-                              type={type}
-                              name={name}
-                              onChange={handleChange}
-                              onBlur={handleBlur}
+            <Form {...form}>
+              <form
+                className="space-y-6 w-full px-8"
+                onSubmit={form.handleSubmit(onSubmit)}
+              >
+                <div className="grid grid-cols-3 grid-rows-2 gap-8 text-white ">
+                  <FormField
+                    control={form.control}
+                    name="name"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col text-black">
+                        <FormLabel>Car name</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            {...field}
+                            placeholder="Name"
+                            type="text"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="price"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col text-black">
+                        <FormLabel>Price</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            {...field}
+                            placeholder="Price"
+                            type="number"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="salePrice"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col text-black">
+                        <FormLabel>Sale Price</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            {...field}
+                            placeholder="Sale Price"
+                            type="number"
+                            onWheel={(e) => e.preventDefault()}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="gasoline"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col text-black">
+                        <FormLabel>Gasoline</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            {...field}
+                            placeholder="Gasoline"
+                            type="text"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <FormField
+                    control={form.control}
+                    name="capacity"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col text-black">
+                        <FormLabel>Capacity</FormLabel>
+                        <FormControl>
+                          <Input
+                            disabled={isPending}
+                            {...field}
+                            placeholder="Capacity"
+                            type="number"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                  <div className="relative">
+                    <FormField
+                      control={form.control}
+                      name="description"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-col text-black">
+                          <FormLabel>Description</FormLabel>
+                          <FormControl>
+                            <Textarea
+                              disabled={isPending}
+                              {...field}
+                              className="absolute top-4 h-[300px]"
+                              placeholder="Description"
                             />
-                          )}
-                        </div>
-                        <ErrorMessage
-                          className="text-red-500"
-                          name={name}
-                          component="div"
-                        />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                  <FormField
+                    control={form.control}
+                    name="steering"
+                    render={({ field }) => (
+                      <FormItem className="flex flex-col text-black">
+                        <FormLabel>Steering</FormLabel>
+                        <RadioGroup
+                          {...field}
+                          aria-label="Steering"
+                          name="steering"
+                          onChange={field.onChange}
+                          onBlur={field.onBlur}
+                          row
+                        >
+                          <FormControlLabel
+                            value="auto"
+                            control={<Radio />}
+                            label="Auto"
+                          />
+                          <FormControlLabel
+                            value="manual"
+                            control={<Radio />}
+                            label="Manual"
+                          />
+                        </RadioGroup>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+                <div className="flex gap-[50px]">
+                  {imageArray.map((item) => (
+                    <label key={item}>
+                      <input type="file" />
+                      <div className="border relative rounded-sm h-[150px] flex items-center justify-center w-[150px] border-black">
+                        <h1>ADD IMAGE + </h1>
+                        {images[item] && (
+                          <Image
+                            src={images[item]}
+                            fill
+                            className="absolute object-cover"
+                            alt="image"
+                          />
+                        )}
                       </div>
-                    ))}
-                  </div>
-                  <div className="flex gap-4">
-                    {imageArray.map((item) => (
-                      <label key={item}>
-                        <input
-                          type="file"
-                          onChange={(e) => handleUpload(e, item)}
-                        />
-                        <div className="border relative rounded-sm h-[150px] flex items-center justify-center w-[150px] border-black">
-                          <h1>ADD IMAGE + </h1>
-                          {images[item] && (
-                            <Image
-                              src={images[item]}
-                              fill
-                              className="absolute object-cover"
-                              alt="image"
-                            />
-                          )}
-                        </div>
-                      </label>
-                    ))}
-                  </div>
-                  <Button
-                    type="submit"
-                    className="mt-[20px] disabled:text-gray-400 px-[100px]"
-                    disabled={isSubmitting}
-                  >
-                    Submit
-                  </Button>
-                </Form>
-              )}
-            </Formik>
+                    </label>
+                  ))}
+                </div>
+
+                <FormError message={error} />
+                <FormSuccess message={success} />
+                <Button className="w-full" type="submit" disabled={isPending}>
+                  ADD CAR
+                </Button>
+              </form>
+            </Form>
           </div>
         </Stack>
       </Modal>
@@ -215,3 +320,6 @@ function AddCars({ data }: any) {
 }
 
 export default AddCars;
+
+{
+}

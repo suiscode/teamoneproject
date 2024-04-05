@@ -50,48 +50,48 @@ export const POST = async (req: NextRequest) => {
     );
   }
 
-  if (existingUser.isTwoFactorEnabled && existingUser.email) {
-    if (code) {
-      const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email);
+  // if (existingUser.isTwoFactorEnabled && existingUser.email) {
+  //   if (code) {
+  //     const twoFactorToken = await getTwoFactorTokenByEmail(existingUser.email);
 
-      if (!twoFactorToken) {
-        return NextResponse.json({ error: "Invalid code" }, { status: 400 });
-      }
+  //     if (!twoFactorToken) {
+  //       return NextResponse.json({ error: "Invalid code" }, { status: 400 });
+  //     }
 
-      if (twoFactorToken.token !== code) {
-        return NextResponse.json({ error: "Invalid code" }, { status: 400 });
-      }
+  //     if (twoFactorToken.token !== code) {
+  //       return NextResponse.json({ error: "Invalid code" }, { status: 400 });
+  //     }
 
-      const hasExpired = new Date(twoFactorToken.expires) < new Date();
-      if (hasExpired) {
-        return NextResponse.json({ error: "Code expired" }, { status: 400 });
-      }
+  //     const hasExpired = new Date(twoFactorToken.expires) < new Date();
+  //     if (hasExpired) {
+  //       return NextResponse.json({ error: "Code expired" }, { status: 400 });
+  //     }
 
-      await db.twoFactorToken.delete({
-        where: { id: twoFactorToken.id },
-      });
+  //     await db.twoFactorToken.delete({
+  //       where: { id: twoFactorToken.id },
+  //     });
 
-      const existingConfirmation = await getTwoFactorConfirmationByUserId(
-        existingUser.id
-      );
+  //     const existingConfirmation = await getTwoFactorConfirmationByUserId(
+  //       existingUser.id
+  //     );
 
-      if (existingConfirmation) {
-        await db.twoFactorConfirmation.delete({
-          where: { id: existingConfirmation.id },
-        });
-      }
+  //     if (existingConfirmation) {
+  //       await db.twoFactorConfirmation.delete({
+  //         where: { id: existingConfirmation.id },
+  //       });
+  //     }
 
-      await db.twoFactorConfirmation.create({
-        data: {
-          userId: existingUser.id,
-        },
-      });
-    } else {
-      const twoFactorToken = await generateTwoFactorToken(existingUser.email);
-      await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token);
-      return NextResponse.json({ twoFactor: true }, { status: 200 });
-    }
-  }
+  //     await db.twoFactorConfirmation.create({
+  //       data: {
+  //         userId: existingUser.id,
+  //       },
+  //     });
+  //   } else {
+  //     const twoFactorToken = await generateTwoFactorToken(existingUser.email);
+  //     await sendTwoFactorEmail(twoFactorToken.email, twoFactorToken.token);
+  //     return NextResponse.json({ twoFactor: true }, { status: 200 });
+  //   }
+  // }
 
   try {
     await signIn("credentials", {
