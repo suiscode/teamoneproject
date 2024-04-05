@@ -30,7 +30,7 @@ function ProjectGoal() {
                 padding: "10px",
                 fontSize: "28px",
                 borderRadius: "5px",
-                color: "#3B92DB",
+                color: "black",
               }}
             >
               Problems
@@ -43,7 +43,7 @@ function ProjectGoal() {
               position: "absolute",
               top: 500,
               left: 500,
-              width: "800px",
+              width: "820px",
               bgcolor: "#565656",
               padding: "23px",
               borderRadius: "10px",

@@ -5,6 +5,7 @@ import Footer from "../components/Footer/Footer";
 import ProjectGoal from "../components/projectGoal/ProjectGoal";
 import Image from "next/image";
 import OurProblemSolving from "../components/projectGoal/OurProblemSolving";
+import Impact from "../components/projectGoal/Impact";
 
 function page() {
   return (
@@ -27,6 +28,9 @@ function page() {
       </Stack>
       <Stack>
         <OurProblemSolving />
+      </Stack>
+      <Stack>
+        <Impact />
       </Stack>
       <Footer />
     </Stack>

@@ -55,7 +55,7 @@ function AboutUs() {
     },
   ];
   return (
-    <Stack direction="row" sx={{ width: "2300", height: "730px", my: "50px" }}>
+    <Stack direction="row" sx={{ width: "3000", height: "730px", my: "50px" }}>
       {membersData?.map((el, index) => {
         return (
           <Stack
@@ -70,7 +70,18 @@ function AboutUs() {
             }}
             key={index}
           >
-            <Image src={el.img} alt="" width={300} height={300} />
+            <Image
+              src={el.img}
+              alt=""
+              width={300}
+              height={300}
+              className="rounded-[100%]"
+            />
+
+            <Typography sx={{ color: "red", fontSize: "23px" }}>
+              {el.name}
+            </Typography>
+
             <Typography
               sx={{
                 bgcolor: "white",
@@ -81,9 +92,7 @@ function AboutUs() {
             >
               {el.title}
             </Typography>
-            <Typography sx={{ color: "red", fontSize: "18px" }}>
-              {el.name}
-            </Typography>
+
             <Typography sx={{ color: "black" }}>{el.about}</Typography>
             <Typography>{el.hobby}</Typography>
             <Link className="bg-white rounded-lg p-2" href={el.socials}>

@@ -13,7 +13,7 @@ function OurProblemSolving() {
         <Stack>
           <Image src="/carRent.webp" alt="" width={1800} height={100} />
         </Stack>
-        <Stack sx={{ position: "absolute", top: 750, left: 500 }}>
+        <Stack sx={{ position: "absolute", top: 750, left: 550 }}>
           <Typography
             sx={{
               color: "black",
@@ -26,8 +26,7 @@ function OurProblemSolving() {
             }}
           >
             Тиймээс бид түрээслэгчдэд зориулсан бүх нөхцлийг хангасан машин
-            түрээсийн вэбсайтыг хийх юм. tegsneer tanii tsag hugatsaag hemneh
-            ym....
+            түрээсийн вэбсайтыг хийх юм. Тэгснээр таны цаг хугацааг хэмнэх юм.
           </Typography>
         </Stack>
       </Stack>
