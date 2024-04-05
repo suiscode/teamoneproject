@@ -1,5 +1,5 @@
 import React from "react";
-import AllCategory from "../components/Category/AllCategory";
+import {AllCategory } from "../components/Category/AllCategory";
 // import Divider from "@mui/material/Divider";
 import { AllCars } from "../components/Category/AllCars";
 
