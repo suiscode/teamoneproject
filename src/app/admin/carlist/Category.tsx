@@ -71,7 +71,7 @@ function Category() {
   };
 
   const handleChange = (name: any) => {
-    setSuccess('')
+    setSuccess("");
     const params = new URLSearchParams(searchParams);
     params.set("category", name);
     push(`${pathname}?${params}`);
