@@ -16,9 +16,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full flex flex-col justify-between min-h-screen">
+    <div className="w-full flex border-2 border-red-500 flex-col justify-between min-h-screen">
       <Header />
-      {children}
+      <div className="w-full flex bg-black justify-center h-full">
+        {children}
+      </div>
       <Footer />
     </div>
   );

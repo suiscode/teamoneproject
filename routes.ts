@@ -1,6 +1,8 @@
 export const publicRoutes = [
   "/",
   "/cars",
+  "/cars/favorite",
+  "/cars/{}",
   "/auth/new-verification",
   "/cartdetail",
   "/aboutUs",
@@ -18,4 +20,4 @@ export const authRoutes = [
 
 export const apiAuthPrefix = "/api/auth";
 
-export const DEFAULT_LOGIN_REDIRECT = "/dashboard";
+export const DEFAULT_LOGIN_REDIRECT = "/cars";
