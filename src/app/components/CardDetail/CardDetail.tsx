@@ -75,8 +75,9 @@ function CardDetail() {
         </Stack>
         <Stack sx={{ width: "400px", height: "120px", mt: "20px" }}>
           <Typography sx={{ color: "#596780", fontSize: "20px" }}>
-            NISMO has become the embodiment of Nissan's outstanding performance,
-            inspired by the most unforgiving proving ground, the "race track".
+            NISMO has become the embodiment of Nissan&apos;s outstanding
+            performance, inspired by the most unforgiving proving ground, the
+            &quot;race track&quot;.
           </Typography>
         </Stack>
         <Stack direction="row" sx={{ gap: "60px", mt: "40px" }}>
