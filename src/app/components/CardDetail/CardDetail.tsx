@@ -14,12 +14,17 @@ function CardDetail() {
   return (
     <Stack
       direction="row"
-      sx={{ alignItems: "center", justifyContent: "center", gap: "30px" }}
+      sx={{
+        alignItems: "center",
+        justifyContent: "center",
+        gap: "30px",
+        width: "1500px",
+      }}
     >
       <Stack sx={{ gap: "24px" }}>
         <Stack>
           <Image
-            src="/download.jpeg"
+            src="/salon.png"
             alt=""
             width={492}
             height={360}
@@ -28,21 +33,21 @@ function CardDetail() {
         </Stack>
         <Stack direction="row" sx={{ gap: "24px" }}>
           <Image
-            src="/download.jpeg"
+            src="/salon.png"
             alt=""
             width={148}
             height={124}
             className="rounded-xl"
           />
           <Image
-            src="/download.jpeg"
+            src="/salon.png"
             alt=""
             width={148}
             height={124}
             className="rounded-xl"
           />
           <Image
-            src="/download.jpeg"
+            src="/salon.png"
             alt=""
             width={148}
             height={124}
@@ -57,6 +62,7 @@ function CardDetail() {
           padding: "20px",
           width: "492px",
           height: "508px",
+          borderRadius: "5px",
         }}
       >
         <Stack direction="row" sx={{ justifyContent: "space-between" }}>
@@ -84,10 +90,10 @@ function CardDetail() {
               </Typography>
             </Stack>
             <Stack sx={{ gap: "10px" }}>
-              <Typography sx={{ fontSize: "20px", color: "#596780" }}>
+              <Typography sx={{ fontSize: "20px", color: "black" }}>
                 Sport
               </Typography>
-              <Typography sx={{ fontSize: "20px", color: "#596780" }}>
+              <Typography sx={{ fontSize: "20px", color: "black" }}>
                 Manual
               </Typography>
             </Stack>
@@ -102,10 +108,10 @@ function CardDetail() {
               </Typography>
             </Stack>
             <Stack sx={{ gap: "10px" }}>
-              <Typography sx={{ fontSize: "20px", color: "#596780" }}>
+              <Typography sx={{ fontSize: "20px", color: "black" }}>
                 2 Person
               </Typography>
-              <Typography sx={{ fontSize: "20px", color: "#596780" }}>
+              <Typography sx={{ fontSize: "20px", color: "black" }}>
                 70L
               </Typography>
             </Stack>
@@ -120,10 +126,7 @@ function CardDetail() {
             <Stack sx={{ fontSize: "20px" }}>$100.00</Stack>
           </Stack>
           <Stack>
-            <button
-              onClick={handlePush}
-              className="rounded-lg bg-[#3563E9] w-[140px] h-[56px] text-[white]"
-            >
+            <button className="rounded-lg bg-[#3563E9] w-[140px] h-[56px] text-[white]">
               Rent Now
             </button>
           </Stack>

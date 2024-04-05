@@ -10,7 +10,7 @@ import Router, { useRouter } from "next/navigation";
 export const AllCars = () => {
   const { push } = useRouter();
   const handlePush = () => {
-    push("/carddetail");
+    push("/cartdetail");
   };
 
   const carData = [
