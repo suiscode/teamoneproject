@@ -2,11 +2,6 @@ import { SliderDemo } from "@/components/range";
 import { Stack, Typography, Checkbox } from "@mui/material";
 import { grey } from "@mui/material/colors";
 
-// const Style = {
-//   background: "transparent",
-//   backdropFilter: "blur(20px)",
-// };
-
 const AllCategory = () => {
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
@@ -181,7 +176,6 @@ const AllCategory = () => {
   ];
   return (
     <Stack
-      // style={Style}
       width={"15%"}
       height={"100%"}
       justifyContent={"center"}
@@ -189,8 +183,6 @@ const AllCategory = () => {
       fontSize={18}
       border={"1px solid #d9d9d9"}
       borderRadius={"10px"}
-      // bgcolor={"white"}
-      className="backdrop-blur-md"
     >
       <Typography fontSize={20} color={"#595959"}>
         Type
