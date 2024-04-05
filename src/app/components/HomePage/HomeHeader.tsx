@@ -1,3 +1,4 @@
+import Link from "next/link";
 import React from "react";
 
 function HomeHeader() {
@@ -5,7 +6,7 @@ function HomeHeader() {
     <div className="fixed top-0 z-30 bg-black h-[50px] items-center w-full flex justify-center">
       <div className="flex justify-between w-full  mx-[10%]">
         <p>CAR RENT</p>
-        <button>Log in</button>
+        <Link href="/auth/login">Log in</Link>
       </div>
     </div>
   );
