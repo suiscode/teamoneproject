@@ -29,7 +29,6 @@ const Footer = () => {
       fontSize={18}
       paddingBottom={10}
       paddingTop={10}
-      border={"1px solid black"}
       bgcolor={"#000"}
       color={"white"}
     >

@@ -17,7 +17,7 @@ export const AllCars = () => {
     {
       name: "Toyota Camry",
       type: "Sedan",
-      img: "https://media.zigcdn.com/media/model/2024/Feb/toyota-camry_600x400.jpg",
+      img: "https://www.sixt.com/fileadmin2/files/global/sideview/user_upload/fleet/png/752x500/peugeot-308-5d-black-2021.png",
       price: "23",
       salePrice: "11",
       gasoline: "90L",
@@ -27,7 +27,7 @@ export const AllCars = () => {
     {
       name: "Hyundai Elantra N",
       type: "Sedan",
-      img: "https://www.thedrive.com/uploads/2023/04/14/ElantraN-42-scaled.jpg?auto=webp&crop=16%3A9&auto=webp&optimize=high&quality=70&width=1440",
+      img: "https://www.sixt.com/fileadmin2/files/global/sideview/user_upload/fleet/png/752x500/seat-arona-suv-white-2021.png",
       price: "23",
       salePrice: "11",
       gasoline: "90L",
@@ -37,7 +37,7 @@ export const AllCars = () => {
     {
       name: "Prius 60",
       type: "Sedan",
-      img: "https://o.aolcdn.com/images/dims3/GLOB/legacy_thumbnail/1062x597/format/jpg/quality/100/https://s.aolcdn.com/os/ab/_cms/2022/11/16093041/20221116_01_03.jpg",
+      img: "https://www.sixt.com/fileadmin2/files/global/sideview/user_upload/fleet/png/752x500/audi-a1-sportback-grau-2019.png",
       price: "23",
       salePrice: "11",
       gasoline: "90L",
@@ -51,14 +51,14 @@ export const AllCars = () => {
         return (
           <div
             key={index}
-            className="border bg-white rounded-xl w-80 h-96 p-4 flex flex-col justify-between"
+            className="border bg-[#000] text-white rounded-xl w-80 h-96 p-4 flex flex-col justify-between bg-gradient-to-b from-gray-500"
           >
             <div>
               <p className="font-bold text-lg">{car.name}</p>
-              <p className="text-[#595959] text-sm">{car.type}</p>
+              <p className="text-white text-sm">{car.type}</p>
             </div>
             <Image src={car.img} width={400} height={200} alt="" />
-            <div className="flex justify-between gap-4 text-[#595959]">
+            <div className="flex justify-between gap-4 text-white">
               <div className="flex items-center gap-2 ">
                 <FaGasPump />
                 <p>{car.gasoline}</p>
@@ -78,7 +78,7 @@ export const AllCars = () => {
                 <p>{car.salePrice}</p>
               </div>
               <button
-                onClick={() => handlePush()}
+                onClick={handlePush}
                 className="w-24 h-10 bg-black text-white "
               >
                 Rent now
