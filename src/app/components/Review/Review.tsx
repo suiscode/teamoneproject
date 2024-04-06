@@ -1,7 +1,5 @@
 "use client";
 import * as React from "react";
-import Typography from "@mui/material/Typography";
-import Rating from "@mui/material/Rating";
 import { RiArrowDownSLine } from "react-icons/ri";
 
 const Review = () => {
@@ -28,13 +26,13 @@ const Review = () => {
               <h1 className="text-[#90A3BF] font-light text-base">
                 21 July 2023
               </h1>
-              <Rating
+              {/* <Rating
                 name="simple-controlled"
                 value={value}
                 onChange={(event, newValue) => {
                   setValue(newValue);
                 }}
-              />
+              /> */}
             </div>
           </div>
           <h1 className="font-normal text-lg text-[#596780]">
@@ -59,13 +57,13 @@ const Review = () => {
               <h1 className="text-[#90A3BF] font-light text-base">
                 20 July 2023
               </h1>
-              <Rating
+              {/* <Rating
                 name="simple-controlled"
                 value={value}
                 onChange={(event, newValue) => {
                   setValue(newValue);
                 }}
-              />
+              /> */}
             </div>
           </div>
           <h1 className="font-normal text-lg text-[#596780]">

@@ -17,8 +17,8 @@ function Cars({ data, q }: any) {
         <h1 className="text-4xl text-secondary">{data.name}</h1>
       </div>
       <div>
-        {data?.cars?.map((item: any) => (
-          <CarCart carData={item} />
+        {data?.cars?.map((item: any, index: number) => (
+          <CarCart key={index} carData={item} />
         ))}
       </div>
     </div>

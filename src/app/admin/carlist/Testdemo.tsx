@@ -35,17 +35,17 @@ export default function ImageTest() {
     }
   };
 
-  const handleUploadAll = async () => {
-    // Iterate over each image in the images array and call handleUpload
-    for (let index = 0; index < images.length; index++) {
-      const image = images[index];
-      await handleUpload(image, index);
-    }
-  };
+  // const handleUploadAll = async () => {
+  //   // Iterate over each image in the images array and call handleUpload
+  //   for (let index = 0; index < images.length; index++) {
+  //     const image = images[index];
+  //     await handleUpload(image, index);
+  //   }
+  // };
 
   return (
     <div className="border-8 bg-white border-red-500 flex">
-      <button onClick={handleUploadAll}>log</button>
+      {/* <button onClick={handleUploadAll}>log</button> */}
       {images.map((image, index) => (
         <div key={index}>
           <label key={index}>

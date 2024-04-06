@@ -12,14 +12,15 @@ import { auth } from "../../../../auth";
 import Link from "next/link";
 
 async function UserButton() {
-  const { user } = await auth();
-  console.log(user);
+  const user = await auth();
+  const userImage =
+    typeof user?.user?.image === "string" ? user.user.image : "/default-image.jpg"; // Provide a default image or handle null/undefined
 
   return (
     <DropdownMenu>
       <DropdownMenuTrigger>
         <Avatar>
-          <AvatarImage src={user.image} />
+          <AvatarImage src={userImage} />
           <AvatarFallback>
             <FaUser className="text-black" />
           </AvatarFallback>

@@ -50,13 +50,13 @@ function AddCars({ data, setCarData }: any) {
     }
   };
 
-  const handleUploadAll = async () => {
-    // Iterate over each image in the images array and call handleUpload
-    for (let index = 0; index < images.length; index++) {
-      const image = images[index];
-      await handleUpload(image, index);
-    }
-  };
+  // const handleUploadAll = async () => {
+  //   // Iterate over each image in the images array and call handleUpload
+  //   for (let index = 0; index < images.length; index++) {
+  //     const image = images[index];
+  //     await handleUpload(image, index);
+  //   }
+  // };
 
   const onSubmit = (values: z.infer<typeof NewCarSchema>) => {
     console.log("hello");
@@ -279,7 +279,6 @@ function AddCars({ data, setCarData }: any) {
                       </label>
                     </div>
                   ))}
-                  <button className="absolute bottom-[10px]" onClick={handleUploadAll}>add</button>
                 </div>
                 <FormError message={error} />
                 <FormSuccess message={success} />

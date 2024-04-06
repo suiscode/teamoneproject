@@ -6,8 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { RegisterSchema } from "../../../lib/schema";
 import { Input } from "../../../components/ui/input";
 import { useTransition } from "react";
-import GoogleIcon from "@mui/icons-material/Google";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import {
   Form,
   FormControl,
