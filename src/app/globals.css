@@ -106,3 +106,21 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background: transparent;
   backdrop-filter: blur(30px);
 }
+
+::-webkit-scrollbar {
+  width: 8px; /* width of the scrollbar */
+}
+
+::-webkit-scrollbar-track {
+  background: none; /* color of the track */
+  
+}
+
+::-webkit-scrollbar-thumb {
+  background: white; /* color of the thumb */
+  border-radius: 6px; /* roundness of the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555; /* color of the thumb on hover */
+}

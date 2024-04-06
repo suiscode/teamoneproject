@@ -14,16 +14,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full relative h-screen border-red-500 overflow-hidden">
+    <div className="w-full video-background relative h-screen overflow-hidden">
       <video
-        width="100%"
-        height="100%"
+        src="/carr.mp4"
         autoPlay
         loop
         muted
-        className="absolute inset-0 object-cover"
+        className="object-cover w-full h-full"
       >
-        <source src="/carr.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
       {children}

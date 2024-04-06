@@ -1,9 +1,8 @@
 "use client";
 import React, { useEffect, useState, useTransition } from "react";
 import axios from "axios";
-import EditIcon from "@mui/icons-material/Edit";
-import DeleteIcon from "@mui/icons-material/Delete";
-import { TextField } from "@mui/material";
+import { MdDelete, MdModeEdit } from "react-icons/md";
+
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { CategoryItem } from "@/lib/interface";
@@ -85,7 +84,7 @@ function Category() {
   });
 
   return (
-    <div className="w-[28%] p-4 flex flex-col rounded-md gap-4">
+    <div className="w-[20%] border-l backdrop-blur-3xl h-[calc(100vh-120px)] p-4 flex flex-col rounded-md gap-4 text-secondary">
       <Form {...form}>
         <form className="space-y-2" onSubmit={form.handleSubmit(onSubmit)}>
           <div className="space-y-2">
@@ -115,7 +114,7 @@ function Category() {
           </Button>
         </form>
       </Form>
-      <div className="flex flex-col gap-4 border-t-2 border-primary pt-2 min-h-[600px]">
+      <div className="flex flex-col gap-4 border-t-2 border-primary pt-2 pl-6  h-full pr-2 overflow-x-hidden overflow-y-scroll">
         {loading && <BeatLoader className="self-center" />}
         {!loading && category.length === 0 ? (
           <h1 className="text-center">No category</h1>
@@ -128,13 +127,13 @@ function Category() {
               key={crypto.randomUUID()}
               className={`${
                 item.name === categoryParam &&
-                `bg-primary -ml-0 text-2xl py-[6px]  text-white`
-              } py-[2px] items-center border-primary border flex rounded-md  px-2 ml-4 text-sm cursor-pointer justify-between`}
+                `-ml-4 text-2xl py-2 text-primary bg-white`
+              } py-1 px-4 items-center border-white border flex rounded-mdpx-2 text-md rounded-md cursor-pointer justify-between`}
             >
               <p>{item.name}</p>
-              <div className="flex gap-4">
-                <EditIcon className="cursor-pointer" />
-                <DeleteIcon
+              <div className="flex gap-2">
+                <MdModeEdit className="cursor-pointer" />
+                <MdDelete
                   className="cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();

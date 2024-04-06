@@ -21,6 +21,6 @@
       "@/*": ["./src/*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "auth.config.ts", "src/app/utils.js", "src/app/components/HomePage/WordWheel.js"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "auth.config.ts", "src/app/utils.js", "src/app/components/HomePage/WordWheel.js", "src/app/auth/background/Background.js"],
   "exclude": ["node_modules"]
 }

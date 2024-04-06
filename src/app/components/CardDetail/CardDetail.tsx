@@ -1,139 +1,103 @@
-"use client";
-
 import React from "react";
-import { Stack, Typography, Button } from "@mui/material";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 
 function CardDetail() {
-  const { push } = useRouter();
-  const handlePush = () => {
-    push("/aboutUs");
-  };
   return (
-    <Stack
-      direction="row"
-      sx={{
-        alignItems: "center",
-        justifyContent: "center",
-        gap: "30px",
-        width: "1500px",
-      }}
-    >
-      <Stack sx={{ gap: "24px" }}>
-        <Stack>
+    <div className="w-[1440px] justify-between bg-black/90 flex p-9">
+      <div className="flex flex-col w-[48%] h-[500px]">
+        <div className="w-full relative h-full">
           <Image
             src="/salon.png"
-            alt=""
-            width={492}
-            height={360}
-            className="rounded-xl"
+            alt="image"
+            fill
+            className="rounded-xl absolute"
           />
-        </Stack>
-        <Stack direction="row" sx={{ gap: "24px" }}>
-          <Image
-            src="/salon.png"
-            alt=""
-            width={148}
-            height={124}
-            className="rounded-xl"
-          />
-          <Image
-            src="/salon.png"
-            alt=""
-            width={148}
-            height={124}
-            className="rounded-xl"
-          />
-          <Image
-            src="/salon.png"
-            alt=""
-            width={148}
-            height={124}
-            className="rounded-xl"
-          />
-        </Stack>
-      </Stack>
+        </div>
+        <div className="flex justify justify-between">
+          <div className="w-[148px] h-[124px] relative">
+            <Image
+              src="/salon.png"
+              alt=""
+              fill
+              className="rounded-xl absolute"
+            />
+          </div>
+          <div className="w-[148px] h-[124px] relative">
+            <Image
+              src="/salon.png"
+              alt=""
+              fill
+              className="rounded-xl absolute"
+            />
+          </div>
+          <div className="w-[148px] h-[124px] relative">
+            <Image
+              src="/salon.png"
+              alt=""
+              fill
+              className="rounded-xl absolute"
+            />
+          </div>
+        </div>
+      </div>
 
-      <Stack
-        sx={{
-          bgcolor: "#F6F7F9",
-          padding: "20px",
-          width: "492px",
-          height: "508px",
-          borderRadius: "5px",
-        }}
-      >
-        <Stack direction="row" sx={{ justifyContent: "space-between" }}>
-          <Stack>
-            <Typography sx={{ fontSize: "32px" }}>Car Name</Typography>
-          </Stack>
-          <Stack>
+      <div className="w-[48%] p-6 space-y-8 bg-black text-secondary rounded-md">
+        <div className="flex w-full justify-between items-center">
+          <div>
+            <h1>Car Name</h1>
+          </div>
+          <div>
             <FaRegHeart />
-          </Stack>
-        </Stack>
-        <Stack sx={{ width: "400px", height: "120px", mt: "20px" }}>
-          <Typography sx={{ color: "#596780", fontSize: "20px" }}>
+          </div>
+        </div>
+        <div>
+          <h1 className="text-lg font-medium">
             NISMO has become the embodiment of Nissan&apos;s outstanding
             performance, inspired by the most unforgiving proving ground, the
             &quot;race track&quot;.
-          </Typography>
-        </Stack>
-        <Stack direction="row" sx={{ gap: "60px", mt: "40px" }}>
-          <Stack direction="row" sx={{ gap: "20px" }}>
-            <Stack sx={{ gap: "10px" }}>
-              <Typography sx={{ fontSize: "20px", color: "#90A3BF" }}>
-                Type Car
-              </Typography>
-              <Typography sx={{ fontSize: "20px", color: "#90A3BF" }}>
-                Steering
-              </Typography>
-            </Stack>
-            <Stack sx={{ gap: "10px" }}>
-              <Typography sx={{ fontSize: "20px", color: "black" }}>
-                Sport
-              </Typography>
-              <Typography sx={{ fontSize: "20px", color: "black" }}>
-                Manual
-              </Typography>
-            </Stack>
-          </Stack>
-          <Stack direction="row" sx={{ gap: "20px" }}>
-            <Stack sx={{ gap: "10px" }}>
-              <Typography sx={{ fontSize: "20px", color: "#90A3BF" }}>
-                Capacity
-              </Typography>
-              <Typography sx={{ fontSize: "20px", color: "#90A3BF" }}>
-                Gasoline
-              </Typography>
-            </Stack>
-            <Stack sx={{ gap: "10px" }}>
-              <Typography sx={{ fontSize: "20px", color: "black" }}>
-                2 Person
-              </Typography>
-              <Typography sx={{ fontSize: "20px", color: "black" }}>
-                70L
-              </Typography>
-            </Stack>
-          </Stack>
-        </Stack>
-        <Stack direction="row" sx={{ mt: "50px", gap: "150px" }}>
-          <Stack>
-            <Stack direction="row">
-              <Typography sx={{ fontSize: "28px" }}>$80.00/</Typography>
-              <Typography sx={{ fontSize: "20px", mt: "5px" }}>days</Typography>
-            </Stack>
-            <Stack sx={{ fontSize: "20px" }}>$100.00</Stack>
-          </Stack>
-          <Stack>
+          </h1>
+        </div>
+        <div className="flex justify-between items-center">
+          <div className="space-y-4 w-[40%]">
+            <div className="flex justify-between w-full">
+              <h1>Type Car</h1>
+              <h1 className="font-medium">Steering</h1>
+            </div>
+            <div className="flex justify-between w-full">
+              <h1>Sport</h1>
+              <h1 className="font-medium">Manual</h1>
+            </div>
+          </div>
+          <div className="space-y-4 w-[40%]">
+            <div className="flex justify-between w-full">
+              <h1>Capacity</h1>
+              <h1 className="font-medium">2 Person</h1>
+            </div>
+            <div className="flex justify-between w-full">
+              <h1>Gasoline</h1>
+              <h1 className="font-medium">70L</h1>
+            </div>
+          </div>
+        </div>
+        <div className="flex justify-between">
+          <div>
+            <div>
+              <h1>
+                <span className="font-bold text-[28px]">$80.00/</span>days
+              </h1>
+            </div>
+            <div className="line-through text-black/50">$100.00</div>
+          </div>
+          <div>
             <button className="rounded-lg bg-[#3563E9] w-[140px] h-[56px] text-[white]">
               Rent Now
             </button>
-          </Stack>
-        </Stack>
-      </Stack>
-    </Stack>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 

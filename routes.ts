@@ -2,6 +2,7 @@ export const publicRoutes = [
   "/",
   "/cars",
   "/cars/favorite",
+  "/cars/cardetail",
   "/cars/{}",
   "/auth/new-verification",
   "/cartdetail",

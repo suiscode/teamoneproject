@@ -11,7 +11,7 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Button } from "@mui/material";
+// import { Button } from "@mui/material";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { cn } from "@/lib/utils";
 import { format } from "date-fns";
@@ -81,7 +81,7 @@ export const ThirdPage = () => {
 
             <Popover>
               <PopoverTrigger asChild>
-                <Button
+                {/* <Button
                   className={cn(
                     "w-fit justify-start text-left font-normal text-white",
                     !date && "text-muted-foreground"
@@ -93,7 +93,7 @@ export const ThirdPage = () => {
                   ) : (
                     <span className="text-white">Pick-up Date</span>
                   )}
-                </Button>
+                </Button> */}
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
                 <Calendar
@@ -115,7 +115,7 @@ export const ThirdPage = () => {
             </div>
             <Popover>
               <PopoverTrigger asChild>
-                <Button
+                {/* <Button
                   className={cn(
                     "w-fit justify-start text-left font-normal text-white",
                     !date && "text-muted-foreground"
@@ -127,7 +127,7 @@ export const ThirdPage = () => {
                   ) : (
                     <span className="text-white">Return Date</span>
                   )}
-                </Button>
+                </Button> */}
               </PopoverTrigger>
               <PopoverContent className="w-auto p-0">
                 <Calendar

@@ -204,17 +204,17 @@ export function AllCategory() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8 h-[900px] sticky top-[110px] p-4 rounded-md"
+      >
         <FormField
           control={form.control}
           name="items"
           render={() => (
             <FormItem>
               <div className="mb-4">
-                <FormLabel className="text-base">Sidebar</FormLabel>
-                <FormDescription>
-                  Select the items you want to display in the sidebar.
-                </FormDescription>
+                <FormLabel className="text-base">Filter</FormLabel>
               </div>
               {items.map((item) => (
                 <FormField
@@ -225,10 +225,11 @@ export function AllCategory() {
                     return (
                       <FormItem
                         key={item.id}
-                        className="flex flex-row items-start space-x-3 space-y-0"
+                        className="flex flex-row items-center space-x-3 space-y-0"
                       >
                         <FormControl>
                           <Checkbox
+                            className="bg-white w-6 h-6"
                             checked={field.value?.includes(item.id)}
                             onCheckedChange={(checked) => {
                               return checked
@@ -241,7 +242,7 @@ export function AllCategory() {
                             }}
                           />
                         </FormControl>
-                        <FormLabel className="font-normal">
+                        <FormLabel className="font-normal text-lg">
                           {item.label}
                         </FormLabel>
                       </FormItem>
@@ -253,7 +254,9 @@ export function AllCategory() {
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button type="submit" size="lg">
+          Search
+        </Button>
       </form>
     </Form>
   );

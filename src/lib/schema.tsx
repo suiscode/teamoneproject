@@ -51,7 +51,7 @@ export const NewCarSchema = z.object({
   steering: z.string().min(1, {
     message: "Must fill",
   }),
-  capacity: z.number().min(1, {
+  capacity: z.string().min(1, {
     message: "Must fill",
   }),
 });

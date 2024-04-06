@@ -1,17 +1,5 @@
 "use client";
-import {
-  FormControlLabel,
-  Input,
-  Modal,
-  Radio,
-  RadioGroup,
-  Stack,
-  TextField,
-  Typography,
-} from "@mui/material";
 import React, { ChangeEvent, useState, useTransition } from "react";
-// import { string, object, number, array } from "yup";
-// import { Formik, Form, Field, ErrorMessage } from "formik";
 import axios from "axios";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
@@ -27,84 +15,48 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+
 import { FormError } from "@/lib/form-error";
 import { FormSuccess } from "@/lib/form-success";
 import { Textarea } from "@/components/ui/textarea";
+import { Input } from "@/components/ui/input";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
-const style = {
-  position: "absolute" as "absolute",
-  top: "50%",
-  left: "50%",
-  transform: "translate(-50%, -50%)",
-  width: 1000,
-  bgcolor: "background.paper",
-  border: "2px solid #000",
-  boxShadow: 24,
-  p: 4,
-  borderRadius: "10px",
-};
-
-function AddCars({ data }: any) {
-  const [open, setOpen] = useState(false);
-  const [images, setImages] = useState<{ [key: number]: string }>({
-    1: "",
-    2: "",
-    3: "",
-  });
+function AddCars({ data, setCarData }: any) {
+  //// SUBMIT HANDLE
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const [images, setImages] = useState<(string | null)[]>([null, null, null]);
 
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleUpload = async (image: File | null, index: number) => {
+    if (!image) return;
 
-  const form = useForm<z.infer<typeof NewCarSchema>>({
-    resolver: zodResolver(NewCarSchema),
-    defaultValues: {
-      name: "",
-      description: "",
-      price: undefined,
-      gasoline: undefined,
-      steering: "",
-      capacity: 2,
-    },
-  });
-
-  const handleUpload = async (
-    event: ChangeEvent<HTMLInputElement>,
-    index: number
-  ) => {
     const res = await axios("/api/r2");
     const uploadUrl = res.data.uploadUrl;
     const accessUrl = res.data.accessUrl;
     const id = res.data.id;
-    const img = event.target.files?.[0];
 
     try {
-      const res = await axios.put(uploadUrl, img, {
+      const res = await axios.put(uploadUrl, image, {
         headers: {
-          "Content-Type": img?.type,
+          "Content-Type": image.type,
         },
       });
-
-      setImages((prev) => ({
-        ...prev,
-        [index]: `https://pub-9e4a462638ff4a6e89664b9e0dd86ca5.r2.dev/carrental%2F${id} `,
-      }));
+      console.log("Upload successful for index:", index);
     } catch (error) {
       console.error("Error uploading file:", error);
     }
   };
-  const imageArray = [1, 2, 3];
-  // const onSubmit = async (values: any, actions: any) => {
-  //   const requestBody = {
-  //     ...values,
-  //     type: data._id,
-  //     images: Object.values(images),
-  //   };
-  //   const response = await axios.post("/api/car/", requestBody);
-  //   actions.setSubmitting(false);
-  // };
+
+  const handleUploadAll = async () => {
+    // Iterate over each image in the images array and call handleUpload
+    for (let index = 0; index < images.length; index++) {
+      const image = images[index];
+      await handleUpload(image, index);
+    }
+  };
 
   const onSubmit = (values: z.infer<typeof NewCarSchema>) => {
     console.log("hello");
@@ -115,7 +67,7 @@ function AddCars({ data }: any) {
       try {
         const res = await axios.post("/api/car", {
           ...values,
-          type: data._id,
+          type: data.name,
           images: Object.values(images),
         });
         setSuccess(res.data.success);
@@ -127,16 +79,35 @@ function AddCars({ data }: any) {
     });
   };
 
+  const onImageChange =
+    (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
+      if (event.target.files && event.target.files[0]) {
+        const newImages = [...images];
+        newImages[index] = URL.createObjectURL(event.target.files[0]);
+        setImages(newImages);
+      }
+    };
+
+  //// FORM VALIDATION
+  const form = useForm<z.infer<typeof NewCarSchema>>({
+    resolver: zodResolver(NewCarSchema),
+    defaultValues: {
+      name: "",
+      description: "",
+      price: "",
+      gasoline: "",
+      steering: "",
+      capacity: "",
+    },
+  });
+
   return (
     <div>
-      <Button onClick={handleOpen}>ADD CARS</Button>
-      <Modal
-        open={open}
-        onClose={handleClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Stack sx={style}>
+      <Dialog>
+        <DialogTrigger className="text-secondary border-secondary border rounded-md px-4 py-2 hover:animate-pulse">
+          Add car to this category
+        </DialogTrigger>
+        <DialogContent className="w-[1200px] h-[550px]">
           <div className="p-4">
             <Form {...form}>
               <form
@@ -161,14 +132,13 @@ function AddCars({ data }: any) {
                         <FormMessage />
                       </FormItem>
                     )}
-                  />
-
+                  />{" "}
                   <FormField
                     control={form.control}
                     name="price"
                     render={({ field }) => (
                       <FormItem className="flex flex-col text-black">
-                        <FormLabel>Price</FormLabel>
+                        <FormLabel>Price/hour</FormLabel>
                         <FormControl>
                           <Input
                             disabled={isPending}
@@ -186,14 +156,13 @@ function AddCars({ data }: any) {
                     name="salePrice"
                     render={({ field }) => (
                       <FormItem className="flex flex-col text-black">
-                        <FormLabel>Sale Price</FormLabel>
+                        <FormLabel>Price/hour(sale)</FormLabel>
                         <FormControl>
                           <Input
                             disabled={isPending}
                             {...field}
-                            placeholder="Sale Price"
+                            placeholder="Sale(Optional)"
                             type="number"
-                            onWheel={(e) => e.preventDefault()}
                           />
                         </FormControl>
                         <FormMessage />
@@ -205,13 +174,13 @@ function AddCars({ data }: any) {
                     name="gasoline"
                     render={({ field }) => (
                       <FormItem className="flex flex-col text-black">
-                        <FormLabel>Gasoline</FormLabel>
+                        <FormLabel>Gasoline capacity</FormLabel>
                         <FormControl>
                           <Input
                             disabled={isPending}
                             {...field}
                             placeholder="Gasoline"
-                            type="text"
+                            type="number"
                           />
                         </FormControl>
                         <FormMessage />
@@ -223,12 +192,12 @@ function AddCars({ data }: any) {
                     name="capacity"
                     render={({ field }) => (
                       <FormItem className="flex flex-col text-black">
-                        <FormLabel>Capacity</FormLabel>
+                        <FormLabel>Car capacity</FormLabel>
                         <FormControl>
                           <Input
                             disabled={isPending}
                             {...field}
-                            placeholder="Capacity"
+                            placeholder="Car capacity"
                             type="number"
                           />
                         </FormControl>
@@ -260,66 +229,75 @@ function AddCars({ data }: any) {
                     control={form.control}
                     name="steering"
                     render={({ field }) => (
-                      <FormItem className="flex flex-col text-black">
+                      <FormItem className="flex items-end gap-4 text-black">
                         <FormLabel>Steering</FormLabel>
-                        <RadioGroup
-                          {...field}
-                          aria-label="Steering"
-                          name="steering"
-                          onChange={field.onChange}
-                          onBlur={field.onBlur}
-                          row
-                        >
-                          <FormControlLabel
-                            value="auto"
-                            control={<Radio />}
-                            label="Auto"
-                          />
-                          <FormControlLabel
-                            value="manual"
-                            control={<Radio />}
-                            label="Manual"
-                          />
-                        </RadioGroup>
+                        <FormControl>
+                          <RadioGroup
+                            onValueChange={field.onChange}
+                            defaultValue={field.value}
+                            className="flex items-center"
+                          >
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="auto" />
+                              </FormControl>
+                              <FormLabel className="font-normal">
+                                Auto
+                              </FormLabel>
+                            </FormItem>
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem value="manual" />
+                              </FormControl>
+                              <FormLabel className="font-normal">
+                                Manual
+                              </FormLabel>
+                            </FormItem>
+                          </RadioGroup>
+                        </FormControl>
                         <FormMessage />
                       </FormItem>
                     )}
                   />
                 </div>
-                <div className="flex gap-[50px]">
-                  {imageArray.map((item) => (
-                    <label key={item}>
-                      <input type="file" />
-                      <div className="border relative rounded-sm h-[150px] flex items-center justify-center w-[150px] border-black">
-                        <h1>ADD IMAGE + </h1>
-                        {images[item] && (
-                          <Image
-                            src={images[item]}
-                            fill
-                            className="absolute object-cover"
-                            alt="image"
-                          />
-                        )}
-                      </div>
-                    </label>
+                <div className="flex gap-[67px]">
+                  {images.map((image, index) => (
+                    <div key={index}>
+                      <label key={index}>
+                        <input type="file" onChange={onImageChange(index)} />
+                        <div className="border relative rounded-sm h-[185px] flex items-center justify-center w-[185px] border-black">
+                          <h1>ADD IMAGE + </h1>
+                          {image && (
+                            <Image
+                              src={image}
+                              fill
+                              className="absolute object-cover"
+                              alt="image"
+                            />
+                          )}
+                        </div>
+                      </label>
+                    </div>
                   ))}
+                  <button className="absolute bottom-[10px]" onClick={handleUploadAll}>add</button>
                 </div>
-
                 <FormError message={error} />
                 <FormSuccess message={success} />
-                <Button className="w-full" type="submit" disabled={isPending}>
+                <Button
+                  className="w-full"
+                  size="lg"
+                  type="submit"
+                  disabled={isPending}
+                >
                   ADD CAR
                 </Button>
               </form>
             </Form>
           </div>
-        </Stack>
-      </Modal>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
 
 export default AddCars;
-
-{
-}

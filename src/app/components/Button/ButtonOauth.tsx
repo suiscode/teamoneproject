@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
-import GoogleIcon from "@mui/icons-material/Google";
-import GitHubIcon from "@mui/icons-material/GitHub";
 import React from "react";
+import { FaGoogle, FaGithub } from "react-icons/fa";
 import { signIn } from "next-auth/react";
 import { DEFAULT_LOGIN_REDIRECT } from "../../../../routes";
 
@@ -20,14 +19,14 @@ function ButtonAuth() {
           className="w-[47%] flex gap-2"
           onClick={() => onClick("google")}
         >
-          <GoogleIcon />
+          <FaGoogle />
           Google
         </Button>
         <Button
           className="w-[47%] flex gap-2"
           onClick={() => onClick("github")}
         >
-          <GitHubIcon />
+          <FaGithub />
           GitHub
         </Button>
       </div>

@@ -43,9 +43,10 @@ export const getCategory = async (name) => {
   } else {
     try {
       connectToDB();
-      const category = await CarCategory.findOne({ name: name }).populate(
-        "cars"
-      );
+      const category = await CarCategory.findOne({ name: name }).populate({
+        path: "cars",
+        model: "Car",
+      });
       return category;
     } catch (e) {
       console.log(e);

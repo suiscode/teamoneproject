@@ -18,7 +18,7 @@ export default function RootLayout({
   return (
     <div className="w-full flex border-2 border-red-500 flex-col justify-between min-h-screen">
       <Header />
-      <div className="w-full flex bg-black justify-center h-full">
+      <div className="w-full  flex bg-black justify-center h-full">
         {children}
       </div>
       <Footer />

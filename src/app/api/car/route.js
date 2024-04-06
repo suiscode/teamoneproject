@@ -8,12 +8,15 @@ export const POST = async (req, res) => {
   console.log(body);
   try {
     connectToDB();
+    console.log("first log");
     const carUploaded = await Car.create({ ...body });
-    const carAddedToCategory = await CarCategory.findByIdAndUpdate(
-      body.type,
+    const carAddedToCategory = await CarCategory.findOneAndUpdate(
+      { name: body.type },
       { $push: { cars: carUploaded._id } },
       { new: true }
     );
+    console.log("second log");
+
     return NextResponse.json("Car added", { status: 200 });
   } catch (e) {
     console.log(e);

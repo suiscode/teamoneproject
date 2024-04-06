@@ -32,7 +32,7 @@ export default function Home() {
 
       <SecondPage />
 
-      <ThirdPage />
+      {/* <ThirdPage /> */}
     </div>
   );
 }
