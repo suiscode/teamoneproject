@@ -159,5 +159,4 @@ model TwoFactorConfirmation {
   @@unique([userId])
 }
 
-
 //// ADD BOOK MARK DO IT IT IT ////

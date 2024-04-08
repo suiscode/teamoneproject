@@ -9,21 +9,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import React from "react";
 
-// const Section = ({ children }: { children: React.ReactNode }) => (
-//   <motion.div
-//     initial={{ opacity: 0, y: 0 }}
-//     animate={{ opacity: 1, y: 100 }}
-//     transition={{ duration: 0.5 }}
-//   >
-//     {children}
-//   </motion.div>
-// );
-
 export default function Home() {
-  // useEffect(() => {
-  //   require("react-scroll").animateScroll.scrollToTop();
-  // }, []);
-
+  // gsap.to(window, { duration: 2, scrollTo: 400 });
   return (
     <div className="w-screen flex items-center justify-center flex-col z-10 text-white">
       <HomeHeader />
@@ -32,7 +19,7 @@ export default function Home() {
 
       <SecondPage />
 
-      {/* <ThirdPage /> */}
+      <ThirdPage />
     </div>
   );
 }

@@ -9,6 +9,7 @@ export const fetchCars = async () => {
         id: "desc",
       },
     });
+
     return cars;
   } catch (e) {
     console.log(e);

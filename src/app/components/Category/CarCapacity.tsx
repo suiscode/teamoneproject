@@ -1,9 +1,6 @@
-"use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
@@ -14,32 +11,27 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
-import { CarCapacity } from "./CarCapacity";
 
 const items = [
   {
-    id: "Sedan",
-    label: "Sedan",
+    id: "2 people",
+    label: "2 people",
   },
   {
-    id: "Coupe",
-    label: "Coupe",
+    id: "4 people",
+    label: "4 people",
   },
   {
-    id: "Hatchback",
-    label: "Hatchback",
+    id: "7 people",
+    label: "7 people",
   },
   {
-    id: "Truck",
-    label: "Truck",
+    id: "8 people",
+    label: "8 people",
   },
   {
-    id: "SUV",
-    label: "SUV",
-  },
-  {
-    id: "Camping vans",
-    label: "Camping vans",
+    id: "15+ people",
+    label: "15+ people",
   },
 ] as const;
 
@@ -49,7 +41,7 @@ const FormSchema = z.object({
   }),
 });
 
-export function AllCategory() {
+export function CarCapacity() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
@@ -72,7 +64,7 @@ export function AllCategory() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 h-[900px] sticky top-[110px] p-4 rounded-md"
+        className="space-y-8 sticky top-[110px] py-10 rounded-md"
       >
         <FormField
           control={form.control}
@@ -80,7 +72,7 @@ export function AllCategory() {
           render={() => (
             <FormItem>
               <div className="mb-4">
-                <FormLabel className="text-base">Types</FormLabel>
+                <FormLabel className="text-base">Capacity</FormLabel>
               </div>
               {items.map((item) => (
                 <FormField
@@ -116,14 +108,10 @@ export function AllCategory() {
                   }}
                 />
               ))}
-              <CarCapacity />
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit" size="lg">
-          Search
-        </Button>
       </form>
     </Form>
   );
