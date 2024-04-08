@@ -1,20 +1,22 @@
 import { NextResponse } from "next/server";
 import { connectToDB } from "../../utils";
 import { CarCategory } from "../../models";
+import { getCategoryByName } from "@/lib/user-data";
+import { db } from "@/lib/db";
 
 export const POST = async (req, res) => {
   const body = await req.json();
   const { category } = body.values;
-  console.log(category);
 
   try {
-    connectToDB();
-    const categoryFind = await CarCategory.find({ name: category });
-    if (categoryFind.length >= 1)
-      return NextResponse.json({ error: "Category exists" }, { status: 500 });
-    const newCategory = await CarCategory.create({
-      name: category,
-      cars: [],
+    const existingCategory = await getCategoryByName(category);
+
+    if (existingCategory)
+      return NextResponse.json({ error: "Category exists" }, { status: 400 });
+    const newCategory = await db.carCategory.create({
+      data: {
+        name: category,
+      },
     });
     return NextResponse.json(
       { success: "Category added", data: newCategory },
@@ -28,9 +30,32 @@ export const POST = async (req, res) => {
 
 export const PUT = async (req, res) => {
   const body = await req.json();
+  console.log(body.id);
   try {
-    connectToDB();
-    const categoryFind = await CarCategory.findByIdAndDelete(body.id);
+    await db.carCategory.delete({
+      where: {
+        id: body.id,
+      },
+    });
+    return NextResponse.json("Category deleted", { status: 200 });
+  } catch (e) {
+    console.log(e);
+    return NextResponse.json(e, { status: 500 });
+  }
+};
+
+export const PATCH = async (req, res) => {
+  const body = await req.json();
+  console.log(body);
+  try {
+    await db.carCategory.update({
+      where: {
+        id: body.id,
+      },
+      data: {
+        name: body.category, // Assuming 'name' is the field you want to update
+      },
+    });
     return NextResponse.json("Category deleted", { status: 200 });
   } catch (e) {
     console.log(e);
@@ -40,8 +65,11 @@ export const PUT = async (req, res) => {
 
 export const GET = async () => {
   try {
-    connectToDB();
-    const categoryFind = await CarCategory.find().sort({ _id: -1 });
+    const categoryFind = await db.carCategory.findMany({
+      orderBy: {
+        id: "desc",
+      },
+    });
     return NextResponse.json(categoryFind, { status: 200 });
   } catch (e) {
     console.log(e);

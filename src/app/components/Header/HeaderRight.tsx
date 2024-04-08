@@ -6,7 +6,6 @@ import UserButton from "../Button/UserButton";
 
 const HeaderRight = async () => {
   const session = await auth();
-  console.log(session);
 
   return (
     <div className="flex gap-4 items-center">

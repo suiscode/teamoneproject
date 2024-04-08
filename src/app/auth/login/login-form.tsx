@@ -45,7 +45,7 @@ export default function LoginForm() {
       try {
         const res = await axios.post("/api/auth/login", values);
         setSuccess(res.data.success);
-        router.push("/dashboard");
+        router.push("/cars");
         if (res.data.twoFactor) {
           setShowTwoFactor(true);
         }

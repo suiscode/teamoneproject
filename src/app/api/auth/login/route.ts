@@ -6,6 +6,7 @@ import { signIn } from "../../../../../auth";
 import { LoginSchema } from "@/lib/schema";
 import { DEFAULT_LOGIN_REDIRECT } from "../../../../../routes";
 import { error } from "console";
+import bcrypt from "bcryptjs";
 import { AuthError } from "next-auth";
 import { getUserByEmail } from "@/lib/user-data";
 import {
@@ -33,6 +34,10 @@ export const POST = async (req: NextRequest) => {
       { status: 400 }
     );
   }
+
+  const passwordMatch = await bcrypt.compare(password, existingUser.password);
+  if (!passwordMatch)
+    return NextResponse.json({ error: "Credentials wrong" }, { status: 400 });
 
   if (!existingUser.emailVerified) {
     const verificationToken = await generateVerificationToken(

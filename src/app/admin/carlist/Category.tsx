@@ -22,6 +22,7 @@ import { NewCategory, NewPasswordSchema } from "@/lib/schema";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
 
 function Category() {
   const searchParams = useSearchParams();
@@ -33,6 +34,8 @@ function Category() {
   const [success, setSuccess] = useState("");
   const [loading, setLoading] = useState(true);
   const [isPending, startTransition] = useTransition();
+  const [edit, setEdit] = useState(false);
+  const [editId, setEditId] = useState("");
 
   const onSubmit = async (values: z.infer<typeof NewCategory>) => {
     setError("");
@@ -43,9 +46,9 @@ function Category() {
         const res = await axios.post("/api/category", {
           values,
         });
-        form.reset();
-        console.log(res);
         setCategory((prev: CategoryItem[]) => [res.data.data, ...prev]);
+
+        form.reset();
         setSuccess(res.data.success);
       } catch (e: any) {
         setError(e.response.data.error);
@@ -63,17 +66,54 @@ function Category() {
   }, []);
 
   const handleDelete = async (id: string, name: string) => {
-    setCategory((prev): any => prev.filter((item) => item._id !== id));
+    setError("");
+    setSuccess("");
+    if (name === categoryParam) {
+      push("/admin/carlist");
+    }
+
+    setCategory((prev): any => prev.filter((item) => item.id !== id));
     const res = axios.put("/api/category", {
       id,
     });
   };
 
   const handleChange = (name: any) => {
+    setError("");
     setSuccess("");
     const params = new URLSearchParams(searchParams);
     params.set("category", name);
     push(`${pathname}?${params}`);
+  };
+
+  const handleEdit = (id: string) => {
+    setError("");
+    setSuccess("");
+    setEdit(true);
+    setEditId(id);
+  };
+
+  const handleUpdate = async (values: z.infer<typeof NewCategory>) => {
+    const res = await axios.patch("/api/category", {
+      ...values,
+      id: editId,
+    });
+    const params = new URLSearchParams(searchParams);
+    params.set("category", values.category);
+    push(`${pathname}?${params}`);
+    setCategory((prev) => {
+      return prev.map((item) => {
+        if (item.id === editId) {
+          return {
+            ...item,
+            name: values.category,
+          };
+        }
+        return item;
+      });
+    });
+    setEdit(false);
+    setSuccess("Successfully edited");
   };
 
   const form = useForm<z.infer<typeof NewCategory>>({
@@ -132,12 +172,18 @@ function Category() {
             >
               <p>{item.name}</p>
               <div className="flex gap-2">
-                <MdModeEdit className="cursor-pointer" />
+                <MdModeEdit
+                  className="cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleEdit(item.id);
+                  }}
+                />
                 <MdDelete
                   className="cursor-pointer"
                   onClick={(e) => {
                     e.stopPropagation();
-                    handleDelete(item._id, item.name);
+                    handleDelete(item.id, item.name);
                   }}
                 />
               </div>
@@ -145,6 +191,43 @@ function Category() {
           ))
         )}
       </div>
+      <Dialog open={edit} onOpenChange={setEdit}>
+        <DialogTrigger></DialogTrigger>
+        <DialogContent className="w-1/4">
+          <Form {...form}>
+            <form
+              className="space-y-2"
+              onSubmit={form.handleSubmit(handleUpdate)}
+            >
+              <div className="space-y-2">
+                <FormField
+                  control={form.control}
+                  name="category"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Change category name</FormLabel>
+                      <FormControl>
+                        <Input
+                          disabled={isPending}
+                          {...field}
+                          placeholder="name"
+                          type="text"
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+              <FormError message={error} />
+              <FormSuccess message={success} />
+              <Button className="w-full" type="submit" disabled={isPending}>
+                Change category name
+              </Button>
+            </form>
+          </Form>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }

@@ -41,17 +41,17 @@ export const NewCarSchema = z.object({
   description: z.string().min(1, {
     message: "Must fill",
   }),
-  price: z.string().min(1, {
+  price: z.coerce.number().min(1, {
     message: "Must fill",
   }),
-  salePrice: z.optional(z.string()),
-  gasoline: z.string().min(1, {
+  salePrice: z.optional(z.coerce.number().positive()),
+  gasoline: z.coerce.number().min(1, {
     message: "Must fill",
   }),
   steering: z.string().min(1, {
     message: "Must fill",
   }),
-  capacity: z.string().min(1, {
+  capacity: z.coerce.number().min(1, {
     message: "Must fill",
   }),
 });

@@ -1,11 +1,19 @@
+import CardDetail from "@/app/components/CardDetail/CardDetail";
+import { getOneCar } from "@/app/fetch";
 import React from "react";
 
-function page() {
+type SearchPageType = {
+  searchParams: { category: string };
+};
+
+async function CarDetailPage({ params }: { params: { id: string } }) {
+  const { id } = params || "";
+  const data = await getOneCar(id);
   return (
     <div className="w-full flex justify-center items-center">
-      <h1 className="text-secondary">No favorite</h1>
+      <CardDetail data={data} />
     </div>
   );
 }
 
-export default page;
+export default CarDetailPage;
