@@ -14,22 +14,32 @@ const S3 = new S3Client({
 });
 
 export async function GET(req) {
-  const id = v4();
+  const count = req.nextUrl.searchParams.get("count");
 
-  const url = await getSignedUrl(
-    S3,
-    new PutObjectCommand({
-      Bucket: 'carrental',
-      Key: id,
-    })
-  );
-  console.log(url);
+
+
+  const keys = Array.from({ length: Number(count) }, () => v4());
+
+  const urls = keys.map(async (id) => {
+    const presignedURL = await getSignedUrl(
+      S3,
+      new PutObjectCommand({
+        Bucket: "carrental",
+        Key: id,
+      })
+    );
+
+    return presignedURL;
+  });
+
+  const response = await Promise.all(urls);
 
   return Response.json({
-    uploadUrl: url,
-    accessUrls:
-      "https://8a7234f45428541aac34fcde89695061.r2.cloudflarestorage.com/carrental" +
-      id,
-      id
+    uploadUrl: response,
+    accessUrls: keys.map(
+      (key) =>
+        "https://pub-9e4a462638ff4a6e89664b9e0dd86ca5.r2.dev/carrental%2F" +
+        key
+    ),
   });
 }

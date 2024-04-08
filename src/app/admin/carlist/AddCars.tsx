@@ -30,27 +30,37 @@ function AddCars({ data, setCarData }: any) {
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
-  // const [images, setImages] = useState<(string | null)[]>([null, null, null]);
+  const [uploadImages, setUploadImages] = useState<File[]>([]);
+  let imageArray: string[];
 
-  // const handleUpload = async (image: File | null, index: number) => {
-  //   if (!image) return;
+  const [images, setImages] = useState<(string | null)[]>([null, null, null]);
 
-  //   const res = await axios("/api/r2");
-  //   const uploadUrl = res.data.uploadUrl;
-  //   const accessUrl = res.data.accessUrl;
-  //   const id = res.data.id;
+  const handleUpload = async () => {
+    const { data } = await axios.get<{
+      uploadUrl: string[];
+      accessUrls: string[];
+    }>(`/api/r2?count=${uploadImages.length}`);
 
-  //   try {
-  //     const res = await axios.put(uploadUrl, image, {
-  //       headers: {
-  //         "Content-Type": image.type,
-  //       },
-  //     });
-  //     console.log("Upload successful for index:", index);
-  //   } catch (error) {
-  //     console.error("Error uploading file:", error);
-  //   }
-  // };
+    const uploadUrls = data.uploadUrl;
+    const accessUrls = data.accessUrls;
+    imageArray = data.accessUrls;
+    // const id = res.data.id;
+
+    try {
+      await Promise.all(
+        uploadUrls.map(async (uploadUrl, index) => {
+          await axios.put(uploadUrl, uploadImages[index], {
+            headers: {
+              "Content-Type": uploadImages[index].type,
+            },
+          });
+        })
+      );
+      console.log("Upload successful for index:");
+    } catch (error) {
+      console.error("Error uploading file:", error);
+    }
+  };
 
   // const handleUploadAll = async () => {
   //   // Iterate over each image in the images array and call handleUpload
@@ -65,16 +75,17 @@ function AddCars({ data, setCarData }: any) {
     setError("");
     startTransition(async () => {
       try {
+        await handleUpload();
         const res = await axios.post("/api/car", {
           ...values,
           type: data.name,
           categoryId: data.id,
-          // images: Object.values(images),
+          img: imageArray,
         });
         setCarData((prev: any) => ({
           ...prev,
           cars: [
-            { ...values, type: data.name, categoryId: data.id },
+            { ...values, tyspe: data.name, categoryId: data.id },
             ...prev.cars,
           ],
         }));
@@ -88,15 +99,19 @@ function AddCars({ data, setCarData }: any) {
     });
   };
 
-  // const onImageChange =
-  //   (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
-  //     if (event.target.files && event.target.files[0]) {
-  //       const newImages = [...images];
-  //       newImages[index] = URL.createObjectURL(event.target.files[0]);
-  //       setImages(newImages);
-  //     }
-  //   };
+  const onImageChange =
+    (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
+      if (event.target.files && event.target.files[0]) {
+        const file = event.target.files[0];
 
+        setUploadImages([...uploadImages, file]);
+
+        const newImages = [...images];
+        newImages[index] = URL.createObjectURL(event.target.files[0]);
+        setImages(newImages);
+      }
+    };
+  console.log(uploadImages);
   //// FORM VALIDATION
   const form = useForm<z.infer<typeof NewCarSchema>>({
     resolver: zodResolver(NewCarSchema),
@@ -269,7 +284,7 @@ function AddCars({ data, setCarData }: any) {
                     )}
                   />
                 </div>
-                {/* <div className="flex gap-[67px]">
+                <div className="flex gap-[67px]">
                   {images.map((image, index) => (
                     <div key={index}>
                       <label key={index}>
@@ -288,7 +303,7 @@ function AddCars({ data, setCarData }: any) {
                       </label>
                     </div>
                   ))}
-                </div> */}
+                </div>
                 <FormError message={error} />
                 <FormSuccess message={success} />
                 <Button

@@ -6,8 +6,8 @@ import { MdPeopleAlt } from "react-icons/md";
 import Link from "next/link";
 import HeartFavorite from "./HeartFavorite";
 
-function CarCart({ car, index }: any) {
-  console.log("FROM CAR CART");
+function CarCart({ car, index, session }: any) {
+  console.log(car.img, "form here hahahah");
 
   return (
     <li
@@ -19,16 +19,17 @@ function CarCart({ car, index }: any) {
           <p className="font-bold text-lg">{car.name}</p>
           <p className="text-white text-sm">{car.type}</p>
         </div>
-        <HeartFavorite />
+        <HeartFavorite id={car.id} session={session} />
       </div>
       <Link href={`cars/${car.id}`}>
-        {/* <Image
-          src={car.img}
-          width={400}
-          height={200}
-          alt=""
-          className="cursor-pointer"
-        /> */}
+        <div className="w-full relative h-[160px]">
+          <Image
+            src={car.img[0]}
+            fill
+            alt="hehe"
+            className="cursor-pointer absolute object-cover object-start"
+          />
+        </div>
       </Link>
       <div className="flex justify-between gap-4 text-white">
         <div className="flex items-center gap-2 ">

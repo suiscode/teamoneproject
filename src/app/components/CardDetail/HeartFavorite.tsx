@@ -1,21 +1,51 @@
 "use client";
 import { FaRegHeart } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import { usePathname } from "next/navigation";
 
-function HeartFavorite() {
+function HeartFavorite({ id, session }: any) {
+  const pathname = usePathname();
   const [state, setState] = useState(false);
+  const userId = session.user.id;
+
+  useEffect(() => {
+    const checkIsBookmarked = async () => {
+      const res = await axios.get(`/api/bookmark?userId=${userId}&carId=${id}`);
+      if (res.data) setState(true);
+      console.log(res.data);
+    };
+    checkIsBookmarked();
+  }, [pathname]);
+
+  const addToBookMark = async () => {
+    setState(true);
+    const res = await axios.post("/api/bookmark", {
+      userId,
+      carId: id,
+    });
+  };
+
+  const removeFromBookMark = async () => {
+    setState(false);
+    const res = await axios.put("/api/bookmark", {
+      userId,
+      carId: id,
+    });
+  };
+
   return (
     <div>
       {!state ? (
         <FaRegHeart
           className="w-8 h-8 cursor-pointer"
-          onClick={() => setState(true)}
+          onClick={() => addToBookMark()}
         />
       ) : (
         <FaHeart
           className="w-8 h-8 cursor-pointer text-red-500"
-          onClick={() => setState(false)}
+          onClick={() => removeFromBookMark()}
         />
       )}
     </div>

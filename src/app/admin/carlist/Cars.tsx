@@ -17,7 +17,7 @@ function Cars({ data, q }: any) {
 
         <h1 className="text-4xl text-secondary">{data.name}</h1>
       </div>
-      <ul className="flex w-full flex-wrap gap-12">
+      <ul className="flex w-full flex-wrap gap-12 py-4">
         {carData?.cars?.map((item: any, index: number) => (
           <CarCardAdmin key={index} car={item} setCarData={setCarData} />
         ))}

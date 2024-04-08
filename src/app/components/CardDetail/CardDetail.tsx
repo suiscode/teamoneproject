@@ -3,46 +3,12 @@ import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import CarImage from "./CarImage";
 
 function CardDetail({ data }: any) {
   return (
     <div className="w-[1440px] justify-between bg-black/90 flex p-9">
-      <div className="flex flex-col w-[48%] h-[500px]">
-        <div className="w-full relative h-full">
-          <Image
-            src="/salon.png"
-            alt="image"
-            fill
-            className="rounded-xl absolute"
-          />
-        </div>
-        <div className="flex justify justify-between">
-          <div className="w-[148px] h-[124px] relative">
-            <Image
-              src="/salon.png"
-              alt=""
-              fill
-              className="rounded-xl absolute"
-            />
-          </div>
-          <div className="w-[148px] h-[124px] relative">
-            <Image
-              src="/salon.png"
-              alt=""
-              fill
-              className="rounded-xl absolute"
-            />
-          </div>
-          <div className="w-[148px] h-[124px] relative">
-            <Image
-              src="/salon.png"
-              alt=""
-              fill
-              className="rounded-xl absolute"
-            />
-          </div>
-        </div>
-      </div>
+      <CarImage data={data} />
 
       <div className="w-[48%] p-6 space-y-8 bg-black text-secondary rounded-md">
         <div className="flex w-full justify-between items-center">
