@@ -8,7 +8,7 @@ import {
   useMotionValueEvent,
 } from "framer-motion";
 import { AiOutlineArrowDown } from "react-icons/ai";
-import { useScroll } from "framer-motion";
+import { FaMouse } from "react-icons/fa";
 
 const LandingPage = () => {
   const ref: any = useRef();
@@ -21,9 +21,6 @@ const LandingPage = () => {
       mainControls.start("visible");
     }
   }, [isInView]);
-  const { scrollY } = useScroll();
-
-
 
   return (
     <div
@@ -67,6 +64,10 @@ const LandingPage = () => {
           Scroll down
           <AiOutlineArrowDown />
         </button>
+      </div>
+      <div className="absolute right-[20%] top-[30%] text-lg flex border rounded-[25px] p-4 items-center gap-4">
+        Drag below with your mouse
+        <FaMouse />
       </div>
       <div className="h-full w-full absolute top-[150px] right-0 flex justify-end items-center">
         <CarModel />

@@ -113,7 +113,6 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 ::-webkit-scrollbar-track {
   background: none; /* color of the track */
-  
 }
 
 ::-webkit-scrollbar-thumb {
@@ -123,4 +122,8 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 
 ::-webkit-scrollbar-thumb:hover {
   background: #555; /* color of the thumb on hover */
+}
+
+#cars {
+  background-image: radial-gradient(closest-side at 60% 55%, #4d0000, #0b0b0b);
 }
