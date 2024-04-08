@@ -1,27 +1,32 @@
+"use client";
 import Image from "next/image";
 import React from "react";
 import { FaGasPump } from "react-icons/fa6";
 import { TbSteeringWheel } from "react-icons/tb";
 import { MdPeopleAlt } from "react-icons/md";
 import Link from "next/link";
-import HeartFavorite from "./HeartFavorite";
+import { Button } from "@/components/ui/button";
+import axios from "axios";
+import { CategoryItem } from "@/lib/interface";
 
-function CarCart({ car, index }: any) {
-  console.log("FROM CAR CART");
-
+function CarCardAdmin({ car, index, setCarData }: any) {
+  const handleDelete = async (id: string) => {
+    setCarData((prev: any) => ({
+      ...prev,
+      cars: prev?.cars.filter((carItem: any) => carItem.id !== id),
+    }));
+    const res = await axios.patch("/api/car/", { id });
+  };
   return (
     <li
       key={index}
       className="border-0 bg-[#000] text-white rounded-xl w-80 h-96 p-4 flex flex-col justify-between bg-gradient-to-b from-white/10"
     >
-      <div className="flex justify-between items-center">
-        <div>
-          <p className="font-bold text-lg">{car.name}</p>
-          <p className="text-white text-sm">{car.type}</p>
-        </div>
-        <HeartFavorite />
+      <div>
+        <p className="font-bold text-lg">{car.name}</p>
+        <p className="text-white text-sm">{car.type}</p>
       </div>
-      <Link href={`cars/${car.id}`}>
+      <Link href={`cars/${car._id}`}>
         {/* <Image
           src={car.img}
           width={400}
@@ -49,12 +54,20 @@ function CarCart({ car, index }: any) {
           <p>{car.price}</p>
           <p>{car.salePrice}</p>
         </div>
-        <Link href={`/cars/${car.id}`} className="w-24 h-10  text-white ">
-          Rent now
-        </Link>
+        <div className="space-x-4">
+          <Button className="w-24 h-10 border border-white text-white ">
+            Edit item
+          </Button>
+          <Button
+            onClick={() => handleDelete(car.id)}
+            className="w-24 h-10 border border-white text-white "
+          >
+            Delete item
+          </Button>
+        </div>
       </div>
     </li>
   );
 }
 
-export default CarCart;
+export default CarCardAdmin;

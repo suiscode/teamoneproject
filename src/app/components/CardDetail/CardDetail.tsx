@@ -2,8 +2,9 @@ import React from "react";
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
 
-function CardDetail() {
+function CardDetail({ data }: any) {
   return (
     <div className="w-[1440px] justify-between bg-black/90 flex p-9">
       <div className="flex flex-col w-[48%] h-[500px]">
@@ -46,7 +47,7 @@ function CardDetail() {
       <div className="w-[48%] p-6 space-y-8 bg-black text-secondary rounded-md">
         <div className="flex w-full justify-between items-center">
           <div>
-            <h1>Car Name</h1>
+            <h1>{data.name}</h1>
           </div>
           <div>
             <FaRegHeart />
@@ -62,22 +63,22 @@ function CardDetail() {
         <div className="flex justify-between items-center">
           <div className="space-y-4 w-[40%]">
             <div className="flex justify-between w-full">
-              <h1>Type Car</h1>
-              <h1 className="font-medium">Steering</h1>
+              <h1>Car type</h1>
+              <h1 className="font-medium">{data.type}</h1>
             </div>
             <div className="flex justify-between w-full">
-              <h1>Sport</h1>
-              <h1 className="font-medium">Manual</h1>
+              <h1>Steering</h1>
+              <h1 className="font-medium">{data.steering}</h1>
             </div>
           </div>
           <div className="space-y-4 w-[40%]">
             <div className="flex justify-between w-full">
               <h1>Capacity</h1>
-              <h1 className="font-medium">2 Person</h1>
+              <h1 className="font-medium">{data.capacity}</h1>
             </div>
             <div className="flex justify-between w-full">
               <h1>Gasoline</h1>
-              <h1 className="font-medium">70L</h1>
+              <h1 className="font-medium">{data.gasoline}</h1>
             </div>
           </div>
         </div>
@@ -85,15 +86,20 @@ function CardDetail() {
           <div>
             <div>
               <h1>
-                <span className="font-bold text-[28px]">$80.00/</span>days
+                <span className="font-bold text-[28px]">
+                  {data.salePrice ? data.salePrice : data.price}$/
+                </span>
+                days
               </h1>
             </div>
-            <div className="line-through text-black/50">$100.00</div>
+            <div className="line-through text-black/50">
+              {data.salePrice ? data.price : ""}
+            </div>
           </div>
           <div>
-            <button className="rounded-lg bg-[#3563E9] w-[140px] h-[56px] text-[white]">
+            <Button className="rounded-lg bg-[#3563E9] hover:bg-[#3563E9]/80 w-[140px] h-[56px] text-[white]">
               Rent Now
-            </button>
+            </Button>
           </div>
         </div>
       </div>

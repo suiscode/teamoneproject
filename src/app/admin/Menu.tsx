@@ -1,9 +1,9 @@
 "use client";
 import { Button } from "@/components/ui/button";
 import { useCurrentUser } from "@/hooks/use-current-user";
-import { signOut, useSession } from "next-auth/react";
+import { signOut } from "next-auth/react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import React from "react";
 
 const links = [
@@ -12,7 +12,6 @@ const links = [
 ];
 
 function Menu() {
-  const user = useCurrentUser();
   const onClick = () => {
     signOut();
   };
@@ -34,9 +33,9 @@ function Menu() {
           </Button>
         ))}
       </ul>
-      <h1 onClick={onClick} className="cursor-pointer">
+      {/* <h1 onClick={onClick} className="cursor-pointer">
         Log out
-      </h1>
+      </h1> */}
     </div>
   );
 }

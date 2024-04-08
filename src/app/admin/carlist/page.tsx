@@ -11,7 +11,6 @@ type SearchPageType = {
 async function page({ searchParams }: SearchPageType) {
   const q = searchParams?.category || "";
   const data = await getCategory(q);
-  console.log(data);
 
   return (
     <div className="flex justify-between p-8 w-full flex-row-reverse">

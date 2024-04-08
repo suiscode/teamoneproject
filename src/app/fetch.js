@@ -1,11 +1,28 @@
 import { connectToDB } from "./utils";
 import { Car, CarCategory } from "./models";
+import { db } from "@/lib/db";
 
 export const fetchCars = async () => {
   try {
-    connectToDB();
-    const cars = await Car.find();
+    const cars = await db.car.findMany({
+      orderBy: {
+        id: "desc",
+      },
+    });
     return cars;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const getOneCar = async (id) => {
+  try {
+    const car = await db.car.findUnique({
+      where: {
+        id,
+      },
+    });
+    return car;
   } catch (e) {
     console.log(e);
   }
@@ -34,18 +51,27 @@ export const fetchCategory = async () => {
 export const getCategory = async (name) => {
   if (!name) {
     try {
-      connectToDB();
-      const cars = await Car.find().sort({ _id: -1 });
+      const cars = await db.carCategory.findMany({
+        orderBy: {
+          id: "desc",
+        },
+      });
+      console.log(cars, "from cars");
       return { data: cars };
     } catch (e) {
       console.log(e);
     }
   } else {
     try {
-      connectToDB();
-      const category = await CarCategory.findOne({ name: name }).populate({
-        path: "cars",
-        model: "Car",
+      const category = await db.carCategory.findUnique({
+        where: { name },
+        include: {
+          cars: {
+            orderBy: {
+              id: "desc",
+            },
+          },
+        },
       });
       return category;
     } catch (e) {

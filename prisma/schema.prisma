@@ -18,6 +18,11 @@ enum UserRole {
   USER
 }
 
+enum SteeringType {
+  MANUAL
+  AUTO
+}
+
 model User {
   id                    String                 @id @default(auto()) @map("_id") @db.ObjectId
   name                  String?
@@ -26,9 +31,78 @@ model User {
   image                 String?
   password              String?
   role                  UserRole               @default(USER)
+  reviews               Review[]
+  orders                Order[]
   accounts              Account[]
+  bookmarks             Bookmark[]
   isTwoFactorEnabled    Boolean                @default(false)
   twoFactorConfirmation TwoFactorConfirmation?
+}
+
+model Order {
+  id             String   @id @default(auto()) @map("_id") @db.ObjectId
+  user           User     @relation(fields: [userId], references: [id])
+  pickupDate     DateTime
+  pickupLocation String
+  dropDate       DateTime
+  dropLocation   String
+  car            Car      @relation(fields: [carId], references: [id])
+
+  // Foreign keys
+  userId String @db.ObjectId
+  carId  String @db.ObjectId
+}
+
+model CarCategory {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  name String @unique
+  cars Car[]
+}
+
+model Car {
+  id          String       @id @default(auto()) @map("_id") @db.ObjectId
+  name        String
+  description String
+  type        String
+  img         String[]
+  price       Float
+  salePrice   Float?
+  gasoline    Float
+  steering    SteeringType
+  capacity    Int
+  bookmarks   Bookmark[]
+  category    CarCategory? @relation(fields: [categoryId], references: [id])
+  reviews     Review[] // Added relation to reviews
+
+  // Foreign key
+  categoryId String? @db.ObjectId
+  Order      Order[]
+
+  @@unique([name])
+}
+
+model Bookmark {
+  id   String @id @default(auto()) @map("_id") @db.ObjectId
+  user User   @relation(fields: [userId], references: [id])
+  car  Car    @relation(fields: [carId], references: [id])
+
+  // Foreign keys
+  userId String @db.ObjectId
+  carId  String @db.ObjectId
+
+  @@unique([userId, carId])
+}
+
+model Review {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  car        Car     @relation(fields: [carId], references: [id])
+  starRating Int
+  comment    String?
+
+  // Foreign key
+  carId  String  @db.ObjectId
+  User   User?   @relation(fields: [userId], references: [id])
+  userId String? @db.ObjectId
 }
 
 model Account {
@@ -84,3 +158,6 @@ model TwoFactorConfirmation {
 
   @@unique([userId])
 }
+
+
+//// ADD BOOK MARK DO IT IT IT ////

@@ -22,33 +22,35 @@ import { FormSuccess } from "@/lib/form-success";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+import { CarItem, CategoryItem } from "@/lib/interface";
 
 function AddCars({ data, setCarData }: any) {
   //// SUBMIT HANDLE
-  const [error, setError] = useState<string | undefined>("");
+  const [error, setError] = useState<string | undefined>("wow");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
-  const [images, setImages] = useState<(string | null)[]>([null, null, null]);
+  const [open, setOpen] = useState(false);
+  // const [images, setImages] = useState<(string | null)[]>([null, null, null]);
 
-  const handleUpload = async (image: File | null, index: number) => {
-    if (!image) return;
+  // const handleUpload = async (image: File | null, index: number) => {
+  //   if (!image) return;
 
-    const res = await axios("/api/r2");
-    const uploadUrl = res.data.uploadUrl;
-    const accessUrl = res.data.accessUrl;
-    const id = res.data.id;
+  //   const res = await axios("/api/r2");
+  //   const uploadUrl = res.data.uploadUrl;
+  //   const accessUrl = res.data.accessUrl;
+  //   const id = res.data.id;
 
-    try {
-      const res = await axios.put(uploadUrl, image, {
-        headers: {
-          "Content-Type": image.type,
-        },
-      });
-      console.log("Upload successful for index:", index);
-    } catch (error) {
-      console.error("Error uploading file:", error);
-    }
-  };
+  //   try {
+  //     const res = await axios.put(uploadUrl, image, {
+  //       headers: {
+  //         "Content-Type": image.type,
+  //       },
+  //     });
+  //     console.log("Upload successful for index:", index);
+  //   } catch (error) {
+  //     console.error("Error uploading file:", error);
+  //   }
+  // };
 
   // const handleUploadAll = async () => {
   //   // Iterate over each image in the images array and call handleUpload
@@ -59,8 +61,6 @@ function AddCars({ data, setCarData }: any) {
   // };
 
   const onSubmit = (values: z.infer<typeof NewCarSchema>) => {
-    console.log("hello");
-
     setSuccess("");
     setError("");
     startTransition(async () => {
@@ -68,8 +68,17 @@ function AddCars({ data, setCarData }: any) {
         const res = await axios.post("/api/car", {
           ...values,
           type: data.name,
-          images: Object.values(images),
+          categoryId: data.id,
+          // images: Object.values(images),
         });
+        setCarData((prev: any) => ({
+          ...prev,
+          cars: [
+            { ...values, type: data.name, categoryId: data.id },
+            ...prev.cars,
+          ],
+        }));
+        setOpen(false);
         setSuccess(res.data.success);
         form.reset();
       } catch (e: any) {
@@ -79,14 +88,14 @@ function AddCars({ data, setCarData }: any) {
     });
   };
 
-  const onImageChange =
-    (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
-      if (event.target.files && event.target.files[0]) {
-        const newImages = [...images];
-        newImages[index] = URL.createObjectURL(event.target.files[0]);
-        setImages(newImages);
-      }
-    };
+  // const onImageChange =
+  //   (index: number) => (event: ChangeEvent<HTMLInputElement>) => {
+  //     if (event.target.files && event.target.files[0]) {
+  //       const newImages = [...images];
+  //       newImages[index] = URL.createObjectURL(event.target.files[0]);
+  //       setImages(newImages);
+  //     }
+  //   };
 
   //// FORM VALIDATION
   const form = useForm<z.infer<typeof NewCarSchema>>({
@@ -94,16 +103,16 @@ function AddCars({ data, setCarData }: any) {
     defaultValues: {
       name: "",
       description: "",
-      price: "",
-      gasoline: "",
+      price: 0,
+      gasoline: 0,
       steering: "",
-      capacity: "",
+      capacity: 0,
     },
   });
 
   return (
     <div>
-      <Dialog>
+      <Dialog open={open} onOpenChange={setOpen}>
         <DialogTrigger className="text-secondary border-secondary border rounded-md px-4 py-2 hover:animate-pulse">
           Add car to this category
         </DialogTrigger>
@@ -239,7 +248,7 @@ function AddCars({ data, setCarData }: any) {
                           >
                             <FormItem className="flex items-center space-x-3 space-y-0">
                               <FormControl>
-                                <RadioGroupItem value="auto" />
+                                <RadioGroupItem value="AUTO" />
                               </FormControl>
                               <FormLabel className="font-normal">
                                 Auto
@@ -247,7 +256,7 @@ function AddCars({ data, setCarData }: any) {
                             </FormItem>
                             <FormItem className="flex items-center space-x-3 space-y-0">
                               <FormControl>
-                                <RadioGroupItem value="manual" />
+                                <RadioGroupItem value="MANUAL" />
                               </FormControl>
                               <FormLabel className="font-normal">
                                 Manual
@@ -260,7 +269,7 @@ function AddCars({ data, setCarData }: any) {
                     )}
                   />
                 </div>
-                <div className="flex gap-[67px]">
+                {/* <div className="flex gap-[67px]">
                   {images.map((image, index) => (
                     <div key={index}>
                       <label key={index}>
@@ -279,7 +288,7 @@ function AddCars({ data, setCarData }: any) {
                       </label>
                     </div>
                   ))}
-                </div>
+                </div> */}
                 <FormError message={error} />
                 <FormSuccess message={success} />
                 <Button
