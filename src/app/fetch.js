@@ -80,3 +80,15 @@ export const getCategory = async (name) => {
     }
   }
 };
+
+export const getAllFavoritedItem = async (userId) => {
+  const userBookmarkedCars = await db.bookmark.findMany({
+    where: {
+      userId: userId, // Replace userId with the actual ID of the user
+    },
+    include: {
+      car: true, // Include the associated car for each bookmark
+    },
+  });
+  return userBookmarkedCars;
+};

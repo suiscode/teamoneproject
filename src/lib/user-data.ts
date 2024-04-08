@@ -1,4 +1,3 @@
-import { User } from "@/app/models";
 import { db } from "./db";
 
 export const getUserByEmail = async (email: string) => {
