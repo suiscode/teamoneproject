@@ -1,4 +1,4 @@
-import CarCart from "@/app/_components/CardDetail/CarCart";
+import CarCart from "@/app/_wcomponents/CardDetail/CarCart";
 import { getAllFavoritedItem } from "@/app/fetch";
 import { CarItem } from "@/lib/interface";
 import React from "react";

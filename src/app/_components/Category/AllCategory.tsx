@@ -14,9 +14,8 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
-import { CarCapacity } from "./CarCapacity";
 
-const items = [
+const typeItems = [
   {
     id: "Sedan",
     label: "Sedan",
@@ -43,17 +42,44 @@ const items = [
   },
 ] as const;
 
+const capacityItems = [
+  {
+    id: "2 people",
+    label: "2 people",
+  },
+  {
+    id: "4 people",
+    label: "4 people",
+  },
+  {
+    id: "7 people",
+    label: "7 people",
+  },
+  {
+    id: "8 people",
+    label: "8 people",
+  },
+  {
+    id: "15+ people",
+    label: "15+ people",
+  },
+] as const;
+
 const FormSchema = z.object({
-  items: z.array(z.string()).refine((value) => value.some((item) => item), {
-    message: "You have to select at least one item.",
-  }),
+  typeItems: z
+    .array(z.string())
+    .refine((value) => value.some((item) => item), {}),
+  capacityItems: z
+    .array(z.string())
+    .refine((value) => value.some((item) => item), {}),
 });
 
 export function AllCategory() {
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      items: ["recents", "home"],
+      typeItems: [],
+      capacityItems: [],
     },
   });
 
@@ -76,47 +102,85 @@ export function AllCategory() {
       >
         <FormField
           control={form.control}
-          name="items"
+          name="typeItems"
           render={() => (
-            <FormItem>
-              <div className="mb-4">
-                <FormLabel className="text-base">Types</FormLabel>
+            <FormItem className="flex flex-col gap-4">
+              <FormLabel className="text-xl font-bold">Types</FormLabel>
+              <div className="space-y-2">
+                {typeItems.map((item) => (
+                  <FormField
+                    key={item.id}
+                    control={form.control}
+                    name="typeItems"
+                    render={({ field }) => {
+                      return (
+                        <FormItem
+                          key={item.id}
+                          className="flex flex-row items-center space-x-3 space-y-0"
+                        >
+                          <FormControl>
+                            <Checkbox
+                              className="bg-white w-6 h-6"
+                              checked={field.value?.includes(item.id)}
+                              onCheckedChange={(checked) => {
+                                return checked
+                                  ? field.onChange([...field.value, item.id])
+                                  : field.onChange(
+                                      field.value?.filter(
+                                        (value) => value !== item.id
+                                      )
+                                    );
+                              }}
+                            />
+                          </FormControl>
+                          <FormLabel className="font-normal text-lg">
+                            {item.label}
+                          </FormLabel>
+                        </FormItem>
+                      );
+                    }}
+                  />
+                ))}
               </div>
-              {items.map((item) => (
-                <FormField
-                  key={item.id}
-                  control={form.control}
-                  name="items"
-                  render={({ field }) => {
-                    return (
-                      <FormItem
-                        key={item.id}
-                        className="flex flex-row items-center space-x-3 space-y-0"
-                      >
-                        <FormControl>
-                          <Checkbox
-                            className="bg-white w-6 h-6"
-                            checked={field.value?.includes(item.id)}
-                            onCheckedChange={(checked) => {
-                              return checked
-                                ? field.onChange([...field.value, item.id])
-                                : field.onChange(
-                                    field.value?.filter(
-                                      (value) => value !== item.id
-                                    )
-                                  );
-                            }}
-                          />
-                        </FormControl>
-                        <FormLabel className="font-normal text-lg">
-                          {item.label}
-                        </FormLabel>
-                      </FormItem>
-                    );
-                  }}
-                />
-              ))}
-              <CarCapacity />
+              <FormLabel className="text-xl font-bold">Types</FormLabel>
+
+              <div className="space-y-2">
+                {capacityItems.map((item) => (
+                  <FormField
+                    key={item.id}
+                    control={form.control}
+                    name="capacityItems"
+                    render={({ field }) => {
+                      return (
+                        <FormItem
+                          key={item.id}
+                          className="flex flex-row items-center space-x-3 space-y-0"
+                        >
+                          <FormControl>
+                            <Checkbox
+                              className="bg-white w-6 h-6"
+                              checked={field.value?.includes(item.id)}
+                              onCheckedChange={(checked) => {
+                                return checked
+                                  ? field.onChange([...field.value, item.id])
+                                  : field.onChange(
+                                      field.value?.filter(
+                                        (value) => value !== item.id
+                                      )
+                                    );
+                              }}
+                            />
+                          </FormControl>
+                          <FormLabel className="font-normal text-lg">
+                            {item.label}
+                          </FormLabel>
+                        </FormItem>
+                      );
+                    }}
+                  />
+                ))}
+              </div>
+
               <FormMessage />
             </FormItem>
           )}
