@@ -3,15 +3,12 @@ import * as React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { auth } from "../../../../auth";
 import UserButton from "../Button/UserButton";
-import { ModeToggle } from "./ThemeSwitcher";
 
 const HeaderRight = async () => {
   const session = await auth();
 
   return (
     <div className="flex gap-4 items-center">
-      <ModeToggle />
-
       <Link href="/cars/favorite">
         <FaRegHeart className="h-[18px] w-[18px] hover:animate-pulse" />
       </Link>
