@@ -5,7 +5,6 @@ import React, { useState } from "react";
 function CarImage({ data }: any) {
   const [state, setState] = useState(0);
 
-  console.log(state);
 
   return (
     <div className="flex flex-col w-[48%] h-[500px]">

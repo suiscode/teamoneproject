@@ -30,7 +30,6 @@ export const POST = async (req, res) => {
 
 export const PUT = async (req, res) => {
   const body = await req.json();
-  console.log(body.id);
   try {
     await db.carCategory.delete({
       where: {
@@ -46,14 +45,13 @@ export const PUT = async (req, res) => {
 
 export const PATCH = async (req, res) => {
   const body = await req.json();
-  console.log(body);
   try {
     await db.carCategory.update({
       where: {
         id: body.id,
       },
       data: {
-        name: body.category, // Assuming 'name' is the field you want to update
+        name: body.category,
       },
     });
     return NextResponse.json("Category deleted", { status: 200 });

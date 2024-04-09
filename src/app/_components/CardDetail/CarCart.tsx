@@ -7,8 +7,6 @@ import Link from "next/link";
 import HeartFavorite from "./HeartFavorite";
 
 function CarCart({ car, index, session }: any) {
-  console.log(car.img, "form here hahahah");
-
   return (
     <li
       key={index}
@@ -24,7 +22,7 @@ function CarCart({ car, index, session }: any) {
       <Link href={`cars/${car.id}`}>
         <div className="w-full relative h-[160px]">
           <Image
-            src={car.img[0]}
+            src={car.img?.[0]}
             fill
             alt="hehe"
             className="cursor-pointer absolute object-cover object-start"
