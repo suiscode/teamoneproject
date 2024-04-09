@@ -1,7 +1,7 @@
 import React from "react";
-import { AllCategory } from "../components/Category/AllCategory";
+import { AllCategory } from "../_components/Category/AllCategory";
 // import Divider from "@mui/material/Divider";
-import AllCars from "../components/Category/AllCars";
+import AllCars from "../_components/Category/AllCars";
 import { fetchCars } from "../fetch";
 import { auth } from "../../../auth";
 
