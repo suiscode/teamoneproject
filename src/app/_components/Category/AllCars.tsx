@@ -4,7 +4,7 @@ import { CarItem } from "@/lib/interface";
 
 const AllCars = ({ data, session }: any) => {
   return (
-    <div className="grid grid-cols-3 grid-flow-row auto-cols-max gap-8 ml-10  p-8 rounded-lg">
+    <div className="grid grid-cols-3 grid-flow-row auto-cols-max gap-8 ml-10  p-8 rounded-lg border">
       {data.map((car: CarItem) => {
         return <CarCart key={car.id} car={car} session={session} />;
       })}
