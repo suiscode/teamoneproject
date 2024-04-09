@@ -4,27 +4,34 @@ import { FaHeart } from "react-icons/fa";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { usePathname } from "next/navigation";
+import { useRouter } from "next/navigation";
 
 function HeartFavorite({ id, session }: any) {
   const pathname = usePathname();
+  const { push } = useRouter();
   const [state, setState] = useState(false);
-  const userId = session.user.id;
+  const userId = session?.user?.id;
 
   useEffect(() => {
     const checkIsBookmarked = async () => {
       const res = await axios.get(`/api/bookmark?userId=${userId}&carId=${id}`);
       if (res.data) setState(true);
-      console.log(res.data);
     };
-    checkIsBookmarked();
-  }, [pathname]);
+    if (userId) {
+      checkIsBookmarked();
+    }
+  }, []);
 
   const addToBookMark = async () => {
-    setState(true);
-    const res = await axios.post("/api/bookmark", {
-      userId,
-      carId: id,
-    });
+    if (!userId) {
+      push("/auth/login");
+    } else {
+      setState(true);
+      const res = await axios.post("/api/bookmark", {
+        userId,
+        carId: id,
+      });
+    }
   };
 
   const removeFromBookMark = async () => {

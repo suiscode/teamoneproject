@@ -6,7 +6,6 @@ import { db } from "@/lib/db";
 
 export const POST = async (req, res) => {
   const body = await req.json();
-  console.log(body);
   try {
     const newCar = await db.car.create({
       data: {
@@ -24,7 +23,6 @@ export const POST = async (req, res) => {
 export const PATCH = async (req, res) => {
   const body = await req.json();
   const { id } = body;
-  console.log(body, "FROM THIS");
   try {
     await db.car.delete({
       where: { id },

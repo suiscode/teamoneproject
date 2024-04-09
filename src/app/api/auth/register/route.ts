@@ -40,7 +40,6 @@ export const POST = async (req: NextRequest) => {
       verificationToken.email,
       verificationToken.token
     );
-    console.log(newUser);
     return NextResponse.json(
       { success: "Confirmation email sent" },
       { status: 200 }

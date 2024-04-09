@@ -26,7 +26,7 @@ import { CarItem, CategoryItem } from "@/lib/interface";
 
 function AddCars({ data, setCarData }: any) {
   //// SUBMIT HANDLE
-  const [error, setError] = useState<string | undefined>("wow");
+  const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
@@ -90,6 +90,8 @@ function AddCars({ data, setCarData }: any) {
           ],
         }));
         setOpen(false);
+        setUploadImages([]);
+        setImages([null, null, null]);
         setSuccess(res.data.success);
         form.reset();
       } catch (e: any) {
@@ -111,7 +113,6 @@ function AddCars({ data, setCarData }: any) {
         setImages(newImages);
       }
     };
-  console.log(uploadImages);
   //// FORM VALIDATION
   const form = useForm<z.infer<typeof NewCarSchema>>({
     resolver: zodResolver(NewCarSchema),

@@ -4,7 +4,6 @@ import { NextResponse } from "next/server";
 export const GET = async (req, res) => {
   const userId = req.nextUrl.searchParams.get("userId");
   const carId = req.nextUrl.searchParams.get("carId");
-  console.log(userId, carId, "THIS WORKED HAHAHA");
   const isBookmarked = await db.bookmark.findUnique({
     where: {
       userId_carId: {
@@ -13,7 +12,6 @@ export const GET = async (req, res) => {
       },
     },
   });
-  console.log(isBookmarked);
   if (isBookmarked) return NextResponse.json(true, { status: 200 });
   return NextResponse.json(false, { status: 200 });
 };
@@ -49,6 +47,5 @@ export const PUT = async (req, res) => {
       id: bookmarkToDelete.id,
     },
   });
-  console.log("worked");
   return NextResponse.json("Added", { status: 200 });
 };

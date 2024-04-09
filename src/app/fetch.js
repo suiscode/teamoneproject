@@ -57,7 +57,6 @@ export const getCategory = async (name) => {
           id: "desc",
         },
       });
-      console.log(cars, "from cars");
       return { data: cars };
     } catch (e) {
       console.log(e);
@@ -84,11 +83,12 @@ export const getCategory = async (name) => {
 export const getAllFavoritedItem = async (userId) => {
   const userBookmarkedCars = await db.bookmark.findMany({
     where: {
-      userId: userId, // Replace userId with the actual ID of the user
+      userId: userId,
     },
     include: {
-      car: true, // Include the associated car for each bookmark
+      car: true,
     },
   });
-  return userBookmarkedCars;
+  const cars = userBookmarkedCars.map((bookmark) => bookmark.car);
+  return cars;
 };
