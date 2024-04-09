@@ -18,7 +18,7 @@ import { Button } from "../../../components/ui/button";
 import { FormError } from "../../../lib/form-error";
 import { FormSuccess } from "../../../lib/form-success";
 import axios from "axios";
-import ButtonAuth from "@/app/components/Button/ButtonOauth";
+import ButtonAuth from "@/app/_components/Button/ButtonOauth";
 import Wrapper from "../Wrapper";
 
 export default function RegisterForm() {
@@ -56,7 +56,10 @@ export default function RegisterForm() {
       backurl={"/auth/login"}
     >
       <Form {...form}>
-        <form className="space-y-6 w-full px-8" onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          className="space-y-6 w-full px-8"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
           <div className="space-y-2 flex flex-col  gap-5 text-white ">
             <FormField
               control={form.control}
