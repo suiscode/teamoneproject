@@ -1,4 +1,4 @@
-import CardDetail from "@/app/components/CardDetail/CardDetail";
+import CardDetail from "@/app/_components/CardDetail/CardDetail";
 import { getOneCar } from "@/app/fetch";
 import React from "react";
 

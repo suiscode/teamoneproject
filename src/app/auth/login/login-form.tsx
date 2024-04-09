@@ -18,7 +18,7 @@ import { Button } from "../../../components/ui/button";
 import { FormError } from "../../../lib/form-error";
 import { FormSuccess } from "../../../lib/form-success";
 import axios from "axios";
-import ButtonAuth from "@/app/components/Button/ButtonOauth";
+import ButtonAuth from "@/app/_components/Button/ButtonOauth";
 import Wrapper from "../Wrapper";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
