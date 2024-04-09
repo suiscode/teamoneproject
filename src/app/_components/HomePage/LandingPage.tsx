@@ -38,10 +38,12 @@ const LandingPage = () => {
             initial="hidden"
             animate={mainControls}
             transition={{ duration: 0.5, delay: 2.25 }}
-            className="md:text-[80px] text-[40px]"
+            className="md:text-[80px] font-black text-[40px]"
           >
-            Rent the luxury.
-            <p className="md:text-[40px] text-[20px]">Own the thrill</p>
+            <h1>Rent the luxury.</h1>
+            <p className="md:text-[40px] text-[20px] -mt-[30px]">
+              Own the thrill
+            </p>
           </motion.div>
           <motion.div
             variants={{
@@ -56,14 +58,16 @@ const LandingPage = () => {
             Rent the basic.
           </motion.div>
         </div>
-        <div className="md:text-2xl text-[20px] pl-6 ">
-          <p>Experience the Unprecedented, Drive with Uniqueness</p>
-          <p>Drive and Laugh, Like Nobody&apos;s Business</p>
+        <div className="flex flex-col gap-5">
+          <div className="md:text-2xl text-[20px] pl-6 ">
+            <p>Experience the Unprecedented, Drive with Uniqueness</p>
+            <p>Drive and Laugh, Like Nobody&apos;s Business</p>
+          </div>
+          <button className="scroll-smooth w-[12%] ml-6 flex items-center gap-8 border-red-600 border-2 rounded-xl px-8 py-4 hover:bg-white hover:text-black hover:border-black">
+            Scroll down
+            <AiOutlineArrowDown />
+          </button>
         </div>
-        <button className="scroll-smooth w-[12%] ml-6 flex items-center gap-8 border-red-600 border-2 rounded-xl px-8 py-4 hover:bg-white hover:text-black hover:border-black">
-          Scroll down
-          <AiOutlineArrowDown />
-        </button>
       </div>
       <div className="absolute right-[20%] top-[30%] text-lg flex border rounded-[25px] p-4 items-center gap-4">
         Drag below with your mouse

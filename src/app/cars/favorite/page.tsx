@@ -18,9 +18,13 @@ async function page() {
           <CarCart key={item.id} car={item} session={session} />
         ))
       ) : (
-        <h1 className="text-secondary self-center">Please 
-        <Link className="text-blue-400 underline" href='/auth/login'> Sign in </Link>
-          to show bookmarked cars</h1>
+        <h1 className="text-secondary self-center">
+          Please
+          <Link className="text-blue-400 underline" href="/auth/login">
+            Sign in
+          </Link>
+          to show bookmarked cars
+        </h1>
       )}
     </div>
   );
