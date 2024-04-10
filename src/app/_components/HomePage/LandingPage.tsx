@@ -1,14 +1,10 @@
 "use client";
 import React, { useEffect, useRef } from "react";
 import CarModel from "./CarModel";
-import {
-  motion,
-  useAnimation,
-  useInView,
-  useMotionValueEvent,
-} from "framer-motion";
+import { motion, useAnimation, useInView } from "framer-motion";
 import { AiOutlineArrowDown } from "react-icons/ai";
 import { FaMouse } from "react-icons/fa";
+import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 const LandingPage = () => {
   const ref: any = useRef();
@@ -69,24 +65,21 @@ const LandingPage = () => {
           </button>
         </div>
       </div>
-      <div className="absolute right-[20%] top-[30%] text-lg flex border rounded-[25px] p-4 items-center gap-4">
-        Drag below with your mouse
-        <FaMouse />
-      </div>
-      <div className="h-full w-full absolute top-[150px] right-0 flex justify-end items-center">
+      <div className="h-full w-full absolute top-[130px] right-10 flex justify-end items-center">
+        <div className="flex items-center gap-4 text-2xl absolute right-[55%] motion-safe:animate-ping">
+          <BsChevronLeft />
+          <BsChevronLeft />
+          <BsChevronLeft />
+        </div>
         <CarModel />
+        <div className="flex items-center gap-4 text-2xl absolute right-10 motion-safe:animate-ping">
+          <BsChevronRight />
+          <BsChevronRight />
+          <BsChevronRight />
+        </div>
       </div>
     </div>
   );
 };
 
 export default LandingPage;
-
-{
-  /* <p>
-          Rent now and we can provide you the most comfortable and the most
-          suitable car as you want. Experience the ultimate freedom of choice
-          with us - tailor your adventure by choosing from our premium fleet of
-          vehicles.
-        </p> */
-}
