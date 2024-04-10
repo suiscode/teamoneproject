@@ -37,8 +37,8 @@ const typeItems = [
     label: "SUV",
   },
   {
-    id: "Camping vans",
-    label: "Camping vans",
+    id: "Camper vans",
+    label: "Camper vans",
   },
 ] as const;
 
@@ -140,7 +140,7 @@ export function AllCategory() {
                       );
                     }}
                   />
-                ))}
+                ) )}
               </div>
               <FormLabel className="text-xl font-bold">Types</FormLabel>
 
