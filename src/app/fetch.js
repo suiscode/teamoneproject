@@ -1,16 +1,13 @@
 import { connectToDB } from "./utils";
 import { Car, CarCategory } from "./models";
 import { db } from "@/lib/db";
+import { algoliaIndex } from "@/lib/algolia";
 
-export const fetchCars = async () => {
+export const fetchCars = async (input) => {
   try {
-    const cars = await db.car.findMany({
-      orderBy: {
-        id: "desc",
-      },
-    });
+    const { hits } = await algoliaIndex.search(input);
 
-    return cars;
+    return hits;
   } catch (e) {
     console.log(e);
   }
