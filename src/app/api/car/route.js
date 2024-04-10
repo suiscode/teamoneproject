@@ -43,10 +43,10 @@ export const PATCH = async (req, res) => {
 };
 
 export const PUT = async (req, res) => {
-  const data = await req.json();
-  const { key } = body;
+  const body = await req.json();
+  const { input } = body;
   try {
-    const { hits } = await algoliaIndex.search(key);
+    const { hits } = await algoliaIndex.search(input);
 
     return NextResponse.json({ hits }, { status: 200 });
   } catch (e) {
