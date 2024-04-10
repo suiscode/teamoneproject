@@ -1,5 +1,4 @@
 "use client";
-
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -98,7 +97,7 @@ export function AllCategory() {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 h-[900px] sticky top-[110px] p-4 rounded-md"
+        className="space-y-8 h-[900px] sticky top-[110px] p-4 rounded-md hidden md:flex flex-col xl:flex"
       >
         <FormField
           control={form.control}
@@ -142,7 +141,7 @@ export function AllCategory() {
                   />
                 ) )}
               </div>
-              <FormLabel className="text-xl font-bold">Types</FormLabel>
+              <FormLabel className="text-xl font-bold">Capacity</FormLabel>
 
               <div className="space-y-2">
                 {capacityItems.map((item) => (

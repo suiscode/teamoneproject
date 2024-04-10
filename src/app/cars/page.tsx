@@ -15,7 +15,7 @@ async function CarsPage({ searchParams }: SearchPageType) {
   const data = await fetchCars(q);
 
   return (
-    <div className="w-[1440px] flex justify-between text-secondary py-8">
+    <div className="w-[1440px] flex justify-between text-secondary py-8 sm:max-sm:w-[390px]">
       <AllCategory />
       <AllCars data={data} session={session} />
     </div>
