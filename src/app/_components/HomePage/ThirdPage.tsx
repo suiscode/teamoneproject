@@ -6,6 +6,7 @@ import Image from "next/image";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { GiTeamIdea } from "react-icons/gi";
 import Link from "next/link";
+import { GiMountains } from "react-icons/gi";
 
 export const ThirdPage = () => {
   const [date, setDate] = React.useState<Date>();
@@ -49,9 +50,12 @@ export const ThirdPage = () => {
         </div>
         <div className="hover:scale-[1.1] hover:duration-700 ease-in-out absolute z-5 left-[53%] bottom-5 w-72 h-72 backdrop-blur-lg rounded-full flex flex-col items-center justify-center border">
           <div className="text-lg flex flex-col items-center text-center gap-3 p-2">
+            <div className="text-3xl">
+              <GiMountains />
+            </div>
             <p>
-              Ready for anything, each car is at ease in every habitat, from
-              rocky mountain trails to smart city streets.
+              Ready for anything, from rocky mountain trails to smart city
+              streets.
             </p>
           </div>
         </div>
