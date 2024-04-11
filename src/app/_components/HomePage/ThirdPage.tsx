@@ -1,7 +1,6 @@
 "use client";
 import React from "react";
 import { FaCar } from "react-icons/fa";
-import { ImLocation2 } from "react-icons/im";
 import Image from "next/image";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { GiTeamIdea } from "react-icons/gi";
@@ -9,7 +8,6 @@ import Link from "next/link";
 import { GiMountains } from "react-icons/gi";
 
 export const ThirdPage = () => {
-  const [date, setDate] = React.useState<Date>();
   return (
     <>
       <div className="w-full flex-col relative justify-center items-center flex h-[1080px] gap-10 py-[360px] bg-[#0b0b0b]">
@@ -26,11 +24,11 @@ export const ThirdPage = () => {
             className="rounded-full"
           />
         </div>
-        <div className="absolute z-4 text-6xl top-[18%] text-[#e6e6e6] w-[900px] text-center font-mono">
+
+        <div className="absolute z-4 text-6xl top-[18%] text-[#e6e6e6] w-[900px] text-center ">
           <h1>Feel the best experience with our rental deals</h1>
         </div>
-
-        <div className=" hover:scale-[1.1] hover:duration-700 ease-in-out absolute z-5 w-72 h-72 backdrop-blur-lg rounded-full flex flex-col items-center justify-center left-[13%] bottom-[20%] border">
+        <div className=" hover:scale-[1.1] hover:duration-700 ease-in-out absolute z-5 w-72 h-72 backdrop-blur-xl rounded-full flex flex-col items-center justify-center left-[10%] top-[35%] border">
           <div className="text-xl flex flex-col items-center gap-3 ">
             <div className="text-3xl">
               <FaMoneyCheckDollar />
@@ -39,8 +37,7 @@ export const ThirdPage = () => {
             <p className="text-sm">Incredible price</p>
           </div>
         </div>
-
-        <div className="hover:scale-[1.1] hover:duration-700 ease-in-out absolute z-5 left-[33%] bottom-2 w-72 h-72 backdrop-blur-xl rounded-full flex flex-col items-center justify-center border">
+        <div className="hover:scale-[1.1] hover:duration-700 ease-in-out absolute z-5 left-[32%] bottom-5 w-72 h-72 backdrop-blur-xl rounded-full flex flex-col items-center justify-center border">
           <div className="text-xl flex flex-col items-center gap-3 text-center">
             <div className="text-3xl">
               <GiTeamIdea />
@@ -48,7 +45,7 @@ export const ThirdPage = () => {
             <p>Our team will provide your safetiness</p>
           </div>
         </div>
-        <div className="hover:scale-[1.1] hover:duration-700 ease-in-out absolute z-5 left-[53%] bottom-5 w-72 h-72 backdrop-blur-lg rounded-full flex flex-col items-center justify-center border">
+        <div className="hover:scale-[1.1] hover:duration-700 ease-in-out absolute z-5 left-[58%] bottom-5 w-72 h-72 backdrop-blur-lg rounded-full flex flex-col items-center justify-center border">
           <div className="text-lg flex flex-col items-center text-center gap-3 p-2">
             <div className="text-3xl">
               <GiMountains />
@@ -60,7 +57,7 @@ export const ThirdPage = () => {
           </div>
         </div>
         <Link href={"/cars"}>
-          <div className=" hover:scale-[1.1] hover:duration-700 ease-in-out absolute z-5 right-[13%] bottom-[20%] w-72 h-72 backdrop-blur-lg rounded-full flex flex-col items-center justify-center border">
+          <div className=" hover:scale-[1.1] hover:duration-700 ease-in-out absolute z-5 right-[10%] top-[35%] w-72 h-72 backdrop-blur-lg rounded-full flex flex-col items-center justify-center border">
             <div className="text-xl flex flex-col items-center gap-3 ">
               <div className="text-3xl">
                 <FaCar />
