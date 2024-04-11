@@ -9,6 +9,8 @@ import { motion } from "framer-motion";
 import { Link } from "react-scroll";
 import React from "react";
 import axios from "axios";
+import TestPage from "./test/Testhome";
+import { IoChevronDown } from "react-icons/io5";
 
 export default function Home() {
   useEffect(() => {
@@ -21,10 +23,17 @@ export default function Home() {
   // gsap.to(window, { duration: 2, scrollTo: 400 });
   return (
     <div className="w-screen flex items-center justify-center flex-col z-10 text-white  ">
+      <h1 className="fixed bottom-10 z-[90] flex items-center flex-col ">
+        <IoChevronDown className="w-10  mb-[-10px] h-10 text-red-500" />
+        <IoChevronDown className="w-6 animate-pulse h-6 " />
+      </h1>
       <HomeHeader />
-      <LandingPage />
+
+      {/* <LandingPage /> */}
+      <TestPage />
+      {/* 
       <SecondPage />
-      <ThirdPage />
+      <ThirdPage /> */}
     </div>
   );
 }
