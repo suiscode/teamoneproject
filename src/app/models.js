@@ -85,7 +85,7 @@
 //   ],
 // });
 
-// const carCategorySchema = new Schema({
+// const CarCategorySchema = new Schema({
 //   name: {
 //     type: String,
 //     required: true,

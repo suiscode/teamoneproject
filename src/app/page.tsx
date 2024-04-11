@@ -20,12 +20,10 @@ export default function Home() {
   }, []);
   // gsap.to(window, { duration: 2, scrollTo: 400 });
   return (
-    <div className="w-screen flex items-center justify-center flex-col z-10 text-white">
+    <div className="w-screen flex items-center justify-center flex-col z-10 text-white  ">
       <HomeHeader />
       <LandingPage />
-
       <SecondPage />
-
       <ThirdPage />
     </div>
   );
