@@ -14,17 +14,17 @@ const Footer = () => {
   ];
 
   return (
-    <div className="w-full bg-black text-secondary justify-center flex sm:p-20">
-      <div className="w-[1440px] justify-between flex flex-col py-8">
-        <div className="flex flex-col w-72 gap-4">
-          <div className="relative w-[280px] h-[80px]">
+    <div className="w-full bg-black text-secondary justify-center p-8 flex shrink-0">
+      <div className="w-[1440px] justify-between flex py-8 sm:p-2 sm:flex sm:justify-center md:flex md:justify-between">
+        <div className="flex flex-col w-72 gap-4 sm:hidden md:flex md:flex-col">
+          <div className="relative w-64 h-20 shrink-0">
             <Image src="/ASD.png" alt="footer" fill className="absolute" />
           </div>
           <h1>
             Our vision is to become the world&apos;s best software developer.
           </h1>
         </div>
-        <div className="flex flex-col gap-48">
+        <div className="flex flex-row gap-48">
           <div className="space-y-2">
             <h1 className="text-xl font-semibold">About</h1>
             <ul className="space-y-2">

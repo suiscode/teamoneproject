@@ -7,10 +7,9 @@ import CarImage from "./CarImage";
 
 function CardDetail({ data }: any) {
   return (
-    <div className="w-[1440px] justify-between bg-black/90 flex p-9">
-      <CarImage data={data} />
-
-      <div className="w-[48%] p-6 space-y-8 bg-black text-secondary rounded-md">
+    <div className="w-[1440px] justify-between bg-black/90 flex p-9 sm:flex sm:flex-col sm:items-center sm:w-96 md:flex md:flex-col md:w-[520px] lg:w-[1020px] lg:flex lg:flex-row lg:gap-5 xl:flex xl:flex-row xl:w-[1300px]">
+      <CarImage data={data} className="sm:h-40" />
+      <div className="w-[48%] p-6 space-y-8 bg-black text-secondary rounded-md sm:flex sm:flex-col sm:w-96 md:w-[520px]">
         <div className="flex w-full justify-between items-center">
           <div>
             <h1>{data.name}</h1>
@@ -48,7 +47,7 @@ function CardDetail({ data }: any) {
             </div>
           </div>
         </div>
-        <div className="flex justify-between">
+        <div className="flex justify-between sm:flex sm:flex-col">
           <div>
             <div>
               <h1>

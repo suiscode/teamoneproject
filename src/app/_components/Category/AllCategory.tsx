@@ -176,7 +176,9 @@ export function AllCategory() {
                   />
                 ))}
               </div>
+
               <FormLabel className="text-xl font-bold">Capacity</FormLabel>
+
 
               <div className="space-y-2">
                 {capacityItems.map((item) => (
