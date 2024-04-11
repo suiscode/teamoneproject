@@ -132,3 +132,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
 #cars {
   background-image: radial-gradient(closest-side at 60% 55%, #4d0000, #0b0b0b);
 }
+ 
+#profile{
+  background-image: radial-gradient(closest-side at 50% 55%, #990000, #0b0b0b);
+}
