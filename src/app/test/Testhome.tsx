@@ -8,8 +8,6 @@ import Image from "next/image";
 gsap.registerPlugin(ScrollTrigger);
 
 function TestPage() {
-  const divref = useRef(null);
-  const el = divref.current;
   useEffect(() => {
     gsap.fromTo(
       ".text",
@@ -21,7 +19,7 @@ function TestPage() {
           start: "top 80%",
           scrub: true,
           end: "bottom 90%",
-          //   pin: true,
+          pin: ".box",
           markers: true,
         },
       }
@@ -33,29 +31,27 @@ function TestPage() {
         opacity: 1,
         scrollTrigger: {
           trigger: ".fard",
-          start: "top 80%",
+          start: "15% 80%",
           scrub: true,
           end: "bottom 90%",
-          //   pin: true,
+          pin: ".text",
           markers: true,
         },
       }
     );
   }, []);
   return (
-    <div className=" w-screen  flex gap-10 relative h-[8000px] text-secondary bg-black">
-      <div
-        className="w-full h-[700px] flex justify-between top-0 mt-[1000px]"
-        ref={divref}
-      >
+    <>
+      <div className=" w-screen border-2 box border-white flex gap-10 h-[2000px] text-secondary bg-black">
         <h1 className="text-[300px] leading-[250px] text w-[1000px] ">
-          Various cars
+          Wide variety of cars
         </h1>
-        <h1 className="text-[300px] leading-[250px] fard w-[1000px] ">
+        {/* <h1 className="text-[300px] leading-[250px] rotate-90 fard w-[1000px] ">
           Darius cars
-        </h1>
+        </h1> */}
       </div>
-    </div>
+      {/* <div className="w-full h-[1000px]"></div> */}
+    </>
   );
 }
 

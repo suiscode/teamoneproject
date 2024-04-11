@@ -5,6 +5,7 @@ import { motion, useAnimation, useInView } from "framer-motion";
 import { AiOutlineArrowDown } from "react-icons/ai";
 import { FaMouse } from "react-icons/fa";
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
+import { IoChevronDown } from "react-icons/io5";
 
 const LandingPage = () => {
   const ref: any = useRef();
@@ -22,7 +23,7 @@ const LandingPage = () => {
     <div
       ref={ref}
       id="home"
-      className="w-full flex-col flex h-screen items-center justify-center bg-[#000] "
+      className="w-full z-40 flex-col flex h-screen items-center justify-center bg-[#000] "
     >
       <div className="border-[8px] rounded-md border-[#660000] w-[80%] md:h-[700px] h-[50%] flex flex-col gap-[100px] ">
         <div className="font-bold mt-[80px] relative pl-4 ">
@@ -78,6 +79,10 @@ const LandingPage = () => {
           <BsChevronRight />
         </div>
       </div>
+      <h1 className="bottom-0 z-[90] flex items-center flex-col ">
+        <IoChevronDown className="w-10  mb-[-10px] h-10 text-red-500" />
+        <IoChevronDown className="w-6 animate-pulse h-6 " />
+      </h1>
     </div>
   );
 };
