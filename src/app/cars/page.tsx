@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { AllCategory } from "../_components/Category/AllCategory";
 // import Divider from "@mui/material/Divider";
 import AllCars from "../_components/Category/AllCars";
@@ -10,6 +10,7 @@ type SearchPageType = {
 };
 
 async function CarsPage({ searchParams }: SearchPageType) {
+  // const [categoryName, setCategoryName] = useState("");
   const session = await auth();
   const q = searchParams?.search || "";
   const data = await fetchCars(q);

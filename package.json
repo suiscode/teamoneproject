@@ -30,6 +30,7 @@
     "@react-three/drei": "^9.102.6",
     "@react-three/fiber": "^8.16.1",
     "@react-three/postprocessing": "^2.16.2",
+    "@remix-run/react": "^2.8.1",
     "@types/three": "^0.162.0",
     "algoliasearch": "^4.23.2",
     "axios": "^1.6.8",
