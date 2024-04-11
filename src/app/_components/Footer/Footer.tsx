@@ -5,6 +5,9 @@ import { useRouter } from "next/navigation";
 
 const Footer = () => {
   const { push } = useRouter();
+  const handlePush = () => {
+    push("/aboutUs");
+  };
 
   const Social = [
     { title: "Discord" },
@@ -29,12 +32,12 @@ const Footer = () => {
             <h1 className="text-xl font-semibold">About</h1>
             <ul className="space-y-2">
               <li>
-                <Link href="/aboutUs" className="font-base text-sm">
-                  Team member
+                <Link href="/aboutus" className="font-base text-sm">
+                  Team members
                 </Link>
               </li>
               <li>
-                <Link href="/projectGoal" className="font-base text-sm">
+                <Link href="/aboutproject" className="font-base text-sm">
                   About project
                 </Link>
               </li>
