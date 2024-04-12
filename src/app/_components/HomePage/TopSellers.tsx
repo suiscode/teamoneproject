@@ -19,7 +19,7 @@ function TopSellers() {
   const carArray = [
     {
       image: "/PngItem_1184339.png",
-      name: "GTR-500",
+      name: "CAMARO ZL1",
     },
     {
       image: "/galzuu.png",
@@ -27,11 +27,11 @@ function TopSellers() {
     },
     {
       image: "/pngegg.png",
-      name: "GTR-500",
+      name: "PORSCHE 911",
     },
     {
       image: "/moving.png",
-      name: "GTR-500",
+      name: "F-TYPE",
     },
   ];
 
@@ -72,10 +72,18 @@ function TopSellers() {
       </h1>
       <div className="flex flex-col gap-[500px] mt-[500px]">
         {carArray.map((item, index) => (
-          <ImageCart key={index} image={item.image} name={item.name} index={index} />
+          <ImageCart
+            key={index}
+            image={item.image}
+            name={item.name}
+            index={index}
+          />
         ))}
       </div>
-      <motion.div className="fixed z-10 left-0 right-0 h-1 bg-black bottom-[100px]" style={{ scaleX }} />
+      <motion.div
+        className="fixed z-10 left-0 right-0 h-1 bg-black bottom-[100px]"
+        style={{ scaleX }}
+      />
       <div className="absolute bottom-0 bg-gradient-to-t from-black to-transparent h-1/4 w-full"></div>
     </div>
   );

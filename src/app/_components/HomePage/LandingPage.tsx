@@ -61,10 +61,10 @@ const LandingPage = () => {
             <p>Experience the Unprecedented, Drive with Uniqueness</p>
             <p>Drive and Laugh, Like Nobody&apos;s Business</p>
           </div>
-          <button className="scroll-smooth w-[12%] ml-6 flex items-center gap-8 border-red-600 border-2 rounded-xl px-8 py-4 hover:bg-white hover:text-black hover:border-black">
+          {/* <button className="cursor-pointer z-40 w-[12%] ml-6 flex items-center gap-8 border-red-600 border-2 rounded-xl px-8 py-4 hover:bg-white hover:text-black hover:border-black">
             Scroll down
             <AiOutlineArrowDown />
-          </button>
+          </button> */}
         </div>
       </div>
       <div className="h-full w-full absolute top-[130px] right-10 flex justify-end items-center">
@@ -80,7 +80,7 @@ const LandingPage = () => {
           <BsChevronRight />
         </div>
       </div>
-      <h1 className="bottom-0 z-[90] flex items-center flex-col ">
+      <h1 className="bottom-10 absolute z-[90] flex items-center flex-col ">
         <IoChevronDown className="w-10  mb-[-10px] h-10 text-red-500" />
         <IoChevronDown className="w-6 animate-pulse h-6 " />
       </h1>
