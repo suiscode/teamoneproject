@@ -21,8 +21,8 @@ function SecondPage() {
     <div
       className="w-full flex-col z-40 relative justify-between  flex h-[1400px] gap-10 py-[60px]"
       style={{
-        backgroundImage: 'url("/carr.jpeg")',
         backgroundSize: "cover",
+        backgroundImage: 'url("/carr.jpeg")',
       }}
     >
       <div className="absolute w-full h-1/3 z-10 bg-gradient-to-b from-black via-black to-transparent top-0"></div>
