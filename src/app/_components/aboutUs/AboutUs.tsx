@@ -1,107 +1,217 @@
+import React from "react";
+import Image from "next/image";
+import Link from "next/link";
+import { BsInstagram } from "react-icons/bs";
+import { FaGithub } from "react-icons/fa";
+import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+import github from "next-auth/providers/github";
+import { FaHandPointRight } from "react-icons/fa";
+
+function AboutUs() {
+  const membersData = [
+    {
+      img: "/zolo.jpg",
+      name: "Zoloo",
+      about: "person about",
+      ig: "https://www.instagram.com/zolushkazz#",
+      github: "https://github.com/Zolushkazz",
+    },
+    {
+      img: "/azaa.jpg",
+      name: "Tselmeg",
+      about: "person about",
+      ig: "https://www.instagram.com/tselmeg_0711#",
+      github: "https://github.com/Tsekutselmeg",
+    },
+    {
+      img: "/ganaa.jpg",
+      name: "Ganaa",
+      about: "person about",
+      ig: "https://www.instagram.com/_tulgagn#",
+      github: "https://github.com/Ganggana",
+    },
+    {
+      img: "/bilegt.jpg",
+      name: "Bilegt",
+      about: "person about",
+      ig: "https://www.instagram.com/bblgttt#",
+      github: "https://github.com/bilegtttttt",
+    },
+    {
+      img: "/tuguu.jpg",
+      name: "Tuguu",
+      about: "person about",
+      ig: "https://www.instagram.com/sb2014rtzn1#",
+      github: "https://github.com/suiscode",
+    },
+    {
+      img: "/garid.jpg",
+      name: "Garid",
+      about: "Person About",
+      ig: "https://www.instagram.com/gar1da#",
+      github: "https://github.com/Zolushkazz",
+    },
+    {
+      img: "/azaa.jpg",
+      name: "Azaa",
+      about: "Person About",
+      ig: "https://www.instagram.com/bench.press10#",
+      github: "https://github.com/Zolushkazz",
+    },
+  ];
+  return (
+    <ScrollArea className="md:w-[1490px] whitespace-nowrap rounded-md border my-[50px]">
+      <div className="flex md:w-max my-5 gap-[30px] object-fill p-[30px] text-white">
+        {membersData?.map((el, index) => {
+          return (
+            <figure
+              key={index}
+              className="flex flex-col shrink-0 border border-white p-[20px] rounded-sm snap-x snap-mandatory"
+            >
+              <div className="snap-normal snap-center">
+                <Image
+                  className="h-fit w-fit object-cover rounded-sm "
+                  src={el.img}
+                  alt=""
+                  width={400}
+                  height={400}
+                />
+              </div>
+
+              <div className="gap-[55px]">
+                <div className="text-[30px] items-center justify-center text-center">
+                  {el.name}
+                </div>
+                <div className="flex justify-end gap-3">
+                  <div>
+                    <Link href={el.ig} target="_blank">
+                      <BsInstagram className="text-[25px]" />
+                    </Link>
+                  </div>
+                  <div className="">
+                    <Link href={el.github} target="_blank">
+                      <FaGithub className="text-[25px]" />
+                    </Link>
+                  </div>
+                </div>
+              </div>
+            </figure>
+          );
+        })}
+      </div>
+      <div className="text-[35px] ml-[50px] mb-[20px] text-white">
+        Scroll right <FaHandPointRight />
+      </div>
+      <ScrollBar orientation="horizontal" />
+    </ScrollArea>
+  );
+}
+
+export default AboutUs;
+
 // import React from "react";
-// import { Stack, Typography } from "@mui/material";
 // import Image from "next/image";
 // import Link from "next/link";
+// import { BsInstagram } from "react-icons/bs";
+// import { FaGithub } from "react-icons/fa";
+// import { ScrollArea, ScrollBar } from "@/components/ui/scroll-area";
+// import { FaHandPointRight } from "react-icons/fa";
 
 // function AboutUs() {
 //   const membersData = [
 //     {
-//       img: "https://instagram.fuln2-2.fna.fbcdn.net/v/t1.15752-9/433042211_1222184738744657_1399960820989488103_n.jpg?stp=dst-jpg_s403x403&_nc_cat=110&ccb=1-7&_nc_sid=5f2048&_nc_ohc=GeQLLaAHDbgAb5lLztL&_nc_ht=instagram.fuln2-2.fna&oh=03_AdUESHuPpqsOAay7cFbq1z66wiSBb4CF_z9SERDNGlRDfg&oe=66358676",
-//       title: "HomePage, Category",
-//       hobby: "BILLARD,SHOUDAKH",
+//       img: "/zolo.jpg",
 //       name: "Zoloo",
 //       about: "person about",
-//       socials: "https://www.instagram.com/zolushkazz#",
+//       ig: "https://www.instagram.com/zolushkazz#",
+//       github: "https://github.com/Zolushkazz",
 //     },
 //     {
-//       img: "https://media.zigcdn.com/media/model/2024/Feb/toyota-camry_600x400.jpg",
-//       title: "Header, Footer, Review",
-//       hobby: "PUBG",
+//       img: "/azaa.jpg",
 //       name: "Tselmeg",
 //       about: "person about",
-//       socials: "https://www.instagram.com/tselmeg_0711#",
+//       ig: "https://www.instagram.com/tselmeg_0711#",
+//       github: "https://github.com/Tsekutselmeg",
 //     },
 //     {
-//       img: "https://scontent.xx.fbcdn.net/v/t1.15752-9/434938764_1386237965592835_2099962084126969584_n.jpg?stp=dst-jpg_s552x414&_nc_cat=109&ccb=1-7&_nc_sid=5f2048&_nc_ohc=H3iCAb48TCcAb4_Gko4&_nc_ad=z-m&_nc_cid=0&_nc_ht=scontent.xx&oh=03_AdWxBDY5FjBKZ-Fr7Iwn5tsOrOaskKhyh7M-IyXYenAl3Q&oe=663583DA",
-//       title: "Login, SignUp",
-//       hobby: "ML, BASKETBALL",
-//       name: "Ganaa",
+//       img: "/zolo.jpg",
+//       name: "Zoloo",
 //       about: "person about",
-//       socials: "https://www.instagram.com/_tulgagn#",
+//       ig: "https://www.instagram.com/zolushkazz#",
+//       github: "https://github.com/Zolushkazz",
 //     },
 //     {
-//       img: "https://media.zigcdn.com/media/model/2024/Feb/toyota-camry_600x400.jpg",
-//       title: "CartDetail, Members",
-//       hobby: "ML, BASKETBALL",
-//       name: "Bilegt",
+//       img: "/azaa.jpg",
+//       name: "Tselmeg",
 //       about: "person about",
-//       socials: "https://www.instagram.com/bblgttt#",
+//       ig: "https://www.instagram.com/tselmeg_0711#",
+//       github: "https://github.com/Tsekutselmeg",
 //     },
 //     {
-//       img: "https://media.zigcdn.com/media/model/2024/Feb/toyota-camry_600x400.jpg",
-//       title: "Admin Dashboard",
-//       hobby: "DOTA2",
-//       name: "Tuguu",
+//       img: "/zolo.jpg",
+//       name: "Zoloo",
 //       about: "person about",
-//       socials: "https://www.instagram.com/sb2014rtzn1#",
+//       ig: "https://www.instagram.com/zolushkazz#",
+//       github: "https://github.com/Zolushkazz",
 //     },
 //     {
-//       img: "https://media.zigcdn.com/media/model/2024/Feb/toyota-camry_600x400.jpg",
-//       title: "Payment",
-//       hobby: "DOTA2 , CS ",
-//       name: "Garid",
-//       about: "Person About",
-//       socials: "https://www.instagram.com/gar1da#",
+//       img: "/azaa.jpg",
+//       name: "Tselmeg",
+//       about: "person about",
+//       ig: "https://www.instagram.com/tselmeg_0711#",
+//       github: "https://github.com/Tsekutselmeg",
 //     },
+//     // Add other member data here
 //   ];
+
 //   return (
-//     <Stack direction="row" sx={{ width: "3000", height: "730px", my: "50px" }}>
-//       {membersData?.map((el, index) => {
-//         return (
-//           <Stack
-//             sx={{
-//               border: "1px solid red",
-//               alignItems: "center",
-//               justifyContent: "center",
-//               gap: "25px",
-//               bgcolor: "#D2D2D2",
-//               scale: "0.95",
-//               borderRadius: "5px",
-//             }}
-//             key={index}
-//           >
-//             <Image
-//               src={el.img}
-//               alt=""
-//               width={300}
-//               height={300}
-//               className="rounded-[100%]"
-//             />
-
-//             <Typography sx={{ color: "red", fontSize: "23px" }}>
-//               {el.name}
-//             </Typography>
-
-//             <Typography
-//               sx={{
-//                 bgcolor: "white",
-//                 borderRadius: "5px",
-//                 p: "5px",
-//                 color: "black",
-//               }}
+//     <ScrollArea className="md:w-[1490px] whitespace-nowrap rounded-md border my-[50px]">
+//       <div className="flex md:w-max my-5 gap-[30px] object-fill p-[30px] text-white">
+//         {membersData?.map((el, index) => {
+//           const isMiddlePhoto = index === Math.floor(membersData.length / 4);
+//           return (
+//             <figure
+//               key={index}
+//               className={`shrink-0 border border-white p-[20px] rounded-sm ${
+//                 isMiddlePhoto ? "transform scale-125" : "transform scale-75"
+//               }`}
 //             >
-//               {el.title}
-//             </Typography>
+//               <div>
+//                 <Image
+//                   className="h-fit w-fit object-cover rounded-sm"
+//                   src={el.img}
+//                   alt=""
+//                   width={400}
+//                   height={400}
+//                 />
+//               </div>
 
-//             <Typography sx={{ color: "black" }}>{el.about}</Typography>
-//             <Typography>{el.hobby}</Typography>
-//             <Link className="bg-white rounded-lg p-2" href={el.socials}>
-//               Social Link
-//             </Link>
-//           </Stack>
-//         );
-//       })}
-//     </Stack>
+//               <div className="gap-[55px]">
+//                 <div className="text-[30px] items-center justify-center text-center">
+//                   {el.name}
+//                 </div>
+//                 <div className="flex justify-end gap-3">
+//                   <div>
+//                     <Link href={el.ig} target="_blank">
+//                       <BsInstagram className="text-[25px]" />
+//                     </Link>
+//                   </div>
+//                   <div className="">
+//                     <Link href={el.github} target="_blank">
+//                       <FaGithub className="text-[25px]" />
+//                     </Link>
+//                   </div>
+//                 </div>
+//               </div>
+//             </figure>
+//           );
+//         })}
+//       </div>
+//       <div className="text-[35px] ml-[50px] mb-[20px] text-white">
+//         Scroll right <FaHandPointRight />
+//       </div>
+//       <ScrollBar orientation="horizontal" />
+//     </ScrollArea>
 //   );
 // }
 

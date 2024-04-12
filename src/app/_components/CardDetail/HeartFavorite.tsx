@@ -20,7 +20,7 @@ function HeartFavorite({ id, session }: any) {
     if (userId) {
       checkIsBookmarked();
     }
-  }, []);
+  }, [userId, id]);
 
   const addToBookMark = async () => {
     if (!userId) {
