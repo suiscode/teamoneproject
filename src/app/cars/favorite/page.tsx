@@ -12,7 +12,7 @@ async function page() {
   console.log(data);
 
   return (
-    <div className="border-2 w-[1440px] p-8 overflow-y-scroll flex gap-24 justify-center">
+    <div className="border-2 w-[1440px] grid-flow-row  grid grid-cols-3 p-8 overflow-y-scroll  gap-24 justify-center">
       {session ? (
         data.map((item: any) => (
           <CarCart key={item.id} car={item} session={session} />

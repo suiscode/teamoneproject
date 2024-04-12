@@ -10,7 +10,7 @@ function CarCart({ car, index, session }: any) {
   return (
     <li
       key={index}
-      className="border-0 bg-[#000] text-white sm:w-full rounded-xl w-80 h-96 p-4 flex flex-col justify-between bg-gradient-to-b from-white/10"
+      className="border-0 bg-[#000] text-white sm:w-full rounded-xl w-80 p-4 flex flex-col gap-4 bg-gradient-to-b from-white/10"
     >
       <div className="flex justify-between items-center">
         <div>
@@ -43,12 +43,20 @@ function CarCart({ car, index, session }: any) {
           <p>{car.capacity}</p>
         </div>
       </div>
-      <div className="flex justify-between ">
-        <div className="text-sm">
-          <p>{car.price}</p>
-          <p>{car.salePrice}</p>
+      <div className="flex justify-between items-center ">
+        <div className="text-sm text-gray-400">
+          <p>
+            <span className="text-xl text-white">
+              ${car.salePrice ? car.salePrice : car.price}/
+            </span>
+            days
+          </p>
+          <p className="line-through">{car.salePrice && car.price}</p>
         </div>
-        <Link href={`/cars/${car.id}`} className="w-24 h-10  text-white ">
+        <Link
+          href={`/cars/${car.id}`}
+          className="w-24 h-10 border-2 hover:bg-white/10 transition-all rounded-md flex items-center justify-center text-white "
+        >
           Rent now
         </Link>
       </div>
