@@ -13,6 +13,16 @@ export const fetchCars = async (input) => {
   }
 };
 
+export const fetchSortedCars = async (type, capacity) => {
+  console.log(type);
+  console.log(capacity);
+  try {
+    return "1";
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const getOneCar = async (id) => {
   try {
     const car = await db.car.findUnique({
@@ -38,9 +48,12 @@ export const addCategory = async () => {
 
 export const fetchCategory = async () => {
   try {
-    connectToDB();
-    const category = await CarCategory.find();
-    return category;
+    const categoryFind = await db.carCategory.findMany({
+      orderBy: {
+        id: "desc",
+      },
+    });
+    return categoryFind;
   } catch (e) {
     console.log(e);
   }
