@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
 
-export const POST = async (req, res) => {
-  const body = await req.json();
+export const GET = async (req, res) => {
+  const url = req.nextURL.searchParams.get("typeItems");
+  console.log(url);
   try {
     return NextResponse.json({ data: "hi" }, { status: 200 });
   } catch (e) {

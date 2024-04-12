@@ -13,11 +13,22 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
-import { useRouter, useSearchParams } from "next/navigation";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import {
+  Dispatch,
+  SetStateAction,
+  useCallback,
+  useEffect,
+  useState,
+} from "react";
 import axios from "axios";
 import { CarItem, CategoryItem } from "@/lib/interface";
-import Category from "@/app/admin/carlist/Category";
+import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
+
+type Items = {
+  id: string;
+  label: string;
+};
 
 const typeItems = [
   {
@@ -44,38 +55,15 @@ const typeItems = [
     id: "Camper vans",
     label: "Camper vans",
   },
-] as const;
-
-const capacityItems = [
-  {
-    id: "2 people",
-    label: "2 people",
-  },
-  {
-    id: "4 people",
-    label: "4 people",
-  },
-  {
-    id: "7 people",
-    label: "7 people",
-  },
-  {
-    id: "8 people",
-    label: "8 people",
-  },
-  {
-    id: "15+ people",
-    label: "15+ people",
-  },
-] as const;
+] as Items[];
 
 const FormSchema = z.object({
-  typeItems: z.array(z.string()),
-  capacityItems: z.array(z.string()),
+  typeItems: z.string(),
 });
 
-export function AllCategory() {
+export function AllCategory({ category }: any) {
   const [types, setTypes] = useState<CategoryItem[]>([]);
+
   useEffect(() => {
     const fetchCategory = async () => {
       const data = await axios.get("/api/category");
@@ -87,11 +75,16 @@ export function AllCategory() {
   }, []);
 
   const { push } = useRouter();
+  const searchParam = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const car = searchParam.get("typesItems");
+
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
-      typeItems: [],
-      capacityItems: [],
+      typeItems: "",
     },
   });
   function onSubmit(data: z.infer<typeof FormSchema>) {
@@ -103,30 +96,31 @@ export function AllCategory() {
         </pre>
       ),
     });
+    console.log(data);
 
-    const queryString: string[] = [];
-    for (const key in data) {
-      if (Object.prototype.hasOwnProperty.call(data, key)) {
-        const value = data[key as keyof typeof data];
-        if (value) {
-          if (Array.isArray(value)) {
-            const values = value.map((v: string) =>
-              encodeURIComponent(v.replace(/\s/g, ""))
-            );
-            queryString.push(`${key}=${values.join("%20")}`);
-          } else {
-            queryString.push(`${key}=${encodeURIComponent(value as string)}`);
-          }
-        }
-      }
-    }
+    router.push(`${pathname}?typeItems=${data.typeItems}`);
 
-    const finalQueryString = queryString.join("&");
-    console.log(finalQueryString);
-    push(`/cars?${finalQueryString}`);
+    // const queryString: string[] = [];
+    // for (const key in data) {
+    //   if (Object.prototype.hasOwnProperty.call(data, key)) {
+    //     const value = data[key as keyof typeof data];
+    //     if (value) {
+    //       if (Array.isArray(value)) {
+    //         const values = value.map((v: string) =>
+    //           encodeURIComponent(v.replace(/\s/g, ""))
+    //         );
+    //         queryString.push(`${key}=${values.join("%20")}`);
+    //       } else {
+    //         queryString.push(`${key}=${encodeURIComponent(value as string)}`);
+    //       }
+    //     }
+    //   }
+    // }
+
+    // const finalQueryString = queryString.join("&");
+    // console.log(finalQueryString);
+    // push(`/cars?${finalQueryString}`);
   }
-  const searchParam = useSearchParams();
-  const id = searchParam.get("id");
 
   return (
     <Form {...form}>
@@ -137,85 +131,47 @@ export function AllCategory() {
         <FormField
           control={form.control}
           name="typeItems"
-          render={() => (
+          render={({ field }) => (
             <FormItem className="flex flex-col gap-4">
               <FormLabel className="text-xl font-bold">Types</FormLabel>
-              <div className="space-y-2">
-                {types?.map((item) => (
-                  <FormField
-                    key={item.id}
-                    control={form.control}
-                    name="typeItems"
-                    render={({ field }) => {
-                      return (
-                        <FormItem
-                          key={item.id}
-                          className="flex flex-row items-center space-x-3 space-y-0"
-                        >
-                          <FormControl>
-                            <Checkbox
-                              className="bg-white w-6 h-6"
-                              checked={field.value?.includes(item.name)}
-                              onCheckedChange={(checked) => {
-                                return checked
-                                  ? field.onChange([...field.value, item.name])
-                                  : field.onChange(
-                                      field.value?.filter(
-                                        (value) => value !== item.name
-                                      )
-                                    );
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className="font-normal text-lg">
-                            {item.name}
-                          </FormLabel>
-                        </FormItem>
-                      );
-                    }}
-                  />
-                ))}
-              </div>
 
-              <FormLabel className="text-xl font-bold">Capacity</FormLabel>
-
-
-              <div className="space-y-2">
-                {capacityItems.map((item) => (
-                  <FormField
-                    key={item.id}
-                    control={form.control}
-                    name="capacityItems"
-                    render={({ field }) => {
-                      return (
-                        <FormItem
-                          key={item.id}
-                          className="flex flex-row items-center space-x-3 space-y-0"
-                        >
-                          <FormControl>
-                            <Checkbox
-                              className="bg-white w-6 h-6"
-                              checked={field.value?.includes(item.id)}
-                              onCheckedChange={(checked) => {
-                                return checked
-                                  ? field.onChange([...field.value, item.id])
-                                  : field.onChange(
-                                      field.value?.filter(
-                                        (value) => value !== item.id
-                                      )
-                                    );
-                              }}
-                            />
-                          </FormControl>
-                          <FormLabel className="font-normal text-lg">
-                            {item.label}
-                          </FormLabel>
-                        </FormItem>
-                      );
-                    }}
-                  />
-                ))}
-              </div>
+              <FormControl>
+                <RadioGroup
+                  onValueChange={field.onChange}
+                  defaultValue={field.value}
+                  className="flex flex-col space-y-1"
+                >
+                  <div className="space-y-2">
+                    {category?.map((item: CategoryItem) => (
+                      <FormField
+                        key={item.id}
+                        control={form.control}
+                        name="typeItems"
+                        render={({ field }) => {
+                          return (
+                            <FormItem
+                              key={item.id}
+                              className="flex flex-row items-center space-x-3 space-y-0"
+                            >
+                              <FormItem className="flex items-center space-x-3 space-y-0">
+                                <FormControl>
+                                  <RadioGroupItem
+                                    className="bg-white"
+                                    value={item.name}
+                                  />
+                                </FormControl>
+                                <FormLabel className="font-normal text-lg">
+                                  {item.name}
+                                </FormLabel>
+                              </FormItem>
+                            </FormItem>
+                          );
+                        }}
+                      />
+                    ))}
+                  </div>
+                </RadioGroup>
+              </FormControl>
 
               <FormMessage />
             </FormItem>
