@@ -133,7 +133,7 @@ export function AllCategory({ category }: any) {
           name="typeItems"
           render={({ field }) => (
             <FormItem className="flex flex-col gap-4">
-              <FormLabel className="text-xl font-bold">Types</FormLabel>
+              <FormLabel className="text-xl font-bold">Category</FormLabel>
 
               <FormControl>
                 <RadioGroup
