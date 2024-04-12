@@ -18,7 +18,7 @@ function AboutProject() {
                 1
               </div>
               <div className="flex items-center justify-center w-[300px] h-[130px] bg-[#989898] rounded-md z-10 shadow-2xl p-[20px] text-[18px] hover:bg-white hover:scale-110 ease-in duration-300">
-                Can't find a car an emergency
+                Can&apos;t find a car an emergency
               </div>
             </div>
 

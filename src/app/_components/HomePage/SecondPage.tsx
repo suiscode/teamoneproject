@@ -5,6 +5,18 @@ import Image from "next/image";
 import Link from "next/link";
 
 function SecondPage() {
+  const ref: any = useRef();
+  const isInView = useInView(ref, { once: false });
+
+  const mainControls = useAnimation();
+
+  useEffect(() => {
+    if (isInView) {
+      mainControls.start("visible");
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isInView]);
+
   return (
     <div
       className="w-full flex-col z-40 relative justify-between  flex h-[1400px] gap-10 py-[60px]"
@@ -59,7 +71,6 @@ function SecondPage() {
           </Link>
         </motion.div>
       </div>
-
 
       <div className="absolute w-full h-1/6 z-10 bg-gradient-to-t from-black to-transparent bottom-0"></div>
     </div>

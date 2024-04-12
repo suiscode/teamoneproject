@@ -24,7 +24,7 @@ function HeaderSearch() {
     if (!show && input) {
       setShow(true);
     }
-  }, [input]);
+  }, [input, show]);
 
   const handleKeyPress = (e: any) => {
     if (e.key === "Enter") {
