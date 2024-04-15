@@ -6,27 +6,26 @@ import { fetchCars, fetchCategory, fetchSortedCars } from "../fetch";
 import { auth } from "../../../auth";
 
 type SearchPageType = {
-  searchParams: { search: string; type: string; capacity: string };
+  searchParams: { search: string; typeItems: string };
 };
 
 async function CarsPage({ searchParams }: SearchPageType) {
   const session = await auth();
   const q = searchParams?.search || "";
-  const type = searchParams?.type || "";
-  const capacity = searchParams?.capacity || "";
+  const type = searchParams?.typeItems || "";
   let data;
   const category = await fetchCategory();
   console.log(category);
 
   if (q || !type) {
     data = await fetchCars(q);
-  } else if (type || capacity) {
-    data = await fetchSortedCars(type, capacity);
+  } else if (type) {
+    data = await fetchSortedCars(type);
   }
 
   return (
     <div className="w-[1440px] flex justify-between text-secondary py-8 sm:max-sm:w-[390px]">
-      <AllCategory category={category} />
+      <AllCategory data={data} category={category} />
       <AllCars data={data} session={session} />
     </div>
   );

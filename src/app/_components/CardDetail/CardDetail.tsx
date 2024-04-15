@@ -19,11 +19,7 @@ function CardDetail({ data }: any) {
           </div>
         </div>
         <div>
-          <h1 className="text-lg font-medium">
-            NISMO has become the embodiment of Nissan&apos;s outstanding
-            performance, inspired by the most unforgiving proving ground, the
-            &quot;race track&quot;.
-          </h1>
+          <h1 className="text-lg font-medium">{data.description}</h1>
         </div>
         <div className="flex justify-between items-center">
           <div className="space-y-4 w-[40%]">
