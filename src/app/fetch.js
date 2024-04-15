@@ -15,7 +15,7 @@ export const fetchCars = async (input) => {
 
 export const fetchSortedCars = async (type, capacity) => {
   console.log(type);
-  console.log(capacity);
+  console.log(capacity  );
   try {
     return "1";
   } catch (e) {
