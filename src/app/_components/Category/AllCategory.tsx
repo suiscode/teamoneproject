@@ -61,7 +61,7 @@ const FormSchema = z.object({
   typeItems: z.string(),
 });
 
-export function AllCategory({ category }: any) {
+export function AllCategory({ category, data }: any) {
   const [types, setTypes] = useState<CategoryItem[]>([]);
 
   useEffect(() => {

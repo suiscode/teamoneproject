@@ -13,11 +13,14 @@ export const fetchCars = async (input) => {
   }
 };
 
-export const fetchSortedCars = async (type, capacity) => {
-  console.log(type);
-  console.log(capacity  );
+export const fetchSortedCars = async (type) => {
   try {
-    return "1";
+    const sortCars = await db.car.findMany({
+      where: {
+        type,
+      },
+    });
+    return sortCars;
   } catch (e) {
     console.log(e);
   }

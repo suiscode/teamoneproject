@@ -40,10 +40,10 @@ function HeaderSearch() {
         value={input}
         onKeyDown={handleKeyPress}
         onChange={(e) => setInput(e.target.value)}
-        className="w-full px-4 text-black rounded-3xl bg-white outline-none"
+        className="w-full px-4 text-black rounded-3xl  outline-none"
       />
       <button className="absolute right-4">
-        <IoIosSearch className="h-[18px] text-black w-[18px]" />
+        <IoIosSearch className="h-[18px] w-[18px] text-white" />
       </button>
       {show && <SeachResults data={data} setShow={setShow} />}
     </div>
