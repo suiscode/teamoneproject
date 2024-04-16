@@ -67,8 +67,6 @@ export function AllCategory({ category, data }: any) {
   useEffect(() => {
     const fetchCategory = async () => {
       const data = await axios.get("/api/category");
-      console.log(data.data);
-
       setTypes(data.data);
     };
     fetchCategory();
@@ -96,8 +94,6 @@ export function AllCategory({ category, data }: any) {
         </pre>
       ),
     });
-    console.log(data);
-
     router.push(`${pathname}?typeItems=${data.typeItems}`);
 
     // const queryString: string[] = [];
@@ -118,7 +114,6 @@ export function AllCategory({ category, data }: any) {
     // }
 
     // const finalQueryString = queryString.join("&");
-    // console.log(finalQueryString);
     // push(`/cars?${finalQueryString}`);
   }
 
@@ -126,7 +121,7 @@ export function AllCategory({ category, data }: any) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 h-[900px] sticky top-[110px] p-4 rounded-md hidden md:flex flex-col xl:flex"
+        className="space-y-8 sticky top-[110px] w-[20%] border-2 p-4 rounded-md hidden md:flex flex-col xl:flex"
       >
         <FormField
           control={form.control}

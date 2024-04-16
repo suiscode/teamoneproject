@@ -1,16 +1,14 @@
-import Router, { useRouter } from "next/navigation";
+"use client";
+
 import CarCart from "../CardDetail/CarCart";
-import { CarItem, CategoryItem } from "@/lib/interface";
-import { useState } from "react";
+import { CarItem } from "@/lib/interface";
 
 const AllCars = ({ data, session, categoryName }: any) => {
   return (
-    <div className="sm:gap-8 sm:w-full h-96 sm:flex sm:flex-col md:grid-flow-row md:gap-8 md:ml-10 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 xl:grid-cols-3 auto-cols-max p-8 rounded-lg ">
-      {data
-        // .filter((item: CarItem) => item.category?.name.includes(categoryName))
-        ?.map((car: CarItem) => {
-          return <CarCart key={car.id} car={car} session={session} />;
-        })}
+    <div className="sm:gap-8 sm:w-full items-center sm:flex sm:flex-col md:grid-flow-row md:gap-8 md:ml-10 md:grid md:grid-cols-2 lg:grid lg:grid-cols-2 xl:grid-cols-3 auto-cols-max p-8 rounded-lg ">
+      {data?.map((car: CarItem) => {
+        return <CarCart key={car.id} car={car} session={session} />;
+      })}
     </div>
   );
 };

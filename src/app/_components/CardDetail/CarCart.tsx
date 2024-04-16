@@ -10,7 +10,7 @@ function CarCart({ car, index, session }: any) {
   return (
     <li
       key={index}
-      className="border-0 bg-[#000] text-white sm:w-full rounded-xl w-80 p-4 flex flex-col gap-4 bg-gradient-to-b from-white/10"
+      className=" bg-[#000] text-white sm:w-full rounded-xl w-80 p-4 flex flex-col gap-4 bg-gradient-to-b from-white/20"
     >
       <div className="flex justify-between items-center">
         <div>

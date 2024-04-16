@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
 import Header from "../_components/Header/Header";
 import Footer from "@/app/_components/Footer/Footer";
-
-const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +13,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full flex flex-col justify-between bg-black h-full">
+    <div className="w-full flex flex-col justify-between bg-black min-h-screen">
       <Header />
       <div id="cars" className="w-full flex justify-center">
         {children}

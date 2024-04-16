@@ -20,6 +20,7 @@ import { FormSuccess } from "../../../lib/form-success";
 import axios from "axios";
 import { useSearchParams } from "next/navigation";
 import Wrapper from "../Wrapper";
+import { toast } from "@/components/ui/use-toast";
 
 export default function NewPasswordForm() {
   const searchParam = useSearchParams();
@@ -45,7 +46,7 @@ export default function NewPasswordForm() {
         const res = await axios.put("/api/auth/reset", { values, token });
         setSuccess(res.data.success);
       } catch (e: any) {
-        console.log(e);
+        // toast
         setError(e.response.data.error);
       }
     });

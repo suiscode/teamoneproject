@@ -7,7 +7,7 @@ import HeaderSearch from "./HeaderSearch";
 
 const Header = async () => {
   return (
-    <div className="w-full flex justify-center  h-[80px] sticky top-0 bg-black text-secondary border-b-[0.5px] border-white/50 z-50 sm:p-8 md:w-full">
+    <div className="w-full flex justify-center h-[80px] sticky top-0 bg-black text-secondary border-b-[0.5px] border-white/50 z-50 sm:p-8 md:w-full">
       <div className="flex items-center justify-between w-[1440px]">
         <HeaderLeft />
         <HeaderSearch />

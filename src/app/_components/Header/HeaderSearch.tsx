@@ -17,7 +17,6 @@ function HeaderSearch() {
       const res = await axios.put("/api/car/", {
         input,
       });
-      console.log(res);
       setData(res.data.hits);
     };
     fetchData();

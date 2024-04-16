@@ -41,7 +41,7 @@ export default function ResetForm() {
         const res = await axios.post("/api/auth/reset", values);
         setSuccess(res.data.success);
       } catch (e: any) {
-        console.log(e);
+        // toast
         setError(e.response.data.error);
       }
     });
@@ -54,7 +54,10 @@ export default function ResetForm() {
       backurl={"/auth/login"}
     >
       <Form {...form}>
-        <form className="space-y-6 w-full px-8" onSubmit={form.handleSubmit(onSubmit)}>
+        <form
+          className="space-y-6 w-full px-8"
+          onSubmit={form.handleSubmit(onSubmit)}
+        >
           <div className="space-y-2">
             <FormField
               control={form.control}

@@ -7,6 +7,7 @@ function Model(props: any) {
   const { scene } = useGLTF(
     "https://pub-9e4a462638ff4a6e89664b9e0dd86ca5.r2.dev/redbenz.glb"
   );
+
   return <primitive object={scene} {...props} />;
 }
 

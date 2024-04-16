@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -25,6 +23,7 @@ export default function RootLayout({
         Your browser does not support the video tag.
       </video>
       {children}
+      <Toaster />
     </div>
   );
 }
