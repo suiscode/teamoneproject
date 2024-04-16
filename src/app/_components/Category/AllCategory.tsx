@@ -134,7 +134,7 @@ export function AllCategory({ category, data }: any) {
                 <RadioGroup
                   onValueChange={field.onChange}
                   defaultValue={field.value}
-                  className="flex flex-col space-y-1"
+                  className="flex flex-col space-y-1 "
                 >
                   <div className="space-y-2">
                     {category?.map((item: CategoryItem) => (

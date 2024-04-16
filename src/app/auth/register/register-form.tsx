@@ -11,7 +11,6 @@ import {
   FormControl,
   FormField,
   FormItem,
-  FormLabel,
   FormMessage,
 } from "../../../components/ui/form";
 import { Button } from "../../../components/ui/button";
@@ -20,11 +19,13 @@ import { FormSuccess } from "../../../lib/form-success";
 import axios from "axios";
 import ButtonAuth from "@/app/_components/Button/ButtonOauth";
 import Wrapper from "../Wrapper";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function RegisterForm() {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof RegisterSchema>>({
     resolver: zodResolver(RegisterSchema),
@@ -43,8 +44,11 @@ export default function RegisterForm() {
         const res = await axios.post("/api/auth/register", values);
         setSuccess(res.data.success);
       } catch (e: any) {
-        // toast
-        setError(e.response.data.error);
+        toast({
+          variant: "destructive",
+          title: "Error Occured",
+          description: "Email is in use ",
+        });
       }
     });
   };
