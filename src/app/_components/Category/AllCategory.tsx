@@ -121,7 +121,7 @@ export function AllCategory({ category, data }: any) {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="space-y-8 sticky top-[110px] w-[20%] border-2 p-4 rounded-md hidden md:flex flex-col xl:flex"
+        className="space-y-8 sticky top-[110px] h-[400px] w-[20%] p-4 rounded-md hidden md:block xl:block"
       >
         <FormField
           control={form.control}
