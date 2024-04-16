@@ -13,14 +13,15 @@ function CardDetail({ data }: any) {
 
       <div className=" w-[700px] p-8 bg-black text-secondary rounded-md border border-white">
         <div className="flex w-full justify-between items-center">
-          <h1 className="text-[35px]">
-            {data.name} <div className="w-[170px] h-[1px] bg-white"></div>
-          </h1>
-          <FaRegHeart className="text-[32px]" />
+          <div>
+            <h1>{data.name}</h1>
+          </div>
+          <div>
+            <FaRegHeart />
+          </div>
         </div>
-
-        <div className=" mt-[30px]">
-          <h1 className="text-[20px] text-[#8C8C8C]">{data.description}</h1>
+        <div>
+          <h1 className="text-lg font-medium">{data.description}</h1>
         </div>
 
         <div className="flex justify-between items-center mt-[30px]">
