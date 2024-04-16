@@ -13,13 +13,13 @@ interface GlobalContextProviderProps {
 export const GlobalContextProvider = ({
   children,
 }: GlobalContextProviderProps) => {
-  const [refresh, setRefresh] = useState(1);
+  const [bookmarkCount, setBookmarkCount] = useState(0);
 
   return (
     <GlobalContext.Provider
       value={{
-        refresh,
-        setRefresh,
+        bookmarkCount,
+        setBookmarkCount,
       }}
     >
       {children}

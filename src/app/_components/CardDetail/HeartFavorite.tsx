@@ -5,12 +5,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
+import { useGlobalContext } from "@/app/context/Context";
 
 function HeartFavorite({ id, session }: any) {
   const pathname = usePathname();
   const { push } = useRouter();
   const [state, setState] = useState(false);
   const userId = session?.user?.id;
+  const { bookmarkCount, setBookmarkCount } = useGlobalContext();
 
   useEffect(() => {
     const checkIsBookmarked = async () => {
@@ -36,6 +38,7 @@ function HeartFavorite({ id, session }: any) {
 
   const removeFromBookMark = async () => {
     setState(false);
+
     const res = await axios.put("/api/bookmark", {
       userId,
       carId: id,
@@ -47,12 +50,26 @@ function HeartFavorite({ id, session }: any) {
       {!state ? (
         <FaRegHeart
           className="w-8 h-8 cursor-pointer"
-          onClick={() => addToBookMark()}
+          onClick={() => {
+            addToBookMark();
+            // if(bookmarkCount.value) {
+            //   setBookmarkCount(bookmarkCount.value + 1);
+            // } else {
+            //   setBookmarkCount(bookmarkCount + 1);
+            // }
+          }}
         />
       ) : (
         <FaHeart
           className="w-8 h-8 cursor-pointer text-red-500"
-          onClick={() => removeFromBookMark()}
+          onClick={() => {
+            removeFromBookMark();
+            // if(bookmarkCount.value) {
+            //   setBookmarkCount(bookmarkCount.value - 1);
+            // } else {
+            //   setBookmarkCount(bookmarkCount - 1);
+            // }
+          }}
         />
       )}
     </div>

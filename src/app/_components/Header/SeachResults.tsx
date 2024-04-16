@@ -2,10 +2,11 @@ import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import React from "react";
 
-function SeachResults({ data, setShow }: any) {
+function SeachResults({ data, setShow, setInput }: any) {
   const { push } = useRouter();
-  const handleClick = (id: string) => {
+  const handleClick = (id: string, name: string) => {
     push(`/cars/${id}`);
+    setInput(name);
     setShow(false);
   };
 
@@ -17,7 +18,7 @@ function SeachResults({ data, setShow }: any) {
         <div className="">
           {data.map((item: any) => (
             <div
-              onClick={() => handleClick(item.id)}
+              onClick={() => handleClick(item.id, item.name)}
               key={item.id}
               className="flex justify-between p-3 hover:bg-black/30 cursor-pointer"
             >

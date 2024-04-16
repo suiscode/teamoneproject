@@ -13,6 +13,19 @@ export const fetchCars = async (input) => {
   }
 };
 
+export const getBookmarkCount = async (id) => {
+  try {
+    const userBookmarkCount = await db.bookmark.count({
+      where: {
+        userId: id,
+      },
+    });
+    return userBookmarkCount;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const fetchSortedCars = async (type) => {
   try {
     const sortCars = await db.car.findMany({

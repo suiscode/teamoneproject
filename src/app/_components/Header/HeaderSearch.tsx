@@ -20,31 +20,27 @@ function HeaderSearch() {
       setData(res.data.hits);
     };
     fetchData();
-    if (!show && input) {
-      setShow(true);
-    }
-  }, [input, show]);
+    if (!input) setShow(false);
+  }, [input]);
 
-  const handleKeyPress = (e: any) => {
-    if (e.key === "Enter") {
-      setShow(false);
-      push(`/cars?search=${input}`);
-    }
-  };
   return (
     <div className="flex h-4 items-center flex-row rounded-3xl w-1/3  relative">
       <Input
         type="texts"
         placeholder="Search"
         value={input}
-        onKeyDown={handleKeyPress}
-        onChange={(e) => setInput(e.target.value)}
-        className="w-full px-4 text-black rounded-3xl  outline-none"
+        onChange={(e) => {
+          setInput(e.target.value);
+          setShow(true);
+        }}
+        className="w-full px-4 text-white rounded-3xl  outline-none"
       />
       <button className="absolute right-4">
         <IoIosSearch className="h-[18px] w-[18px] text-white" />
       </button>
-      {show && <SeachResults data={data} setShow={setShow} />}
+      {show && (
+        <SeachResults setInput={setInput} data={data} setShow={setShow} />
+      )}
     </div>
   );
 }

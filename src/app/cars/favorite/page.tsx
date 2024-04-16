@@ -10,20 +10,22 @@ async function page() {
 
   const data = await getAllFavoritedItem(session?.user.id);
   return (
-    <div className="border-2 w-[1440px] grid-flow-row  grid grid-cols-3 p-8 overflow-y-scroll  gap-24 justify-center">
-      {session ? (
-        data.map((item: any) => (
-          <CarCart key={item.id} car={item} session={session} />
-        ))
-      ) : (
-        <h1 className="text-secondary self-center">
-          Please
-          <Link className="text-blue-400 underline" href="/auth/login">
-            Sign in
-          </Link>
-          to show bookmarked cars
-        </h1>
-      )}
+    <div className="xl:w-[1440px] lg:w-[1024px] flex md:w-[640px] text-secondary py-8 sm:max-sm:w-[390px]">
+      <div className="sm:gap-8 border p-8 w-full sm:flex sm:flex-col md:grid-flow-row md:gap-8 md:grid md:grid-cols-1 lg:grid lg:grid-cols-2 xl:grid-cols-3 auto-cols-max rounded-lg ">
+        {session ? (
+          data.map((item: any) => (
+            <CarCart key={item.id} car={item} session={session} />
+          ))
+        ) : (
+          <h1 className="text-secondary self-center">
+            Please
+            <Link className="text-blue-400 underline" href="/auth/login">
+              Sign in
+            </Link>
+            to show bookmarked cars
+          </h1>
+        )}
+      </div>
     </div>
   );
 }
