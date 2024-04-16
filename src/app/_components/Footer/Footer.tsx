@@ -1,14 +1,8 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
 
 const Footer = () => {
-  const { push } = useRouter();
-  const handlePush = () => {
-    push("/aboutUs");
-  };
-
   const Social = [
     { title: "Discord" },
     { title: "Instagram" },
@@ -39,6 +33,16 @@ const Footer = () => {
               <li>
                 <Link href="/aboutproject" className="font-base text-sm">
                   About project
+                </Link>
+              </li>
+              <li>
+                <Link href="/privacypolicy" className="font-base text-sm">
+                  Privacy Policy
+                </Link>
+              </li>
+              <li>
+                <Link href="/termsofuse" className="font-base text-sm">
+                  Terms Of Use
                 </Link>
               </li>
             </ul>
