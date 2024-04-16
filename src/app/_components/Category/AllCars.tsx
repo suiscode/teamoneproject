@@ -2,6 +2,7 @@
 
 import CarCart from "../CardDetail/CarCart";
 import { CarItem } from "@/lib/interface";
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 const AllCars = ({ data, session, categoryName }: any) => {
   return (
@@ -9,6 +10,7 @@ const AllCars = ({ data, session, categoryName }: any) => {
       {data?.map((car: CarItem) => {
         return <CarCart key={car.id} car={car} session={session} />;
       })}
+     
     </div>
   );
 };

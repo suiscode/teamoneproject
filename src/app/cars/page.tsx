@@ -4,6 +4,7 @@ import AllCars from "../_components/Category/AllCars";
 import { fetchCars, fetchCategory, fetchSortedCars } from "../fetch";
 import { auth } from "../../../auth";
 import type { Metadata } from "next";
+import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 export const metadata: Metadata = {
   title: "All Cars Rental",
@@ -28,10 +29,13 @@ async function CarsPage({ searchParams }: SearchPageType) {
   }
 
   return (
-    <div className="w-[1440px] flex text-secondary py-8 sm:max-sm:w-[390px] border-2">
+    <div className="w-[1440px] flex text-secondary py-8 sm:max-sm:w-[390px] border-2 relative">
       <AllCategory data={data} category={category} />
       <AllCars data={data} session={session} />
-      <div className="bg-red-500 w-full"></div>
+      <button className="backdrop-blur-xl border flex items-center gap-3 w-[10%] rounded-xl justify-center py-2 px-3 absolute bottom-0 left-[22%]">
+        See less
+        <AiOutlineArrowUp />
+      </button>
     </div>
   );
 }

@@ -60,7 +60,7 @@ export default function LoginForm() {
           title: "Error Occured",
           description: "Email or password wrong",
         });
-        setError(e.response.data.error);
+      
       }
     });
   };
