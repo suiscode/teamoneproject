@@ -16,7 +16,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <div className="w-full flex flex-col justify-between bg-black h-full">
+    <div className="w-full flex flex-col justify-between bg-black min-h-screen">
       <Header />
       <div id="cars" className="w-full flex justify-center">
         {children}

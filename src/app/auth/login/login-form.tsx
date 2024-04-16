@@ -22,6 +22,7 @@ import ButtonAuth from "@/app/_components/Button/ButtonOauth";
 import Wrapper from "../Wrapper";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useToast } from "@/components/ui/use-toast";
 
 export default function LoginForm() {
   const router = useRouter();
@@ -29,6 +30,7 @@ export default function LoginForm() {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
+  const { toast } = useToast();
 
   const form = useForm<z.infer<typeof LoginSchema>>({
     resolver: zodResolver(LoginSchema),
@@ -53,6 +55,11 @@ export default function LoginForm() {
         if (e.response.data.error) {
           form.reset();
         }
+        toast({
+          variant: "destructive",   
+          title: "Error Occured",
+          description: "Email or password wrong",
+        });
         setError(e.response.data.error);
       }
     });

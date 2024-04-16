@@ -29,7 +29,6 @@ export default function ImageTest() {
           "Content-Type": image.type,
         },
       });
-      console.log("Upload successful for index:", index);
     } catch (error) {
       console.error("Error uploading file:", error);
     }

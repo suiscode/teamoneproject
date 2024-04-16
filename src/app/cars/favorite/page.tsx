@@ -9,8 +9,6 @@ async function page() {
   const session = await auth();
 
   const data = await getAllFavoritedItem(session?.user.id);
-  console.log(data);
-
   return (
     <div className="border-2 w-[1440px] grid-flow-row  grid grid-cols-3 p-8 overflow-y-scroll  gap-24 justify-center">
       {session ? (

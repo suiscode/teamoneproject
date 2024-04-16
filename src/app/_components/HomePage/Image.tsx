@@ -30,13 +30,15 @@ export default function ImageCart({
 
   return (
     <section
-      className={`flex  px-[5%] z-10 items-center ${reverse && "flex-row-reverse"}`}
+      className={`flex  px-[5%] z-10 items-center ${
+        reverse && "flex-row-reverse"
+      }`}
     >
       <div ref={ref}>
         <Image width={800} height={300} src={image} alt="image" />
       </div>
       <motion.h2
-        className={`text-black text-[80px] font-semibold ${index == 3 && 'text-white'}  mr-[200px] ${
+        className={`text-black text-[80px] font-semibold mr-[200px] ${
           !reverse ? "ml-[-50px]" : "mr-[-50px]"
         }`}
         style={{ y }}
@@ -49,7 +51,9 @@ export default function ImageCart({
         initial="hidden"
         whileInView="visible"
         transition={{ duration: 0.5, delay: 0.5 }}
-        className={`text-[100px]  ${!reverse ? "ml-[100px]" : "mr-[300px]"} `}
+        className={`text-[100px] text-white ${
+          !reverse ? "ml-[100px]" : "mr-[300px]"
+        } `}
       >
         {name}
       </motion.p>

@@ -10,8 +10,6 @@ import axios from "axios";
 import { CategoryItem } from "@/lib/interface";
 
 function CarCardAdmin({ car, index, setCarData }: any) {
-  console.log(car);
-
   const handleDelete = async (id: string) => {
     setCarData((prev: any) => ({
       ...prev,

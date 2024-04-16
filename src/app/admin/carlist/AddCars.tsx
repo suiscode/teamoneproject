@@ -56,7 +56,6 @@ function AddCars({ data, setCarData }: any) {
           });
         })
       );
-      console.log("Upload successful for index:");
     } catch (error) {
       console.error("Error uploading file:", error);
     }
@@ -95,7 +94,6 @@ function AddCars({ data, setCarData }: any) {
         setSuccess(res.data.success);
         form.reset();
       } catch (e: any) {
-        console.log(e);
         setError(e.response.data.error);
       }
     });
