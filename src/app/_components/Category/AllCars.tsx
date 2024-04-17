@@ -5,7 +5,7 @@ import { CarItem } from "@/lib/interface";
 import { useState } from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
-const AllCars = ({ data, session, categoryName }: any) => {
+const AllCars = ({ data, session }: any) => {
   const [amount, setAmount] = useState(false);
 
   const filteredData = amount ? data : data.slice(0, 6);
@@ -19,7 +19,7 @@ const AllCars = ({ data, session, categoryName }: any) => {
       </div>
       <button
         onClick={() => setAmount(!amount)}
-        className="backdrop-blur-xl border hover:bg-white/20 transition-all duration-200 flex items-center gap-3 w-[200px] rounded-xl justify-center py-2 px-3 left-[22%]"
+        className="backdrop-blur-xl border hover:bg-white/20 transition-all duration-200 flex items-center gap-3 w-[150px] px-5 rounded-xl justify-center py-2 left-[22%]"
       >
         {amount ? (
           <h1 className="flex items-center justify-evenly w-full">

@@ -16,6 +16,7 @@ function CarCardAdmin({ car, index, setCarData }: any) {
       cars: prev?.cars.filter((carItem: any) => carItem.id !== id),
     }));
     const res = await axios.patch("/api/car/", { id });
+    console.log(res);
   };
   return (
     <li
