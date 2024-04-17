@@ -20,7 +20,7 @@ function CarCart({ car, index, session }: any) {
         <HeartFavorite id={car.id} session={session} />
       </div>
       <Link href={`cars/${car.id}`}>
-        <div className="w-full relative h-[160px]">
+        <div className="w-full relative h-[180px]">
           <Image
             src={car.img?.[0]}
             fill
@@ -47,11 +47,13 @@ function CarCart({ car, index, session }: any) {
         <div className="text-sm text-gray-400">
           <p>
             <span className="text-xl text-white">
-              ${car.salePrice ? car.salePrice : car.price}/
+              {car.salePrice ? car.salePrice : car.price}₮/
             </span>
             days
           </p>
-          <p className="line-through">{car.salePrice && car.price}</p>
+          <p className="line-through text-red-800">
+            {car.salePrice && car.price}
+          </p>
         </div>
         <Link
           href={`/cars/${car.id}`}
