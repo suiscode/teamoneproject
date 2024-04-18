@@ -84,7 +84,7 @@ model Car {
 model Bookmark {
   id   String @id @default(auto()) @map("_id") @db.ObjectId
   user User   @relation(fields: [userId], references: [id])
-  car  Car    @relation(fields: [carId], references: [id])
+  car  Car    @relation(fields: [carId], references: [id], onDelete: Cascade)
 
   // Foreign keys
   userId String @db.ObjectId
