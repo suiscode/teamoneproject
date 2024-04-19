@@ -14,24 +14,24 @@ import {
   FormLabel,
   FormMessage,
 } from "@/components/ui/form";
-import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
-
 import { FormError } from "@/lib/form-error";
 import { FormSuccess } from "@/lib/form-success";
 import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { CarItem, CategoryItem } from "@/lib/interface";
 
-function EditCarModal({ data, setCarData, car }: any) {
+function EditCarModal({ data, setEditedCar, car, setCarData, onCancel }: any) {
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
   const [open, setOpen] = useState(false);
   const [uploadImages, setUploadImages] = useState<File[]>([]);
   let imageArray: string[];
-
   const [images, setImages] = useState<(string | null)[]>([null, null, null]);
+
+  const changeHandler = (type: string, input: string) => {
+    setEditedCar((prev: any) => ({ ...prev, [type]: input }));
+  };
 
   const handleUpload = async () => {
     const { data } = await axios.get<{
@@ -42,8 +42,6 @@ function EditCarModal({ data, setCarData, car }: any) {
     const uploadUrls = data.uploadUrl;
     const accessUrls = data.accessUrls;
     imageArray = data.accessUrls;
-    // const id = res.data.id;
-    console.log(data);
 
     try {
       await Promise.all(
@@ -65,27 +63,19 @@ function EditCarModal({ data, setCarData, car }: any) {
     setError("");
     startTransition(async () => {
       try {
-        await handleUpload();
-        const res = await axios.post("/api/car", {
-          ...values,
-          type: data.name,
-          categoryId: data.id,
+        // await handleUpload();
+        const res = await axios.post("/api/car/update", {
+          ...car,
+          carId: car?.id,
+          type: data?.name,
+          categoryId: data?.id,
           img: imageArray,
         });
-        setCarData((prev: any) => ({
-          ...prev,
-          cars: [
-            { ...values, tyspe: data.name, categoryId: data.id },
-            ...prev.cars,
-          ],
-        }));
-        setOpen(false);
-        setUploadImages([]);
-        setImages([null, null, null]);
-        setSuccess(res.data.success);
-        form.reset();
+
+        window.location.reload();
       } catch (e: any) {
-        setError(e.response.data.error);
+        console.log(e);
+        // setError(e.response.data.error);
       }
     });
   };
@@ -104,14 +94,15 @@ function EditCarModal({ data, setCarData, car }: any) {
   const form = useForm<z.infer<typeof NewCarSchema>>({
     resolver: zodResolver(NewCarSchema),
     defaultValues: {
-      name: "",
-      description: "",
-      price: 0,
-      gasoline: 0,
-      steering: "",
-      capacity: 0,
+      name: car.name,
+      description: car.description,
+      price: car.price,
+      gasoline: car.gasoline,
+      steering: car.steering,
+      capacity: car.capacity,
     },
   });
+
   return (
     <div className="w-[1100px] h-[550px] p-4 bg-white absolute top-[10%] left-10 z-10 rounded-md">
       <Form {...form}>
@@ -132,7 +123,10 @@ function EditCarModal({ data, setCarData, car }: any) {
                       {...field}
                       placeholder="Name"
                       type="text"
-                      value={car.name}
+                      value={car?.name}
+                      onChange={(e: any) =>
+                        changeHandler("name", e.target.value)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -151,7 +145,10 @@ function EditCarModal({ data, setCarData, car }: any) {
                       {...field}
                       placeholder="Price"
                       type="number"
-                      value={car.price}
+                      value={car?.price}
+                      onChange={(e: any) =>
+                        changeHandler("price", e.target.value)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -170,7 +167,10 @@ function EditCarModal({ data, setCarData, car }: any) {
                       {...field}
                       placeholder="Sale(Optional)"
                       type="number"
-                      value={car.sale}
+                      value={car?.sale}
+                      onChange={(e: any) =>
+                        changeHandler("sale", e.target.value)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -189,7 +189,10 @@ function EditCarModal({ data, setCarData, car }: any) {
                       {...field}
                       placeholder="Gasoline"
                       type="number"
-                      value={car.gasoline}
+                      value={car?.gasoline}
+                      onChange={(e: any) =>
+                        changeHandler("gasoline", e.target.value)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -208,7 +211,10 @@ function EditCarModal({ data, setCarData, car }: any) {
                       {...field}
                       placeholder="Car capacity"
                       type="number"
-                      value={car.capacity}
+                      value={car?.capacity}
+                      onChange={(e: any) =>
+                        changeHandler("capacity", e.target.value)
+                      }
                     />
                   </FormControl>
                   <FormMessage />
@@ -228,7 +234,10 @@ function EditCarModal({ data, setCarData, car }: any) {
                         {...field}
                         className="absolute top-4 h-[300px]"
                         placeholder="Description"
-                        value={car.description}
+                        value={car?.description}
+                        onChange={(e: any) =>
+                          changeHandler("description", e.target.value)
+                        }
                       />
                     </FormControl>
                     <FormMessage />
@@ -287,8 +296,8 @@ function EditCarModal({ data, setCarData, car }: any) {
               </div>
             ))}
           </div>
-          <FormError message={error} />
-          <FormSuccess message={success} />
+          {/* <FormError message={error} />
+          <FormSuccess message={success} /> */}
           <Button
             className="w-full"
             size="lg"

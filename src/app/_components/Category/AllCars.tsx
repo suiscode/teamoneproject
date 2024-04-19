@@ -2,7 +2,7 @@
 
 import CarCart from "../CardDetail/CarCart";
 import { CarItem } from "@/lib/interface";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
 const AllCars = ({ data, session }: any) => {
@@ -17,20 +17,22 @@ const AllCars = ({ data, session }: any) => {
           return <CarCart key={car.id} car={car} session={session} />;
         })}
       </div>
-      <button
-        onClick={() => setAmount(!amount)}
-        className="backdrop-blur-xl border hover:bg-white/20 transition-all duration-200 flex items-center gap-3 w-[150px] px-5 rounded-xl justify-center py-2 left-[22%]"
-      >
-        {amount ? (
-          <h1 className="flex items-center justify-evenly w-full">
-            See less <AiOutlineArrowUp />
-          </h1>
-        ) : (
-          <h1 className="flex items-center justify-evenly w-full">
-            See more <AiOutlineArrowDown />
-          </h1>
-        )}
-      </button>
+      {data.length > 2 && (
+        <button
+          onClick={() => setAmount(!amount)}
+          className="backdrop-blur-xl border hover:bg-white/20 transition-all duration-200 flex items-center gap-3 w-[150px] px-5 rounded-xl justify-center py-2 left-[22%]"
+        >
+          {amount ? (
+            <h1 className="flex items-center justify-evenly w-full">
+              See less <AiOutlineArrowUp />
+            </h1>
+          ) : (
+            <h1 className="flex items-center justify-evenly w-full">
+              See more <AiOutlineArrowDown />
+            </h1>
+          )}
+        </button>
+      )}
     </div>
   );
 };
