@@ -5,7 +5,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 
 const PaymentMethod = async () => {
   return (
-    <div className="w-[896px] h-[668px] bg-gray-400 rounded-[10px] flex flex-col">
+    <div className="w-[896px] h-[668px] bg-[#FFFFFF] rounded-[10px] flex flex-col">
       <div className="w-[896px] h-[85px] flex justify-between  ">
         <div className="w-[214px] flex flex-col gap-[6px] mt-[26px] ml-[26px]">
           <div className="text-xl font-bold text-[#1A202C]">Payment Method</div>
