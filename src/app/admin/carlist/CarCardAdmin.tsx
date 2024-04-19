@@ -52,7 +52,9 @@ function CarCardAdmin({ car, index, setCarData }: any) {
     >
       {isEditing ? (
         <EditCarModal
-          car={carEditData}
+          setCarData={setCarData}
+          car={editedCar}
+          setEditedCar={setEditedCar}
           onSave={handleSave}
           onCancel={handleCancel}
         />
