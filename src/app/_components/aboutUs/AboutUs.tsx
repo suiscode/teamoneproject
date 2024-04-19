@@ -17,7 +17,7 @@ function AboutUs() {
       github: "https://github.com/Zolushkazz",
     },
     {
-      img: "/azaa.jpg",
+      img: "/Image.jpg",
       name: "Tselmeg",
       about: "person about",
       ig: "https://www.instagram.com/tselmeg_0711#",
@@ -70,19 +70,16 @@ function AboutUs() {
             >
               <div className="snap-normal snap-center">
                 <Image
-                  className="h-fit w-fit object-cover rounded-sm "
+                  className="h-fit w-fit object-cover rounded-sm"
                   src={el.img}
                   alt=""
-                  width={400}
-                  height={400}
+                  width={200}
+                  height={90}
                 />
               </div>
-
-              <div className="gap-[55px]">
-                <div className="text-[30px] items-center justify-center text-center">
-                  {el.name}
-                </div>
-                <div className="flex justify-end gap-3">
+              <div>
+                <div className="text-[30px] text-center">{el.name}</div>
+                <div className="flex justify-between gap-3">
                   <div>
                     <Link href={el.ig} target="_blank">
                       <BsInstagram className="text-[25px]" />

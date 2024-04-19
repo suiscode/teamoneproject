@@ -3,16 +3,16 @@ import React from "react";
 
 function AboutProject() {
   return (
-    <div className="flex flex-col gap-[100px] p-[50px]">
+    <div className="flex flex-col gap-[50px] p-[50px]">
       <div className="flex flex-col gap-[50px]">
         <div className="text-[30px] text-white">
           The <span className="text-[red]">Problem Statement</span>
         </div>
 
-        <div className="flex gap-[200px]">
-          <Image src="/problems.png" alt="" width={300} height={300} />
+        <div className="flex gap-[100px]">
+          <Image src="/problems.png" alt="" width={250} height={250} />
 
-          <div className="flex gap-[50px]">
+          <div className="flex gap-[20px]">
             <div className="relative">
               <div className="w-[50px] h-[50px] bg-[#7981AB] text-[30px] text-center rounded-[50%] z-30 absolute -top-[15px] -left-[15px]">
                 1
@@ -61,15 +61,15 @@ function AboutProject() {
           The <span className="text-[green]">Solution</span>
         </div>
 
-        <div className="flex gap-[190px]">
+        <div className="flex gap-[100px]">
           <Image
             src="/solution1.png"
             alt=""
-            width={300}
-            height={300}
+            width={210}
+            height={100}
             className="rounded-sm"
           />
-          <div className="flex gap-[50px]">
+          <div className="flex gap-[20px]">
             <div className="relative mt-[150px]">
               <div className="w-[50px] h-[50px] bg-[#7981AB] text-[30px] text-center rounded-[50%] z-30 absolute -top-[15px] -left-[15px]">
                 1

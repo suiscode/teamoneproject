@@ -7,7 +7,9 @@ import { getBookmarkCount } from "@/app/fetch";
 
 const HeaderRight = async () => {
   const session = await auth();
-  const count = await getBookmarkCount(session?.user.id);
+  const count = getBookmarkCount(session?.user.id);
+
+  console.log();
 
   return (
     <div className="flex gap-4 items-center">

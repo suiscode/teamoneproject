@@ -25,7 +25,7 @@ function HeaderBookmark({ count }: any) {
           color={bookmarkCount !== 0 ? "red" : "inherit"}
         />
       </Link>
-      <h1 onClick={() => console.log(bookmarkCount)}>wtf</h1>
+      <h1 onClick={() => console.log(bookmarkCount)}></h1>
     </>
   );
 }
