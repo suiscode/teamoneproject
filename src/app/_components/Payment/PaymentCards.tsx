@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import PaymentBilling from "./PaymentBilling";
 import RentalInfo from "./RentalInfo";

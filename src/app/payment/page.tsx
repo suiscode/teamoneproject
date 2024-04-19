@@ -5,7 +5,7 @@ import PaymentFooter from "../_components/Payment/PaymentFooter";
 
 function page() {
   return (
-    <div>
+    <div className="w-full">
       <Header />
       <PaymentMain />
       <PaymentFooter />

@@ -19,6 +19,10 @@ const PaymentBilling = () => {
     }));
   };
 
+  const handleLogData = () => {
+    console.log(formData);
+  };
+
   return (
     <div className="bg-[#FFFFFF] w-[896px] h-[358px] rounded-[10px] flex flex-col gap-[30px]">
       <div className="w-[896px] h-[85px] flex justify-between">

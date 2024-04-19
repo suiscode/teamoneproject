@@ -1,69 +1,50 @@
-"use client";
-
 import React from "react";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Checkbox } from "@/components/ui/checkbox";
 
-const PaymentMethod = async () => {
+const PaymentTotal = async () => {
   return (
-    <div className="w-[896px] h-[668px] bg-[#FFFFFF] rounded-[10px] flex flex-col">
-      <div className="w-[896px] h-[85px] flex justify-between  ">
-        <div className="w-[214px] flex flex-col gap-[6px] mt-[26px] ml-[26px]">
-          <div className="text-xl font-bold text-[#1A202C]">Payment Method</div>
-          <div className="text-[#90A3BF] text-[14px] font-medium w-[250px]">
-            Please enter your payment method
-          </div>
-        </div>
-        <div className="text-[#90A3BF] flex mr-[26px] mt-[59px] text-[14px] font-medium ">
-          Step 3 of 4
+    <div className="w-[512px] h-[580px] rounded-[10px] bg-[#FFFFFF] mt-[30px] flex flex-col gap-[30px]">
+      <div className="w-[214px] flex flex-col gap-[6px] mt-[26px] ml-[26px]">
+        <div className="text-xl font-bold text-[#1A202C]">Rental Summary</div>
+        <div className="text-[#90A3BF] text-[14px] font-medium w-[400px]">
+          Prices may change depending on the length of the rental and the price
+          of your rental car.
         </div>
       </div>
-      <div className="w-[848px] h-[352px] flex flex-col mt-[24px] ml-[24px] rounded-[10px] bg-[#F6F7F9]">
-        <div className="w-[848px] h-[20px] flex justify-between">
-          <div className="flex ml-[24px] mt-[24px] text-black">Credit Card</div>
-          <div className="text-black flex mt-[24px] mr-[24px] ">Visa</div>
-        </div>
-        <div className="h-[142px] w-[848px] flex gap-[20px]">
-          <div className="text-black flex mt-[40px] ml-[24px] flex-col gap-[20px]">
-            Card Number
-            <Input className=" w-[372px] h-[56px] flex"></Input>
+      <div className="w-[400px] h-[120px] ml-[26px] flex items-center gap-[16px]">
+        <div className="w-[132px] h-[108px] border-2  flex "></div>
+        <div className="w-[220px] h-[72px]  flex flex-col">
+          <div className="w-[220px] h-[40px] font-bold leading-[48px] text-[32px]">
+            Nissan GT-R
           </div>
-
-          <div className="text-black flex mt-[40px] ml-[24px] flex-col gap-[20px]">
-            Expration Date
-            <Input className="w-[372px] h-[56px]"></Input>
-          </div>
-        </div>
-        <div className="h-[142px] w-[848px] flex gap-[20px]">
-          <div className="text-black flex mt-[40px] ml-[24px] flex-col gap-[20px]">
-            Card Number
-            <Input className=" w-[372px] h-[56px] flex"></Input>
-          </div>
-          <div className="text-black flex mt-[40px] ml-[24px] flex-col gap-[20px]">
-            Card Number
-            <Input className=" w-[372px] h-[56px] flex"></Input>
-          </div>
+          <div className="w-[220px] h-[32px]"></div>
         </div>
       </div>
-      <div className="w-[848px] h-[66px] bg-[#F6F7F9] rounded-[10px] flex mt-[24px] ml-[24px]">
-        <div className="flex items-center space-x-2 ml-[26px] text-black">
-          <Checkbox className="rounded-[10px]" />
-          <Label className="relative left-[10px]" htmlFor="terms">
-            PayPal
-          </Label>
+      <div className="w-[444px] bg-[#C3D4E966] border-[1px] flex ml-[26px]"></div>
+      <div className="w-[444px] flex ml-[26px] justify-between">
+        <h1>Subtotal</h1>
+        <h2></h2>
+      </div>
+      <div className="w-[444px] flex ml-[26px] justify-between">
+        <h1>Tax</h1>
+        <h2></h2>
+      </div>
+      <div className="w-[444px] h-[56px] bg-[#f6f7f9] flex ml-[26px] rounded-[10px] items-center justify-center">
+        <div className="w-[400px] h-[24px]  flex items-center justify-between">
+          <h1>Apply promo code</h1>
+          <h2>Apply now</h2>
         </div>
       </div>
-      <div className="w-[848px] h-[66px] bg-[#F6F7F9] rounded-[10px] flex mt-[24px] ml-[24px]">
-        <div className="flex items-center space-x-2 ml-[26px] text-black">
-          <Checkbox className="rounded-[10px]" />
-          <Label className="relative left-[10px]" htmlFor="terms">
-            Bitcoin
-          </Label>
+      <div className="w-[444px] h-[48px]  ml-[26px] flex gap-[32px]">
+        <div className="w-[284px] h-[48px] flex flex-col gap-[4px]">
+          <div className="w-[200px] h-[24px]">Total Rental Price</div>
+          <div className="w-[304px]  h-[20px] text-[14px] font-medium leading-[21px]">
+            Overall price and includes rental discount
+          </div>
         </div>
+        <div className=""></div>
       </div>
     </div>
   );
 };
 
-export default PaymentMethod;
+export default PaymentTotal;
