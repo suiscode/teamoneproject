@@ -1,7 +1,5 @@
-"use client";
-
 import React from "react";
-import { Input } from "@/components/ui/input";
+
 import {
   Select,
   SelectContent,
@@ -52,7 +50,6 @@ const RentalInfo = async () => {
                 />
               </SelectTrigger>
               <SelectContent>
-                {/* Map through locationOptions to render SelectItem */}
                 {locationOptions.map((option) => (
                   <SelectItem
                     key={option.value}
@@ -75,7 +72,6 @@ const RentalInfo = async () => {
                 />
               </SelectTrigger>
               <SelectContent>
-                {/* Map through nameOptions to render SelectItem */}
                 {nameOptions.map((option) => (
                   <SelectItem
                     key={option.value}

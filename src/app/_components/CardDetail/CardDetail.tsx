@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
@@ -5,6 +6,10 @@ import { Button } from "@/components/ui/button";
 import CarImage from "./CarImage";
 
 function CardDetail({ data }: any) {
+  const { push } = useRouter();
+  const handlePush = () => {
+    push("/payment");
+  };
   return (
     <div className="justify-between bg-black flex p-8 border border-white gap-8 my-[60px] rounded-md">
       <div>
@@ -62,7 +67,7 @@ function CardDetail({ data }: any) {
             </div>
           </div>
           <div>
-            <Button className="rounded-lg bg-black border border-white w-[140px] h-[56px] text-[white] text-[18px]">
+            <Button className="rounded-lg bg-[#3563E9] hover:bg-[#3563E9]/80 w-[140px] h-[56px] text-[white]">
               Rent Now
             </Button>
           </div>
