@@ -27,7 +27,10 @@ const AllCars: React.FC<{ data: CarItem[]; session: Session }> = ({
           className="backdrop-blur-xl border hover:bg-white/20 transition-all duration-200 flex items-center gap-3 w-[150px] px-5 rounded-xl justify-center py-2 left-[22%]"
         >
           {amount ? (
-            <h1 className="flex items-center justify-evenly w-full">
+            <h1
+              className="flex items-center justify-evenly w-full"
+              onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            >
               See less <AiOutlineArrowUp />
             </h1>
           ) : (

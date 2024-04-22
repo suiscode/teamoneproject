@@ -57,11 +57,7 @@ const HeartFavorite: React.FC<{ id: string; session: Session }> = ({
           className="w-8 h-8 cursor-pointer"
           onClick={() => {
             addToBookMark();
-            // if(bookmarkCount.value) {
-            //   setBookmarkCount(bookmarkCount.value + 1);
-            // } else {
-            //   setBookmarkCount(bookmarkCount + 1);
-            // }
+            setBookmarkCount(bookmarkCount + 1);
           }}
         />
       ) : (
@@ -69,11 +65,7 @@ const HeartFavorite: React.FC<{ id: string; session: Session }> = ({
           className="w-8 h-8 cursor-pointer text-red-500"
           onClick={() => {
             removeFromBookMark();
-            // if(bookmarkCount.value) {
-            //   setBookmarkCount(bookmarkCount.value - 1);
-            // } else {
-            //   setBookmarkCount(bookmarkCount - 1);
-            // }
+            setBookmarkCount(bookmarkCount - 1);
           }}
         />
       )}

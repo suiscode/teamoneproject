@@ -4,10 +4,10 @@ import RentalInfo from "./RentalInfo";
 import PaymentMethod from "./PaymentMethod";
 import PaymentConfirmation from "./PaymentConfirmation";
 
-const PaymentCards = async () => {
+const PaymentCards = () => {
   return (
-    <div className="w-[896px] h-[2506px] mt-[32px] ml-[32px] flex flex-col gap-[30px]">
-      <PaymentBilling />
+    <div className="w-[896px] h-[2506px] flex flex-col gap-[30px]">
+      {/* <PaymentBilling /> */}
       <RentalInfo />
       <PaymentMethod />
       <PaymentConfirmation />

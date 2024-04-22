@@ -71,14 +71,18 @@ function AddCars({ data, setCarData, carData }: any) {
       try {
         await handleUpload();
         if (isEditing) {
-          // const res = await axios.post("/api/car/update", {
-          //   ...values,
-          //   carId,
-          //   type: data?.name,
-          //   categoryId: data?.id,
-          //   img: imageArray,
-          // });
-          console.log(values, carId);
+          const res = await axios.post("/api/car/update", {
+            ...values,
+            carId,
+          });
+          setCarData((prev: any) => ({
+            ...prev,
+            cars: prev.cars.map((car: any) =>
+              car.id === carId
+                ? { ...car, ...values, type: data.name, categoryId: data.id }
+                : car
+            ),
+          }));
         } else {
           const res = await axios.post("/api/car", {
             ...values,
