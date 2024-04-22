@@ -6,8 +6,13 @@ import axios from "axios";
 import { usePathname } from "next/navigation";
 import { useRouter } from "next/navigation";
 import { useGlobalContext } from "@/app/context/Context";
+import { SessionInterface } from "@/lib/interface";
+import { Session } from "next-auth";
 
-function HeartFavorite({ id, session }: any) {
+const HeartFavorite: React.FC<{ id: string; session: Session }> = ({
+  id,
+  session,
+}) => {
   const pathname = usePathname();
   const { push } = useRouter();
   const [state, setState] = useState(false);
@@ -74,6 +79,6 @@ function HeartFavorite({ id, session }: any) {
       )}
     </div>
   );
-}
+};
 
 export default HeartFavorite;

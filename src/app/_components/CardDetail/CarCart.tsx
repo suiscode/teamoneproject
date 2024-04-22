@@ -5,11 +5,18 @@ import { PiSteeringWheelFill } from "react-icons/pi";
 import { MdPeopleAlt } from "react-icons/md";
 import Link from "next/link";
 import HeartFavorite from "./HeartFavorite";
+import { Session } from "next-auth";
+import { CarItem, SessionInterface } from "@/lib/interface";
 
-function CarCart({ car, index, session }: any) {
+interface CarCartProps {
+  car: CarItem;
+  session: Session;
+}
+
+const CarCart: React.FC<CarCartProps> = ({ car, session }) => {
   return (
     <li
-      key={index}
+      key={car.id}
       className=" bg-[#000] border-2 h-96 text-white sm:w-full rounded-xl w-80 p-4 flex flex-col gap-4 bg-gradient-to-b from-white/20"
     >
       <div className="flex justify-between items-center">
@@ -64,6 +71,6 @@ function CarCart({ car, index, session }: any) {
       </div>
     </li>
   );
-}
+};
 
 export default CarCart;

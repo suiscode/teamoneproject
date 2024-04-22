@@ -1,5 +1,6 @@
 import CardDetail from "@/app/_components/CardDetail/CardDetail";
 import { getOneCar } from "@/app/fetch";
+import { CarItem } from "@/lib/interface";
 import { Metadata } from "next";
 import React from "react";
 
@@ -14,10 +15,10 @@ type SearchPageType = {
 
 async function CarDetailPage({ params }: { params: { id: string } }) {
   const { id } = params || "";
-  const data = await getOneCar(id);
+  let data = await getOneCar(id)
   return (
     <div className="w-full flex justify-center items-center">
-      <CardDetail data={data} />
+      <CardDetail data={data as CarItem} />
     </div>
   );
 }

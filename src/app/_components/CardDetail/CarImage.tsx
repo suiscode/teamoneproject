@@ -1,8 +1,9 @@
 "use client";
+import { CarItem } from "@/lib/interface";
 import Image from "next/image";
 import React, { useState } from "react";
 
-function CarImage({ data }: any) {
+const CarImage: React.FC<{ data: CarItem }> = ({ data }) => {
   const [state, setState] = useState(0);
 
   return (
@@ -50,6 +51,6 @@ function CarImage({ data }: any) {
       </div>
     </div>
   );
-}
+};
 
 export default CarImage;

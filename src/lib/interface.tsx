@@ -6,12 +6,12 @@ export interface CarItem {
   img: string[];
   price: number;
   salePrice?: number | null;
-  gasoline: string;
-  steering: "manual" | "auto"; // Assuming you're using an enum for steering type
+  gasoline: number;
+  steering: "MANUAL" | "AUTO";
   capacity: number;
   category?: CategoryItem | null;
   categoryId?: string | null;
-  reviews?: Review[] | null; // Assuming you have defined a Review interface
+  reviews?: Review[] | null;
 }
 
 export interface CategoryItem {
@@ -25,4 +25,17 @@ export interface Review {
   car: CarItem;
   starRating: number;
   comment?: string | null;
+}
+
+export interface SessionInterface {
+  expires: string;
+  user: UserInterface;
+}
+
+export interface UserInterface {
+  email: string;
+  id: string;
+  image?: string;
+  name: string;
+  role: string;
 }
