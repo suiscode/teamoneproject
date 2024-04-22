@@ -10,8 +10,9 @@ import axios from "axios";
 import { CategoryItem } from "@/lib/interface";
 import AddCars from "./AddCars";
 import EditCarModal from "./EditCarModal";
+import { DialogTrigger } from "@/components/ui/dialog";
 
-function CarCardAdmin({ car, index, setCarData, open, setOpen }: any) {
+function CarCardAdmin({ car, index, setCarData, openDialogWithValues }: any) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedCar, setEditedCar] = useState(car);
   const [carEditData, setCarEditData] = useState({});
@@ -23,12 +24,6 @@ function CarCardAdmin({ car, index, setCarData, open, setOpen }: any) {
     }));
     const res = await axios.patch(`/api/car?id=${id}`);
     console.log(res);
-  };
-
-  const handleEdit = async (id: any) => {
-    setIsEditing(true);
-    const { data } = await axios.get(`/api/car?id=${id}`);
-    setCarEditData(data[0]);
   };
 
   const handleSave = () => {
@@ -50,65 +45,55 @@ function CarCardAdmin({ car, index, setCarData, open, setOpen }: any) {
       key={index}
       // className="border-0 bg-[#000] text-white rounded-xl w-80 h-96 p-4 flex flex-col justify-between bg-gradient-to-b from-white/10"
     >
-      {isEditing ? (
-        <EditCarModal
-          setCarData={setCarData}
-          car={editedCar}
-          setEditedCar={setEditedCar}
-          onSave={handleSave}
-          onCancel={handleCancel}
-        />
-      ) : (
-        <div className="border-0 bg-[#000] text-white rounded-xl w-80 h-96 p-4 flex flex-col justify-between bg-gradient-to-b from-white/10">
-          <div>
-            <p className="font-bold text-lg">{car.name}</p>
-            <p className="text-white text-sm">{car.type}</p>
+      <div className="border-0 bg-[#000] text-white rounded-xl w-80 h-96 p-4 flex flex-col justify-between bg-gradient-to-b from-white/10">
+        <div>
+          <p className="font-bold text-lg">{car.name}</p>
+          <p className="text-white text-sm">{car.type}</p>
+        </div>
+        <Link href={`cars/${car._id}`}>
+          <Image
+            src={car.img[0]}
+            width={400}
+            height={200}
+            alt=""
+            className="cursor-pointer"
+          />
+        </Link>
+        <div className="flex justify-between gap-4 text-white">
+          <div className="flex items-center gap-2 ">
+            <FaGasPump />
+            <p>{car.gasoline}</p>
           </div>
-          <Link href={`cars/${car._id}`}>
-            {/* <Image
-          src={car.img}
-          width={400}
-          height={200}
-          alt=""
-          className="cursor-pointer"
-        /> */}
-          </Link>
-          <div className="flex justify-between gap-4 text-white">
-            <div className="flex items-center gap-2 ">
-              <FaGasPump />
-              <p>{car.gasoline}</p>
-            </div>
-            <div className="flex items-center gap-2 ">
-              <TbSteeringWheel />
-              <p>{car.steering}</p>
-            </div>
-            <div className="flex items-center gap-2 ">
-              <MdPeopleAlt />
-              <p>{car.capacity}</p>
-            </div>
+          <div className="flex items-center gap-2 ">
+            <TbSteeringWheel />
+            <p>{car.steering}</p>
           </div>
-          <div className="flex justify-between ">
-            <div className="text-sm">
-              <p>{car.price}</p>
-              <p>{car.salePrice}</p>
-            </div>
-            <div className="space-x-4">
-              <Button
-                onClick={() => handleEdit(car.id)}
-                className="w-24 h-10 border border-white text-white "
-              >
-                Edit item
-              </Button>
-              <Button
-                onClick={() => handleDelete(car.id)}
-                className="w-24 h-10 border border-white text-white "
-              >
-                Delete item
-              </Button>
-            </div>
+          <div className="flex items-center gap-2 ">
+            <MdPeopleAlt />
+            <p>{car.capacity}</p>
           </div>
         </div>
-      )}
+        <div className="flex justify-between ">
+          <div className="text-sm">
+            <p>{car.price}</p>
+            <p>{car.salePrice}</p>
+          </div>
+          <div className="space-x-4">
+            <DialogTrigger
+              className="w-24 h-10 border rounded-md bg-primary text-sm font-medium border-white text-white "
+              onClick={() => openDialogWithValues(car, car.id)}
+            >
+              Edit item
+            </DialogTrigger>
+            <Button
+              onClick={() => handleDelete(car.id)}
+              className="w-24 h-10 border border-white text-white "
+            >
+              Delete item
+            </Button>
+          </div>
+        </div>
+      </div>
     </li>
   );
 }

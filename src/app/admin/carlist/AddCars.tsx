@@ -23,9 +23,13 @@ import { Textarea } from "@/components/ui/textarea";
 import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CarItem, CategoryItem } from "@/lib/interface";
+import CarCardAdmin from "./CarCardAdmin";
 
-function AddCars({ data, setCarData, open, setOpen }: any) {
+function AddCars({ data, setCarData, carData }: any) {
   //// SUBMIT HANDLE
+  const [open, setOpen] = useState(false);
+  const [carId, setCarId] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
@@ -60,42 +64,61 @@ function AddCars({ data, setCarData, open, setOpen }: any) {
     }
   };
 
-  // const handleUploadAll = async () => {
-  //   // Iterate over each image in the images array and call handleUpload
-  //   for (let index = 0; index < images.length; index++) {
-  //     const image = images[index];
-  //     await handleUpload(image, index);
-  //   }
-  // };
-
   const onSubmit = (values: z.infer<typeof NewCarSchema>) => {
     setSuccess("");
     setError("");
     startTransition(async () => {
       try {
         await handleUpload();
-        const res = await axios.post("/api/car", {
-          ...values,
-          type: data.name,
-          categoryId: data.id,
-          img: imageArray,
-        });
-        setCarData((prev: any) => ({
-          ...prev,
-          cars: [
-            { ...values, tyspe: data.name, categoryId: data.id },
-            ...prev.cars,
-          ],
-        }));
+        if (isEditing) {
+          // const res = await axios.post("/api/car/update", {
+          //   ...values,
+          //   carId,
+          //   type: data?.name,
+          //   categoryId: data?.id,
+          //   img: imageArray,
+          // });
+          console.log(values, carId);
+        } else {
+          const res = await axios.post("/api/car", {
+            ...values,
+            type: data.name,
+            categoryId: data.id,
+            img: imageArray,
+          });
+          setCarData((prev: any) => ({
+            ...prev,
+            cars: [
+              { ...values, tyspe: data.name, categoryId: data.id },
+              ...prev.cars,
+            ],
+          }));
+        }
+
         setOpen(false);
         setUploadImages([]);
         setImages([null, null, null]);
-        setSuccess(res.data.success);
+        // setSuccess(res.data.success);
         form.reset();
       } catch (e: any) {
         setError(e.response.data.error);
       }
     });
+  };
+
+  const openDialogWithValues = (car: CarItem, carId: string) => {
+    setIsEditing(true);
+    setCarId(carId);
+    const defaultValues = {
+      name: car.name,
+      description: car.description,
+      price: car.price,
+      gasoline: car.gasoline,
+      steering: car.steering,
+      capacity: car.capacity,
+    };
+    form.reset(defaultValues);
+    setOpen(true);
   };
 
   const onImageChange =
@@ -126,14 +149,32 @@ function AddCars({ data, setCarData, open, setOpen }: any) {
   return (
     <div>
       <Dialog open={open} onOpenChange={setOpen}>
-        <DialogTrigger className="text-secondary border-secondary border rounded-md px-4 py-2 hover:animate-pulse">
+        <DialogTrigger
+          onClick={() => {
+            setOpen(open);
+            setIsEditing(false);
+          }}
+          className="text-secondary border-secondary border rounded-md px-4 py-2 hover:animate-pulse"
+        >
           Add car to this category
         </DialogTrigger>
+        <ul className="flex w-full flex-wrap gap-12 py-4">
+          {carData?.cars?.map((item: any, index: number) => (
+            <CarCardAdmin
+              openDialogWithValues={openDialogWithValues}
+              key={index}
+              car={item}
+              setCarData={setCarData}
+              open={open}
+              setOpen={setOpen}
+            />
+          ))}
+        </ul>
         <DialogContent className="w-[1200px] h-[550px]">
           <div className="p-4">
             <Form {...form}>
               <form
-                className="space-y-6 w-full px-8"
+                className="space-y-6 relative w-full px-8"
                 onSubmit={form.handleSubmit(onSubmit)}
               >
                 <div className="grid grid-cols-3 grid-rows-2 gap-8 text-white ">
@@ -282,35 +323,37 @@ function AddCars({ data, setCarData, open, setOpen }: any) {
                     )}
                   />
                 </div>
-                <div className="flex gap-[67px]">
-                  {images.map((image, index) => (
-                    <div key={index}>
-                      <label key={index}>
-                        <input type="file" onChange={onImageChange(index)} />
-                        <div className="border relative rounded-sm h-[185px] flex items-center justify-center w-[185px] border-black">
-                          <h1>ADD IMAGE + </h1>
-                          {image && (
-                            <Image
-                              src={image}
-                              fill
-                              className="absolute object-cover"
-                              alt="image"
-                            />
-                          )}
-                        </div>
-                      </label>
-                    </div>
-                  ))}
-                </div>
+                {!isEditing && (
+                  <div className="flex gap-[67px]">
+                    {images.map((image, index) => (
+                      <div key={index}>
+                        <label key={index}>
+                          <input type="file" onChange={onImageChange(index)} />
+                          <div className="border relative rounded-sm h-[185px] flex items-center justify-center w-[185px] border-black">
+                            <h1>ADD IMAGE + </h1>
+                            {image && (
+                              <Image
+                                src={image}
+                                fill
+                                className="absolute object-cover"
+                                alt="image"
+                              />
+                            )}
+                          </div>
+                        </label>
+                      </div>
+                    ))}
+                  </div>
+                )}
                 <FormError message={error} />
                 <FormSuccess message={success} />
                 <Button
-                  className="w-full"
+                  className="w-3/5 absolute"
                   size="lg"
                   type="submit"
                   disabled={isPending}
                 >
-                  ADD CAR
+                  {isEditing ? "EDIT CAR" : "ADD CAR"}
                 </Button>
               </form>
             </Form>
