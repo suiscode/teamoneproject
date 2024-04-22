@@ -3,7 +3,6 @@ import React from "react";
 function Text() {
   const home = [
     {
-      title: "• Privacy Policy.",
       text: "Pinecone Car Rental is the company's official online shopping website, and these terms and conditions govern your relationship with the use and purchase of this website. This condition is subject to acceptance and confirmation by the user before making a purchase or using the website. Pinecone Car Rental (hereinafter referred to as the organization) and the user (hereinafter referred to as the user) will jointly monitor the implementation of these terms of service. Pinecone Car Rental is the company's official online shopping website, and these terms and conditions govern your relationship with the use and purchase of this website. This condition is subject to acceptance and confirmation by the user before making a purchase or using the website. Pinecone Car Rental (hereinafter referred to as the organization) and the user (hereinafter referred to as the user) will jointly monitor the implementation of these terms of service. This condition is subject to acceptance and confirmation by the user before making a purchase or using the website. Pinecone Car Rental (hereinafter referred to as the organization) and the user (hereinafter referred to as the user) will jointly monitor the implementation of these terms of service.",
     },
     {

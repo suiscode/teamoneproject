@@ -24,24 +24,36 @@ const Footer = () => {
         <div className="flex flex-row gap-48">
           <div className="space-y-2">
             <h1 className="text-xl font-semibold">About</h1>
-            <ul className="space-y-2">
+            <ul className="space-y-2 ">
               <li>
-                <Link href="/aboutus" className="font-base text-sm">
+                <Link
+                  href="/aboutus"
+                  className="font-base cursor-pointer font-base text-sm hover:text-secondary/60"
+                >
                   Team members
                 </Link>
               </li>
               <li>
-                <Link href="/aboutproject" className="font-base text-sm">
+                <Link
+                  href="/aboutproject"
+                  className="font-base cursor-pointer font-base text-sm hover:text-secondary/60"
+                >
                   About project
                 </Link>
               </li>
               <li>
-                <Link href="/privacypolicy" className="font-base text-sm">
+                <Link
+                  href="/privacypolicy"
+                  className="font-base cursor-pointer font-base text-sm hover:text-secondary/60"
+                >
                   Privacy Policy
                 </Link>
               </li>
               <li>
-                <Link href="/termsofuse" className="font-base text-sm">
+                <Link
+                  href="/termsofuse"
+                  className="font-base cursor-pointer font-base text-sm hover:text-secondary/60"
+                >
                   Terms Of Use
                 </Link>
               </li>
