@@ -5,6 +5,8 @@ import { CategoryItem } from "@/lib/interface";
 import CarCardAdmin from "./CarCardAdmin";
 
 function Cars({ data, q }: any) {
+  const [open, setOpen] = useState(false);
+
   const [carData, setCarData] = useState<CategoryItem | null>(null);
   useEffect(() => {
     setCarData(data);
@@ -13,13 +15,26 @@ function Cars({ data, q }: any) {
   return (
     <div className="w-[70%] pl-6">
       <div className="flex items-center justify-between">
-        {q && <AddCars data={data} setCarData={setCarData} />}
+        {q && (
+          <AddCars
+            data={data}
+            setCarData={setCarData}
+            open={open}
+            setOpen={setOpen}
+          />
+        )}
 
         <h1 className="text-4xl text-secondary">{data.name}</h1>
       </div>
       <ul className="flex w-full flex-wrap gap-12 py-4">
         {carData?.cars?.map((item: any, index: number) => (
-          <CarCardAdmin key={index} car={item} setCarData={setCarData} />
+          <CarCardAdmin
+            key={index}
+            car={item}
+            setCarData={setCarData}
+            open={open}
+            setOpen={setOpen}
+          />
         ))}
       </ul>
     </div>

@@ -24,12 +24,11 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CarItem, CategoryItem } from "@/lib/interface";
 
-function AddCars({ data, setCarData }: any) {
+function AddCars({ data, setCarData, open, setOpen }: any) {
   //// SUBMIT HANDLE
   const [error, setError] = useState<string | undefined>("");
   const [success, setSuccess] = useState<string | undefined>("");
   const [isPending, startTransition] = useTransition();
-  const [open, setOpen] = useState(false);
   const [uploadImages, setUploadImages] = useState<File[]>([]);
   let imageArray: string[];
 

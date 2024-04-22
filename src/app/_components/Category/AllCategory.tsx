@@ -2,8 +2,6 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { Button } from "@/components/ui/button";
-import { Checkbox } from "@/components/ui/checkbox";
 import {
   Form,
   FormControl,
@@ -14,15 +12,9 @@ import {
 } from "@/components/ui/form";
 import { toast } from "@/components/ui/use-toast";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import {
-  Dispatch,
-  SetStateAction,
-  useCallback,
-  useEffect,
-  useState,
-} from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
-import { CarItem, CategoryItem } from "@/lib/interface";
+import {  CategoryItem } from "@/lib/interface";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 type Items = {
@@ -63,6 +55,11 @@ const FormSchema = z.object({
 
 export function AllCategory({ category, data }: any) {
   const [types, setTypes] = useState<CategoryItem[]>([]);
+  const { push } = useRouter();
+  const searchParam = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
+  const car = searchParam.get("typeItems");
 
   useEffect(() => {
     const fetchCategory = async () => {
@@ -72,19 +69,13 @@ export function AllCategory({ category, data }: any) {
     fetchCategory();
   }, []);
 
-  const { push } = useRouter();
-  const searchParam = useSearchParams();
-  const router = useRouter();
-  const pathname = usePathname();
-
-  const car = searchParam.get("typeItems");
-
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
     defaultValues: {
       typeItems: "",
     },
   });
+
   function onSubmit(data: z.infer<typeof FormSchema>) {
     if (data.typeItems === "default") {
       router.push("/cars");
@@ -92,6 +83,14 @@ export function AllCategory({ category, data }: any) {
       router.push(`${pathname}?typeItems=${data.typeItems}`);
     }
   }
+  const handleRadioChange = (value: string) => {
+    form.setValue("typeItems", value);
+    if (value === "default") {
+      onSubmit({ typeItems: "default" });
+    } else {
+      onSubmit({ typeItems: value });
+    }
+  };
 
   return (
     <Form {...form}>
@@ -109,7 +108,7 @@ export function AllCategory({ category, data }: any) {
               <FormControl>
                 <RadioGroup
                   defaultValue={car || "default"}
-                  onValueChange={field.onChange}
+                  onValueChange={handleRadioChange}
                   className="flex flex-col space-y-1 "
                 >
                   <div className="space-y-2">
@@ -173,9 +172,6 @@ export function AllCategory({ category, data }: any) {
             </FormItem>
           )}
         />
-        <Button type="submit" size="lg">
-          Search
-        </Button>
       </form>
     </Form>
   );

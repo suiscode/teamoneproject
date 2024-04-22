@@ -11,7 +11,7 @@ import { CategoryItem } from "@/lib/interface";
 import AddCars from "./AddCars";
 import EditCarModal from "./EditCarModal";
 
-function CarCardAdmin({ car, index, setCarData }: any) {
+function CarCardAdmin({ car, index, setCarData, open, setOpen }: any) {
   const [isEditing, setIsEditing] = useState(false);
   const [editedCar, setEditedCar] = useState(car);
   const [carEditData, setCarEditData] = useState({});
