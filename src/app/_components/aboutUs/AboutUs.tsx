@@ -31,19 +31,20 @@ function AboutUs() {
       github: "https://github.com/Ganggana",
     },
     {
+      img: "/tuguu.jpg",
+      name: "Tuguu (Captain)",
+      about: "person about",
+      ig: "https://www.instagram.com/sb2014rtzn1#",
+      github: "https://github.com/suiscode",
+    },
+    {
       img: "/bilegt.jpg",
       name: "Bilegt",
       about: "person about",
       ig: "https://www.instagram.com/bblgttt#",
       github: "https://github.com/bilegtttttt",
     },
-    {
-      img: "/tuguu.jpg",
-      name: "Tuguu",
-      about: "person about",
-      ig: "https://www.instagram.com/sb2014rtzn1#",
-      github: "https://github.com/suiscode",
-    },
+
     {
       img: "/garid.jpg",
       name: "Garid",
@@ -68,7 +69,7 @@ function AboutUs() {
               key={index}
               className="flex flex-col shrink-0 border border-white p-[20px] rounded-sm snap-x snap-mandatory"
             >
-              <div className="snap-normal snap-center">
+              <div className="snap-normal snap-center flex justify-center">
                 <Image
                   className="h-fit w-fit object-cover rounded-sm"
                   src={el.img}

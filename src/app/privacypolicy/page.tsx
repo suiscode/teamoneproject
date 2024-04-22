@@ -7,6 +7,7 @@ function privacypolicy() {
   return (
     <div className="bg-black h-full w-full text-white flex flex-col items-center">
       <Header />
+      <p className="text-xl font-bold pt-8">Privacy Policy</p>
       <div className="w-[950px] p-7">
         <Text />
       </div>
