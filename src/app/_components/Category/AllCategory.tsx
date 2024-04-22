@@ -77,7 +77,7 @@ export function AllCategory({ category, data }: any) {
   const router = useRouter();
   const pathname = usePathname();
 
-  const car = searchParam.get("typesItems");
+  const car = searchParam.get("typeItems");
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -86,35 +86,11 @@ export function AllCategory({ category, data }: any) {
     },
   });
   function onSubmit(data: z.infer<typeof FormSchema>) {
-    toast({
-      title: "You submitted the following values:",
-      description: (
-        <pre className="mt-2 w-[340px] rounded-md bg-slate-950 p-4">
-          <code className="text-white">{JSON.stringify(data, null, 2)}</code>
-        </pre>
-      ),
-    });
-    router.push(`${pathname}?typeItems=${data.typeItems}`);
-
-    // const queryString: string[] = [];
-    // for (const key in data) {
-    //   if (Object.prototype.hasOwnProperty.call(data, key)) {
-    //     const value = data[key as keyof typeof data];
-    //     if (value) {
-    //       if (Array.isArray(value)) {
-    //         const values = value.map((v: string) =>
-    //           encodeURIComponent(v.replace(/\s/g, ""))
-    //         );
-    //         queryString.push(`${key}=${values.join("%20")}`);
-    //       } else {
-    //         queryString.push(`${key}=${encodeURIComponent(value as string)}`);
-    //       }
-    //     }
-    //   }
-    // }
-
-    // const finalQueryString = queryString.join("&");
-    // push(`/cars?${finalQueryString}`);
+    if (data.typeItems === "default") {
+      router.push("/cars");
+    } else {
+      router.push(`${pathname}?typeItems=${data.typeItems}`);
+    }
   }
 
   return (
@@ -132,11 +108,36 @@ export function AllCategory({ category, data }: any) {
 
               <FormControl>
                 <RadioGroup
+                  defaultValue={car || "default"}
                   onValueChange={field.onChange}
-                  defaultValue={field.value}
                   className="flex flex-col space-y-1 "
                 >
                   <div className="space-y-2">
+                    <FormField
+                      key={"default"}
+                      control={form.control}
+                      name="typeItems"
+                      render={({ field }) => {
+                        return (
+                          <FormItem
+                            key={"default"}
+                            className="flex flex-row items-center space-x-3 space-y-0"
+                          >
+                            <FormItem className="flex items-center space-x-3 space-y-0">
+                              <FormControl>
+                                <RadioGroupItem
+                                  className="bg-white"
+                                  value={"default"}
+                                />
+                              </FormControl>
+                              <FormLabel className="font-normal text-lg">
+                                {"All"}
+                              </FormLabel>
+                            </FormItem>
+                          </FormItem>
+                        );
+                      }}
+                    />
                     {category?.map((item: CategoryItem) => (
                       <FormField
                         key={item.id}
