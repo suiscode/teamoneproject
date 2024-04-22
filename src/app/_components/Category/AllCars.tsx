@@ -1,11 +1,14 @@
 "use client";
 
 import CarCart from "../CardDetail/CarCart";
-import { CarItem } from "@/lib/interface";
+import { CarItem, SessionInterface } from "@/lib/interface";
 import { useEffect, useState } from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
-const AllCars = ({ data, session }: any) => {
+const AllCars: React.FC<{ data: CarItem; session: SessionInterface }> = ({
+  data,
+  session,
+}: any) => {
   const [amount, setAmount] = useState(false);
 
   const filteredData = amount ? data : data.slice(0, 6);

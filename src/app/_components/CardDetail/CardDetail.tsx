@@ -4,14 +4,13 @@ import { FaRegHeart } from "react-icons/fa";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import CarImage from "./CarImage";
+import { CarItem } from "@/lib/interface";
 
-function CardDetail({ data }: any) {
+const CardDetail: React.FC<{ data: CarItem }> = ({ data }) => {
   const { push } = useRouter();
-
   const handleRentNow = () => {
     push("/payment");
   };
-
   return (
     <div className="justify-between bg-black flex p-8 border border-white gap-8 my-[60px] rounded-md">
       <div>
@@ -80,6 +79,6 @@ function CardDetail({ data }: any) {
       </div>
     </div>
   );
-}
+};
 
 export default CardDetail;
