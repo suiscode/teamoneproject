@@ -5,11 +5,20 @@ import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import CarImage from "./CarImage";
 import { CarItem } from "@/lib/interface";
+import { useSession } from "next-auth/react";
 
 const CardDetail: React.FC<{ data: CarItem }> = ({ data }) => {
+  const session = useSession();
+  console.log(session);
+
   const { push } = useRouter();
   const handleRentNow = () => {
-    push("/payment");
+    if (session.status != "authenticated") {
+      push("/auth/login");
+      return;
+    }
+    localStorage.setItem("BUY", JSON.stringify(data));
+    push("/cars/payment");
   };
   return (
     <div className="justify-between bg-black flex p-8 border border-white gap-8 my-[60px] rounded-md">

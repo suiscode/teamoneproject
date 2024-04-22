@@ -14,12 +14,14 @@ export const GlobalContextProvider = ({
   children,
 }: GlobalContextProviderProps) => {
   const [bookmarkCount, setBookmarkCount] = useState(0);
+  const test = 123;
 
   return (
     <GlobalContext.Provider
       value={{
         bookmarkCount,
         setBookmarkCount,
+        test,
       }}
     >
       {children}

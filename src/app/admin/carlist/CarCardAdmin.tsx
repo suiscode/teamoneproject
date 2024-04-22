@@ -8,15 +8,9 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import axios from "axios";
 import { CategoryItem } from "@/lib/interface";
-import AddCars from "./AddCars";
-import EditCarModal from "./EditCarModal";
 import { DialogTrigger } from "@/components/ui/dialog";
 
 function CarCardAdmin({ car, index, setCarData, openDialogWithValues }: any) {
-  const [isEditing, setIsEditing] = useState(false);
-  const [editedCar, setEditedCar] = useState(car);
-  const [carEditData, setCarEditData] = useState({});
-
   const handleDelete = async (id: string) => {
     setCarData((prev: any) => ({
       ...prev,
@@ -26,20 +20,6 @@ function CarCardAdmin({ car, index, setCarData, openDialogWithValues }: any) {
     console.log(res);
   };
 
-  const handleSave = () => {
-    setCarData((prevData: any) => {
-      const updatedCars = prevData.cars.map((item: any) =>
-        item.id === editedCar.id ? editedCar : item
-      );
-      return { ...prevData, cars: updatedCars };
-    });
-    setIsEditing(false);
-    setEditedCar(null);
-  };
-  const handleCancel = () => {
-    setIsEditing(false);
-    setEditedCar(null);
-  };
   return (
     <li
       key={index}

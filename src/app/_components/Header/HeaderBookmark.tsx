@@ -7,7 +7,8 @@ import { FaRegHeart } from "react-icons/fa";
 
 function HeaderBookmark({ count }: any) {
   const session = useSession();
-  const { bookmarkCount, setBookmarkCount } = useGlobalContext();
+
+  const { bookmarkCount, test, setBookmarkCount } = useGlobalContext();
   useEffect(() => {
     setBookmarkCount(count);
   }, []);
@@ -16,7 +17,7 @@ function HeaderBookmark({ count }: any) {
     <>
       <Link href="/cars/favorite" className="relative">
         {bookmarkCount !== 0 && (
-          <h1 className="text-[12px] absolute font-bold bg-white text-red-500 top-[-6px] right-[-8px] rounded-full w-4 h-4 flex items-center justify-center">
+          <h1 className="text-[12px] z-50 absolute font-bold bg-white text-red-500 top-[-6px] right-[-8px] rounded-full w-4 h-4 flex items-center justify-center">
             {bookmarkCount}
           </h1>
         )}

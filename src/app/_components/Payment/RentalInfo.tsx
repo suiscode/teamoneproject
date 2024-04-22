@@ -23,7 +23,7 @@ const nameOptions = [
   { value: "4", label: "Option 4" },
 ];
 
-const RentalInfo = async () => {
+const RentalInfo = () => {
   return (
     <div className="w-[896px] bg-white h-[672px] rounded-[10px] flex flex-col gap-[30px]">
       <div className="h-[85px] w-full flex justify-between ">

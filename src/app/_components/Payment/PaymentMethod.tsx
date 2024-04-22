@@ -3,7 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 
-const PaymentMethod = async () => {
+const PaymentMethod = () => {
   return (
     <div className="w-[896px] h-[668px] bg-[#FFFFFF] rounded-[10px] flex flex-col">
       <div className="w-[896px] h-[85px] flex justify-between  ">
