@@ -2,10 +2,11 @@
 
 import CarCart from "../CardDetail/CarCart";
 import { CarItem, SessionInterface } from "@/lib/interface";
+import { Session } from "next-auth";
 import { useEffect, useState } from "react";
 import { AiOutlineArrowDown, AiOutlineArrowUp } from "react-icons/ai";
 
-const AllCars: React.FC<{ data: CarItem; session: SessionInterface }> = ({
+const AllCars: React.FC<{ data: CarItem[]; session: Session }> = ({
   data,
   session,
 }: any) => {

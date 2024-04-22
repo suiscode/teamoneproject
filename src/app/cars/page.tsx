@@ -4,6 +4,8 @@ import AllCars from "../_components/Category/AllCars";
 import { fetchCars, fetchCategory, fetchSortedCars } from "../fetch";
 import { auth } from "../../../auth";
 import type { Metadata } from "next";
+import { CarItem } from "@/lib/interface";
+import { Session } from "next-auth";
 
 export const metadata: Metadata = {
   title: "All Cars Rental",
@@ -30,7 +32,7 @@ async function CarsPage({ searchParams }: SearchPageType) {
   return (
     <div className="xl:w-[1440px] lg:w-[1024px] flex md:w-[640px] text-secondary py-8 sm:max-sm:w-[390px]">
       <AllCategory data={data} category={category} />
-      <AllCars data={data} session={session} />
+      <AllCars data={data as CarItem[]} session={session as Session} />
     </div>
   );
 }
