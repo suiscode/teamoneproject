@@ -6,11 +6,11 @@ import PaymentConfirmation from "./PaymentConfirmation";
 
 const PaymentCards = () => {
   return (
-    <div className="w-[896px] h-[2506px] flex flex-col gap-[30px]">
+    <div className="w-[62%] h-[2506px] flex flex-col gap-[30px]">
       {/* <PaymentBilling /> */}
       <RentalInfo />
-      <PaymentMethod />
-      <PaymentConfirmation />
+      {/* <PaymentMethod /> */}
+      {/* <PaymentConfirmation /> */}
     </div>
   );
 };

@@ -34,6 +34,22 @@ export const RegisterSchema = z.object({
   }),
 });
 
+export const OrderSchema = z.object({
+  pickUpLocation: z.string(),
+  dropOffLocation: z.string(),
+  date: z
+    .object(
+      {
+        from: z.date(),
+        to: z.date(),
+      },
+      { required_error: "Date is required" }
+    )
+    .refine((date) => {
+      return !!date.from;
+    }, "Date is required"),
+});
+
 export const NewCarSchema = z.object({
   name: z.string().min(1, {
     message: "Must fill",

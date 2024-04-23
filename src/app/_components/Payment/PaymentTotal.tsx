@@ -1,12 +1,29 @@
 import { CarItem } from "@/lib/interface";
 import Image from "next/image";
 import React from "react";
+interface DateRange {
+  from: Date | undefined;
+  to: Date | undefined;
+}
+interface ChildProps {
+  dateRange: DateRange;
+  carData: CarItem;
+}
 
-const PaymentTotal: React.FC<{ carData: CarItem }> = ({ carData }) => {
-  console.log(carData);
+const PaymentTotal: React.FC<ChildProps> = ({ carData, dateRange }) => {
+  // function calculateDayDifference(dateRange: DateRange) {
+  //   let differenceInMilliseconds =
+  //     dateRange.to.getTime() - dateRange.from.getTime();
+  //   let differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+
+  //   return Math.abs(Math.round(differenceInDays)); // Absolute value and rounded
+  // }
+
+  // const dateDifference = calculateDayDifference(dateRange);
+  // console.log(dateDifference);
 
   return (
-    <div className="w-[36%] p-4 h-[320px] border-2 border-red-500 rounded-[10px] bg-[#FFFFFF] flex flex-col gap-[30px]">
+    <div className="w-[36%] p-4 h-[380px] border-2 border-red-500 rounded-[10px] bg-[#FFFFFF] flex flex-col gap-[30px]">
       <div className="w-full flex flex-col gap-[6px]">
         <div className="text-xl font-bold text-[#1A202C]">Rental Summary</div>
         <div className="text-[#90A3BF] text-[14px] font-medium w-full">
@@ -16,7 +33,7 @@ const PaymentTotal: React.FC<{ carData: CarItem }> = ({ carData }) => {
       </div>
       <div className="w-full flex gap-[16px]">
         <div className="w-1/2 h-[108px] relative ">
-          <Image src="/" fill className="absolute" alt="buyimg" />
+          <Image src={carData.img[0]} fill className="absolute" alt="buyimg" />
         </div>
         <h1 className="w-[220px] h-[40px] font-bold leading-[48px] text-[28px]">
           {carData.name}
@@ -40,15 +57,22 @@ const PaymentTotal: React.FC<{ carData: CarItem }> = ({ carData }) => {
           <h2>Apply now</h2>
         </div>
       </div> */}
-      <div className="w-full h-[48px] flex gap-[32px] border-t-2">
-        <div className="w-full flex pt-2 items-center justify-between">
-          <h1 className="w-[200px]">Total Rental Price</h1>
-          {/* <div className="w-[304px]  h-[20px] text-[14px] font-medium leading-[21px]">
-            Overall price and includes rental discount
-          </div> */}
-          <h1>Price</h1>
+      <div className="w-full flex flex-col border-t-2">
+        <div className="flex">
+          <h1 className="w-[200px]">Car price per day</h1>
+
+          <h1>{carData.price.toLocaleString()}</h1>
         </div>
-        <div className=""></div>
+        <div className="flex">
+          <h1 className="w-[200px]">Rent day</h1>
+
+          {/* <h1>{dateDifference}</h1> */}
+        </div>
+        <div className="flex border-t mt-2 border-black">
+          <h1 className="w-[200px]">Total Rental Price</h1>
+
+          {/* <h1>{(dateDifference * carData.price).toLocaleString()}</h1> */}
+        </div>
       </div>
     </div>
   );
