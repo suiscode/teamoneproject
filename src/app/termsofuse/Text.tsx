@@ -16,7 +16,10 @@ function Text() {
     <div>
       {home.map(({ title, text }, index) => {
         return (
-          <div key={index} className="flex flex-col">
+          <div
+            key={index}
+            className="flex flex-col sm:flex sm:justify-center sm:max-w-[390px] md:max-w-[640px] lg:max-w-[1024px]"
+          >
             <div className="flex flex-col gap-2 p-5">
               <div className="text-xl font-bold">{title}</div>
               <div className="text-base">{text}</div>
