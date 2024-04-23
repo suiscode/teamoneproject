@@ -66,7 +66,7 @@ const CarCart: React.FC<CarCartProps> = ({ car, session }) => {
           href={`/cars/${car.id}`}
           className="w-24 h-10 border-2 hover:bg-white/10 transition-all rounded-md flex items-center justify-center text-white "
         >
-          Rent now
+          View detail
         </Link>
       </div>
     </li>

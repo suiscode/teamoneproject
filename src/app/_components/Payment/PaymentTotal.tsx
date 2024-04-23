@@ -2,8 +2,8 @@ import { CarItem } from "@/lib/interface";
 import Image from "next/image";
 import React from "react";
 interface DateRange {
-  from: Date | undefined;
-  to: Date | undefined;
+  from: Date;
+  to: Date;
 }
 interface ChildProps {
   dateRange: DateRange;
@@ -11,16 +11,16 @@ interface ChildProps {
 }
 
 const PaymentTotal: React.FC<ChildProps> = ({ carData, dateRange }) => {
-  // function calculateDayDifference(dateRange: DateRange) {
-  //   let differenceInMilliseconds =
-  //     dateRange.to.getTime() - dateRange.from.getTime();
-  //   let differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+  function calculateDayDifference(dateRange: DateRange) {
+    let differenceInMilliseconds =
+      dateRange.to.getTime() - dateRange.from.getTime();
+    let differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
 
-  //   return Math.abs(Math.round(differenceInDays)); // Absolute value and rounded
-  // }
+    return Math.abs(Math.round(differenceInDays)); // Absolute value and rounded
+  }
 
-  // const dateDifference = calculateDayDifference(dateRange);
-  // console.log(dateDifference);
+  const dateDifference = calculateDayDifference(dateRange);
+  console.log(dateDifference);
 
   return (
     <div className="w-[36%] p-4 h-[380px] border-2 border-red-500 rounded-[10px] bg-[#FFFFFF] flex flex-col gap-[30px]">
@@ -33,7 +33,12 @@ const PaymentTotal: React.FC<ChildProps> = ({ carData, dateRange }) => {
       </div>
       <div className="w-full flex gap-[16px]">
         <div className="w-1/2 h-[108px] relative ">
-          <Image src={carData.img[0]} fill className="absolute" alt="buyimg" />
+          <Image
+            src={carData.img[0]}
+            fill
+            className="absolute object-cover"
+            alt="buyimg"
+          />
         </div>
         <h1 className="w-[220px] h-[40px] font-bold leading-[48px] text-[28px]">
           {carData.name}
@@ -66,12 +71,12 @@ const PaymentTotal: React.FC<ChildProps> = ({ carData, dateRange }) => {
         <div className="flex">
           <h1 className="w-[200px]">Rent day</h1>
 
-          {/* <h1>{dateDifference}</h1> */}
+          <h1>{dateDifference}</h1>
         </div>
         <div className="flex border-t mt-2 border-black">
           <h1 className="w-[200px]">Total Rental Price</h1>
 
-          {/* <h1>{(dateDifference * carData.price).toLocaleString()}</h1> */}
+          <h1>{(dateDifference * carData.price).toLocaleString()}</h1>
         </div>
       </div>
     </div>

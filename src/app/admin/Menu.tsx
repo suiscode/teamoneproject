@@ -8,7 +8,7 @@ import React from "react";
 
 const links = [
   { label: "Carlist", link: "carlist" },
-  { label: "Orders", link: "order" },
+  { label: "Orders", link: "orders" },
 ];
 
 function Menu() {

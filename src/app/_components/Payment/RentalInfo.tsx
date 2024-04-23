@@ -31,6 +31,8 @@ import {
 } from "@/components/ui/popover";
 import { CalendarIcon } from "@radix-ui/react-icons";
 import { Calendar } from "@/components/ui/calendar";
+import { CarItem } from "@/lib/interface";
+import { useRouter } from "next/navigation";
 
 const locationOptions = [
   { value: "Ulaanbaatar", label: "Ulaanbaatar" },
@@ -48,21 +50,25 @@ const nameOptions = [
 
 interface ChildProps {
   dateRange: {
-    from: Date | undefined;
-    to: Date | undefined;
+    from: Date;
+    to: Date;
   };
   setDateRange: React.Dispatch<
     React.SetStateAction<{
-      from: Date | undefined;
-      to: Date | undefined;
+      from: Date;
+      to: Date;
     }>
   >;
+  carId: string;
 }
-const RentalInfo: React.FC<ChildProps> = ({ dateRange, setDateRange }) => {
-  const [error, setError] = useState<string | undefined>("");
-  const [success, setSuccess] = useState<string | undefined>("");
+const RentalInfo: React.FC<ChildProps> = ({
+  dateRange,
+  setDateRange,
+  carId,
+}) => {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
+  const { push } = useRouter();
 
   const form = useForm<z.infer<typeof OrderSchema>>({
     resolver: zodResolver(OrderSchema),
@@ -70,21 +76,24 @@ const RentalInfo: React.FC<ChildProps> = ({ dateRange, setDateRange }) => {
       pickUpLocation: "Ulaanbaatar",
       dropOffLocation: "Ulaanbaatar",
       date: {
-        from: undefined,
-        to: undefined,
+        from: dateRange.from,
+        to: dateRange.to,
       },
     },
   });
 
   const onSubmit = (values: z.infer<typeof OrderSchema>) => {
-    setSuccess("");
-    setError("");
     startTransition(async () => {
       try {
-        // const res = await axios.post("/api/auth/register", values);
+        const res = await axios.post("/api/order", { ...values, carId });
 
-        console.log(values);
-        // setSuccess(res.data.success);
+        // console.log(carId);
+        push("/profile");
+        toast({
+          variant: "default",
+          title: "Success",
+          description: "You have successfully ordered",
+        });
       } catch (e: any) {
         toast({
           variant: "destructive",
@@ -98,7 +107,7 @@ const RentalInfo: React.FC<ChildProps> = ({ dateRange, setDateRange }) => {
   return (
     <Form {...form}>
       <form
-        className="space-y-6 w-[62%] px-8 border-2 p-6 bg-white"
+        className="space-y-6 w-[62%] h-[380px] rounded-md px-8 border-2 p-6 bg-white"
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <div className="w-full flex flex-col  gap-8">
@@ -220,28 +229,30 @@ const RentalInfo: React.FC<ChildProps> = ({ dateRange, setDateRange }) => {
                             from: field.value.from,
                             to: field.value.to,
                           }}
-                          onSelect={field.onChange}
-                          // if (date && "from" in date && "to" in date) {
-                          //   setDateRange({
-                          //     from: date.from ?? new Date(), // Provide default if undefined
-                          //     to: date.to ?? new Date(), // Provide default if undefined
-                          //   });
-                          // } else {
-                          //   console.error(
-                          //     "Date object is not in expected format:",
-                          //     date
-                          //   );
-                          // }
+                          onSelect={(date) => {
+                            field.onChange(date);
+                            if (date && "from" in date && "to" in date) {
+                              setDateRange({
+                                from: date.from ?? new Date(), // Provide default if undefined
+                                to: date.to ?? new Date(), // Provide default if undefined
+                              });
+                            } else {
+                              console.error(
+                                "Date object is not in expected format:",
+                                date
+                              );
+                            }
+                          }}
                           numberOfMonths={2}
-                          // disabled={(date) => {
-                          //   const today = new Date();
-                          //   today.setHours(0, 0, 0, 0);
+                          disabled={(date) => {
+                            const today = new Date();
+                            today.setHours(0, 0, 0, 0);
 
-                          //   const comparisonDate = new Date(date);
-                          //   comparisonDate.setHours(0, 0, 0, 0);
+                            const comparisonDate = new Date(date);
+                            comparisonDate.setHours(0, 0, 0, 0);
 
-                          //   return comparisonDate < today;
-                          // }}
+                            return comparisonDate < today;
+                          }}
                         />
                       </PopoverContent>
                     </Popover>
@@ -253,7 +264,9 @@ const RentalInfo: React.FC<ChildProps> = ({ dateRange, setDateRange }) => {
             </div>
           </div>
         </div>
-        <Button type="submit">Rent now</Button>
+        <Button disabled={isPending} type="submit">
+          Rent now
+        </Button>
       </form>
     </Form>
   );

@@ -39,6 +39,37 @@ export const fetchSortedCars = async (type) => {
   }
 };
 
+export const fetchUserOrder = async (userId) => {
+  try {
+    const userOrder = await db.order.findMany({
+      where: {
+        userId: userId,
+      },
+      include: {
+        user: true,
+        car: true,
+      },
+    });
+    return sortCars;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+export const fetchAllOrder = async () => {
+  try {
+    const allOrder = await db.order.findMany({
+      include: {
+        user: true, // Include user details
+        car: true, // Include car details
+      },
+    });
+    return allOrder;
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 export const getOneCar = async (id) => {
   try {
     const car = await db.car.findUnique({

@@ -16,17 +16,17 @@ function HeaderBookmark({ count }: any) {
   return (
     <>
       <Link href="/cars/favorite" className="relative">
-        {bookmarkCount !== 0 && (
+        {session.status !== "unauthenticated" && bookmarkCount !== 0 && (
           <h1 className="text-[12px] z-50 absolute font-bold bg-white text-red-500 top-[-6px] right-[-8px] rounded-full w-4 h-4 flex items-center justify-center">
             {bookmarkCount}
           </h1>
         )}
+
         <FaRegHeart
           className="h-[24px] w-[24px] hover:animate-pulse"
           color={bookmarkCount !== 0 ? "red" : "inherit"}
         />
       </Link>
-      <h1 onClick={() => console.log(bookmarkCount)}></h1>
     </>
   );
 }
