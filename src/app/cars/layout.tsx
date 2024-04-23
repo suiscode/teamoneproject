@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Header from "../_components/Header/Header";
 import Footer from "@/app/_components/Footer/Footer";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,6 +19,7 @@ export default function RootLayout({
       <div id="cars" className="w-full flex justify-center h-full">
         {children}
       </div>
+      <Toaster />
       <Footer />
     </div>
   );

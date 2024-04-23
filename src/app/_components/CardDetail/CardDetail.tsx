@@ -18,7 +18,7 @@ const CardDetail: React.FC<{ data: CarItem }> = ({ data }) => {
       return;
     }
     localStorage.setItem("BUY", JSON.stringify(data));
-    push("/cars/payment");
+    push("/payment");
   };
   return (
     <div className="justify-between bg-black flex p-8 border border-white gap-8 my-[60px] rounded-md">

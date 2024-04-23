@@ -7,8 +7,8 @@ import SkeletonTotalSkeleton from "./SkeletonTotal";
 import RentalInfo from "./RentalInfo";
 
 interface DateRange {
-  from: Date | undefined;
-  to: Date | undefined;
+  from: Date;
+  to: Date;
 }
 
 const PaymentMain = () => {
@@ -17,13 +17,9 @@ const PaymentMain = () => {
   const [carData, setCarData] = useState<CarItem>();
   const [loading, setLoading] = useState(true);
   const [date, setDate] = useState<DateRange>({
-    from: undefined,
-    to: undefined,
+    from: new Date(),
+    to: currentDate,
   });
-
-  useEffect(() => {
-    console.log(date);
-  }, [date]);
 
   useEffect(() => {
     const localGet = localStorage.getItem("BUY");
@@ -36,8 +32,12 @@ const PaymentMain = () => {
   }, []);
 
   return (
-    <div id="cars" className="w-full justify-between py-8 flex">
-      <RentalInfo dateRange={date} setDateRange={setDate} />
+    <div  className="w-full justify-between py-8 flex">
+      <RentalInfo
+        dateRange={date}
+        carId={carData?.id as string}
+        setDateRange={setDate}
+      />
       {!loading ? (
         <PaymentTotal carData={carData as CarItem} dateRange={date} />
       ) : (
