@@ -8,7 +8,7 @@ const PaymentCards = () => {
   return (
     <div className="w-[62%] h-[2506px] flex flex-col gap-[30px]">
       {/* <PaymentBilling /> */}
-      <RentalInfo />
+      {/* <RentalInfo /> */}
       {/* <PaymentMethod /> */}
       {/* <PaymentConfirmation /> */}
     </div>
