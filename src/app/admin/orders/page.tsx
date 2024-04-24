@@ -1,14 +1,14 @@
 import { fetchAllOrder } from "@/app/fetch";
-import OrderCart from "./OrderCart";
+import { OrderInterface } from "@/lib/interface";
+import { DataTable } from "./data-table";
+import { columns } from "./columns";
 
-async function page() {
-  const order = await fetchAllOrder();
+export default async function DemoPage() {
+  const data = await fetchAllOrder();
 
   return (
-    <div className="flex justify-between p-8  flex-row-reverse border w-full py-6">
-      <OrderCart order={order?.[0]} />
+    <div className="container mx-auto py-10">
+      {/* <DataTable columns={columns} data={data} /> */}
     </div>
   );
 }
-
-export default page;

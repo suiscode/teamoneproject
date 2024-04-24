@@ -14,6 +14,21 @@ export interface CarItem {
   reviews?: Review[] | null;
 }
 
+export interface DurationInterface {
+  from: Date;
+  to: Date;
+}
+export interface OrderInterface {
+  id: string;
+  duration: DurationInterface;
+  pickupLocation: string;
+  dropLocation: string[];
+  amount: number;
+  userId: string;
+  carId: string;
+  user: UserInterface;
+}
+
 export interface CategoryItem {
   id: string;
   name: string;
@@ -36,6 +51,8 @@ export interface UserInterface {
   email: string;
   id: string;
   image?: string;
-  name: string;
+  firstName: string;
+  lastName: string;
+  address: string | null;
   role: string;
 }
