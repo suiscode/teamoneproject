@@ -7,7 +7,7 @@ const CarImage: React.FC<{ data: CarItem }> = ({ data }) => {
   const [state, setState] = useState(0);
 
   return (
-    <div className="flex flex-col w-[765px] gap-5 p-8 border border-white rounded-md">
+    <div className="flex flex-col w-[765px] gap-5 p-8  rounded-md">
       <div className="w-[700px] h-[400px] relative">
         <Image
           src={data.img[state]}
