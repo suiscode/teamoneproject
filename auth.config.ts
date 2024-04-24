@@ -23,8 +23,8 @@ declare module "next-auth" {
 declare module "@auth/core/adapters" {
   interface AdapterUser {
     // Add your additional properties here:
-    firstName: string | null;
-    lastName: string | null;
+    firstName?: string | null;
+    lastName?: string | null;
     address?: string | null;
     phoneNumber?: string | null;
   }
@@ -78,7 +78,6 @@ export default {
 
     async session({ token, session }) {
       const existingUser = await getUserById(token.sub);
-
 
       if (token.sub && session.user) {
         session.user.id = token.sub;

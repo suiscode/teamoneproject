@@ -32,7 +32,7 @@ export const POST = async (req: NextRequest) => {
         email,
         firstName,
         lastName,
-        phoneNumber:phoneNumber.toString(),
+        phoneNumber,
         password: hashedPassword,
       },
     });

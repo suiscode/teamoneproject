@@ -12,10 +12,10 @@ function Cars({ data, q }: any) {
 
   return (
     <div className="w-[70%] pl-6">
-      <div className="flex items-center justify-between">
+      <div className="flex items-start justify-between">
         {q && <AddCars carData={carData} data={data} setCarData={setCarData} />}
 
-        <h1 className="text-4xl text-secondary">{data.name}</h1>
+        <h1 className="text-4xl text-secondary mt-2">{data.name}</h1>
       </div>
     </div>
   );
