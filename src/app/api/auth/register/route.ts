@@ -20,7 +20,7 @@ export const POST = async (req: NextRequest) => {
   try {
     connectToDB();
 
-    const { email, password, name } = body;
+    const { email, password, firstName, lastName, phoneNumber } = body;
     const hashedPassword = await bcrypt.hash(password, 10);
     const existingUser = await getUserByEmail(email);
 
@@ -30,7 +30,9 @@ export const POST = async (req: NextRequest) => {
     const newUser = await db.user.create({
       data: {
         email,
-        name,
+        firstName,
+        lastName,
+        phoneNumber:phoneNumber.toString(),
         password: hashedPassword,
       },
     });
