@@ -8,6 +8,27 @@ import { getUserByEmail, getUserById } from "@/lib/user-data";
 import { UserRole } from "@prisma/client";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 import { db } from "@/lib/db";
+import NextAuth from "next-auth";
+
+declare module "next-auth" {
+  interface User {
+    // Add your additional properties here:
+    firstName?: string | null;
+    lastName?: string | null;
+    address?: string | null;
+    phoneNumber?: string | null;
+  }
+}
+
+declare module "@auth/core/adapters" {
+  interface AdapterUser {
+    // Add your additional properties here:
+    firstName: string | null;
+    lastName: string | null;
+    address?: string | null;
+    phoneNumber?: string | null;
+  }
+}
 
 export default {
   providers: [
@@ -56,11 +77,26 @@ export default {
     },
 
     async session({ token, session }) {
+      const existingUser = await getUserById(token.sub);
+
+
       if (token.sub && session.user) {
         session.user.id = token.sub;
       }
       if (token.role && session.user) {
         session.user.role = token.role as UserRole;
+      }
+      if (token.phoneNumber && session.user) {
+        session.user.phoneNumber = token.phoneNumber as string;
+      }
+      if (token.firstName && session.user) {
+        session.user.firstName = token.firstName as string;
+      }
+      if (token.lastName && session.user) {
+        session.user.lastName = token.lastName as string;
+      }
+      if (token.address && session.user) {
+        session.user.address = token.address as string;
       }
 
       return session;
@@ -71,6 +107,10 @@ export default {
       const existingUser = await getUserById(token.sub);
       if (!existingUser) return token;
       token.role = existingUser.role;
+      token.phoneNumber = existingUser.phoneNumber;
+      token.firstName = existingUser.firstName;
+      token.lastName = existingUser.lastName;
+      token.address = existingUser.address;
 
       return token;
     },

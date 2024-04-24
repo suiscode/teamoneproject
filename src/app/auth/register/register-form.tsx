@@ -32,7 +32,9 @@ export default function RegisterForm() {
     defaultValues: {
       email: "",
       password: "",
-      name: "",
+      firstName: "",
+      lastName: "",
+      phoneNumber: undefined,
     },
   });
 
@@ -49,10 +51,12 @@ export default function RegisterForm() {
           description: "Signed Up",
         });
       } catch (e: any) {
+        console.log(e);
+        
         toast({
           variant: "destructive",
           title: "Error Occured",
-          description: "Email is in use ",
+          description: e.response.data.error,
         });
       }
     });
@@ -89,7 +93,7 @@ export default function RegisterForm() {
             />
             <FormField
               control={form.control}
-              name="name"
+              name="firstName"
               render={({ field }) => (
                 <FormItem>
                   <FormControl>
@@ -98,6 +102,40 @@ export default function RegisterForm() {
                       {...field}
                       placeholder="Your name"
                       type="name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="lastName"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      {...field}
+                      placeholder="Last name"
+                      type="name"
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+            <FormField
+              control={form.control}
+              name="phoneNumber"
+              render={({ field }) => (
+                <FormItem>
+                  <FormControl>
+                    <Input
+                      disabled={isPending}
+                      {...field}
+                      placeholder="Phone number"
+                      type="number"
                     />
                   </FormControl>
                   <FormMessage />

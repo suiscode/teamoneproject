@@ -26,11 +26,18 @@ export const ResetSchema = z.object({
 
 export const RegisterSchema = z.object({
   email: z.string().email(),
+  phoneNumber: z.coerce.number().min(8, {
+    message: "Minimum 8 characters required",
+  }),
+
+  firstName: z.string().min(2, {
+    message: "Minimum 2 characters required",
+  }),
+  lastName: z.string().min(2, {
+    message: "Minimum 2 characters required",
+  }),
   password: z.string().min(6, {
     message: "Minimum 6 characters required",
-  }),
-  name: z.string().min(1, {
-    message: "Name is required",
   }),
 });
 

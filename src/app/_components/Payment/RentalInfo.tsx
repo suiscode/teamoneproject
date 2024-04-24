@@ -59,16 +59,28 @@ interface ChildProps {
       to: Date;
     }>
   >;
-  carId: string;
+  carData: CarItem;
 }
 const RentalInfo: React.FC<ChildProps> = ({
   dateRange,
   setDateRange,
-  carId,
+  carData,
 }) => {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
   const { push } = useRouter();
+
+  interface DateRange {
+    from: Date;
+    to: Date;
+  }
+  function calculateDayDifference(dateRange: DateRange) {
+    let differenceInMilliseconds =
+      dateRange.to.getTime() - dateRange.from.getTime();
+    let differenceInDays = differenceInMilliseconds / (1000 * 60 * 60 * 24);
+
+    return Math.abs(Math.round(differenceInDays)); // Absolute value and rounded
+  }
 
   const form = useForm<z.infer<typeof OrderSchema>>({
     resolver: zodResolver(OrderSchema),
@@ -84,11 +96,18 @@ const RentalInfo: React.FC<ChildProps> = ({
 
   const onSubmit = (values: z.infer<typeof OrderSchema>) => {
     startTransition(async () => {
+      const dateDifference = calculateDayDifference(values.date);
+      const amount = carData.salePrice
+        ? carData.salePrice * dateDifference
+        : carData.price * dateDifference;
       try {
-        const res = await axios.post("/api/order", { ...values, carId });
+        const res = await axios.post("/api/order", {
+          ...values,
+          carId: carData.id,
+          amount,
+        });
 
-        // console.log(carId);
-        push("/profile");
+        // push("/profile");
         toast({
           variant: "default",
           title: "Success",

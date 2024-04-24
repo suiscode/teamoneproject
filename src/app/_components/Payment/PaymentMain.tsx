@@ -35,7 +35,7 @@ const PaymentMain = () => {
     <div  className="w-full justify-between py-8 flex">
       <RentalInfo
         dateRange={date}
-        carId={carData?.id as string}
+        carData={carData as CarItem}
         setDateRange={setDate}
       />
       {!loading ? (

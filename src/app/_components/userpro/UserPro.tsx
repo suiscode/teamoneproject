@@ -7,6 +7,8 @@ import React from "react";
 
 export const UserProfile = () => {
   const session = useSession();
+  console.log(session);
+
   const user = session.data?.user;
 
   return (

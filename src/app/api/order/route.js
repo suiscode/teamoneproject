@@ -4,8 +4,10 @@ import { db } from "@/lib/db";
 
 export const POST = async (req) => {
   const session = await auth();
-  const { pickUpLocation, dropOffLocation, date, carId } = await req.json();
-  console.log(date);
+  const { pickUpLocation, dropOffLocation, date, carId, amount } =
+    await req.json();
+  console.log(date, amount);
+
   try {
     const newOrder = await db.order.create({
       data: {
@@ -21,6 +23,7 @@ export const POST = async (req) => {
         },
         pickupLocation: pickUpLocation,
         dropLocation: dropOffLocation,
+        amount,
       },
     });
 
