@@ -50,17 +50,21 @@ export default function LoginForm() {
         router.push("/cars");
         if (res.data.twoFactor) {
           setShowTwoFactor(true);
+          toast({
+            variant: "destructive",
+            title: "Successfully ",
+            description: "Logged In",
+          });
         }
       } catch (e: any) {
         if (e.response.data.error) {
           form.reset();
         }
         toast({
-          variant: "destructive",   
+          variant: "destructive",
           title: "Error Occured",
           description: "Email or password wrong",
         });
-      
       }
     });
   };

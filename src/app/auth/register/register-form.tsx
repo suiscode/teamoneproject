@@ -43,6 +43,11 @@ export default function RegisterForm() {
       try {
         const res = await axios.post("/api/auth/register", values);
         setSuccess(res.data.success);
+        toast({
+          variant: "default",
+          title: "Successfully ",
+          description: "Signed Up",
+        });
       } catch (e: any) {
         toast({
           variant: "destructive",
