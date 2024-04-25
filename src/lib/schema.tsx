@@ -84,3 +84,18 @@ export const NewCarSchema = z.object({
     message: "Must fill",
   }),
 });
+export const editProfileSchema = z.object({
+  firstName: z.string().min(1, {
+    message: "Must fill",
+  }),
+  lastName: z.string().min(1, {
+    message: "Must fill",
+  }),
+  phoneNumber: z.coerce.number().min(8, {
+    message: "Phone number must have 8 digits",
+  }),
+  email: z.string().email(),
+  address: z.string().min(12, {
+    message: "Phone number must have 12 characters",
+  }),
+});
