@@ -12,7 +12,7 @@ const AddReview = () => {
   const onPointerLeave = () => console.log(rating);
 
   return (
-    <div className="border">
+    <div className="absolute left-[53%] top-[50%]">
       <Rating
         onClick={handleRating}
         onPointerLeave={onPointerLeave}

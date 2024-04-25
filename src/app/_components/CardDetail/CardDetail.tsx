@@ -6,7 +6,7 @@ import AddReview from "./AddReview";
 
 const CardDetail: React.FC<{ data: CarItem }> = ({ data }) => {
   return (
-    <div className="justify-between border bg-black flex p-8  gap-8 rounded-md">
+    <div className="justify-between  bg-black flex p-8  gap-8 rounded-md">
       <div>
         <CarImage data={data} />
       </div>

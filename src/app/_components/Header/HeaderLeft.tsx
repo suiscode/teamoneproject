@@ -17,11 +17,11 @@ const HeaderLeft = () => {
           <Link href="/cars">
             <Button
               variant="link"
-              className={`text-secondary rounded-none ${
+              className={`text-secondary text-md   rounded-none ${
                 pathname === "/cars" && "underline"
               }`}
             >
-              Cars
+              CARS
             </Button>
           </Link>
         </ul>
