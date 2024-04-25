@@ -137,9 +137,9 @@ const RentalInfo: React.FC<ChildProps> = ({
                 Please select your rental date
               </h1>
             </div>
-            <div className="text-[#90A3BF] text-[14px] font-medium flex">
+            {/* <div className="text-[#90A3BF] text-[14px] font-medium flex">
               Step 2 of 3
-            </div>
+            </div> */}
           </div>
           <div className="flex flex-col gap-8 justify-between w-full">
             <div className="flex  gap-[24px] w-full ">

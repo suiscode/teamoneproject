@@ -32,7 +32,7 @@ const PaymentMain = () => {
   }, []);
 
   return (
-    <div  className="w-full justify-between py-8 flex">
+    <div className="w-full justify-between py-8 flex items-center">
       <RentalInfo
         dateRange={date}
         carData={carData as CarItem}
