@@ -9,6 +9,7 @@ const inter = Montserrat({ subsets: ["latin"] });
 export const metadata: Metadata = {
   title: "Car rental",
   description: "Car rental website",
+  icons: "/favicon.ico",
 };
 
 export default function RootLayout({

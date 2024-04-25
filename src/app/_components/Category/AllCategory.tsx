@@ -14,7 +14,7 @@ import { toast } from "@/components/ui/use-toast";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import {  CategoryItem } from "@/lib/interface";
+import { CategoryItem } from "@/lib/interface";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 
 type Items = {
