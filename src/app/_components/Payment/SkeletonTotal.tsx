@@ -1,7 +1,7 @@
 import { Skeleton } from "@/components/ui/skeleton";
 export default function SkeletonTotalSkeleton() {
   return (
-    <div className="w-[36%] p-4 h-[380px] border-2 border-red-500 rounded-[10px] bg-[#FFFFFF] flex flex-col gap-[30px]">
+    <div className="w-[36%] p-4 h-[380px] border-2 backdrop-blur-sm bg-black/50 rounded-[10px] flex flex-col gap-[30px]">
       <div className="w-[214px] flex flex-col gap-[6px] mt-[26px] ml-[26px]">
         <div className="text-xl font-bold text-[#1A202C]">Rental Summary</div>
         <div className="text-[#90A3BF] text-[14px] font-medium w-[400px]">

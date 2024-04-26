@@ -126,13 +126,13 @@ const RentalInfo: React.FC<ChildProps> = ({
   return (
     <Form {...form}>
       <form
-        className="space-y-6 w-[62%] h-[380px] rounded-md px-8 border-2 p-6 bg-white"
+        className="space-y-6 w-[62%] h-[380px] rounded-md px-8  p-6 bg-black/50 backdrop-blur-sm "
         onSubmit={form.handleSubmit(onSubmit)}
       >
         <div className="w-full flex flex-col  gap-8">
           <div className="h-full w-full flex justify-between items-center">
             <div className="flex flex-col gap-[6px]">
-              <h1 className="text-black text-xl font-bold">Rental Info</h1>
+              <h1 className="text-white text-xl font-bold">Rental Info</h1>
               <h1 className="text-[#90A3BF] text-[14px] font-medium">
                 Please select your rental date
               </h1>
@@ -147,13 +147,13 @@ const RentalInfo: React.FC<ChildProps> = ({
                 control={form.control}
                 name="pickUpLocation"
                 render={({ field }) => (
-                  <FormItem className="w-[46%]">
+                  <FormItem className="w-[46%] text-white">
                     <FormLabel>Pick up location</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <FormControl className="py-6">
+                      <FormControl className="py-6  ">
                         <SelectTrigger>
                           <SelectValue placeholder="Select pickup location" />
                         </SelectTrigger>
@@ -178,13 +178,13 @@ const RentalInfo: React.FC<ChildProps> = ({
                 control={form.control}
                 name="dropOffLocation"
                 render={({ field }) => (
-                  <FormItem className="w-[46%]">
+                  <FormItem className="w-[46%] text-white">
                     <FormLabel>Drop off location</FormLabel>
                     <Select
                       onValueChange={field.onChange}
                       defaultValue={field.value}
                     >
-                      <FormControl className="py-6">
+                      <FormControl className="py-6 text-white">
                         <SelectTrigger>
                           <SelectValue placeholder="Select pickup location" />
                         </SelectTrigger>
@@ -212,7 +212,7 @@ const RentalInfo: React.FC<ChildProps> = ({
                 control={form.control}
                 name="date"
                 render={({ field }) => (
-                  <FormItem className="flex flex-col">
+                  <FormItem className="flex flex-col text-white">
                     <FormLabel>Rent date</FormLabel>
                     <Popover>
                       <PopoverTrigger asChild>
@@ -220,7 +220,7 @@ const RentalInfo: React.FC<ChildProps> = ({
                           id="date"
                           variant={"outline"}
                           className={cn(
-                            "w-[46%] py-6 justify-start text-left font-normal",
+                            "w-[46%] py-6 justify-start text-left text-white font-normal bg-black",
                             !field.value && "text-muted-foreground"
                           )}
                         >
