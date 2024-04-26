@@ -95,7 +95,5 @@ export const editProfileSchema = z.object({
     message: "Phone number must have 8 digits",
   }),
   email: z.string().email(),
-  address: z.string().min(12, {
-    message: "Phone number must have 12 characters",
-  }),
+  address: z.string().optional(),
 });

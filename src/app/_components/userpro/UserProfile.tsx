@@ -68,18 +68,23 @@ function UserProfile() {
   };
 
   return (
-    <div>
+    <div
+      className="flex flex-col items-center justify-center h-screen w-screen text-white "
+      id="cars"
+    >
       <Form {...form}>
         <form
-          className="space-y-6 relative w-full px-8"
+          className="space-y-6 relative w-full px-8 flex justify-center
+     
+          "
           onSubmit={form.handleSubmit(onSubmit)}
         >
-          <div className=" text-white ">
+          <div className=" text-white w-96  ">
             <FormField
               control={form.control}
               name="firstName"
               render={({ field }) => (
-                <FormItem className="flex flex-col text-black">
+                <FormItem className="flex flex-col ">
                   <FormLabel>Firstname</FormLabel>
                   <FormControl>
                     <Input
@@ -97,7 +102,7 @@ function UserProfile() {
               control={form.control}
               name="lastName"
               render={({ field }) => (
-                <FormItem className="flex flex-col text-black">
+                <FormItem className="flex flex-col ">
                   <FormLabel>Lastname</FormLabel>
                   <FormControl>
                     <Input
@@ -116,7 +121,7 @@ function UserProfile() {
               control={form.control}
               name="phoneNumber"
               render={({ field }) => (
-                <FormItem className="flex flex-col text-black">
+                <FormItem className="flex flex-col ">
                   <FormLabel>PhoneNumber</FormLabel>
                   <FormControl>
                     <Input
@@ -134,7 +139,7 @@ function UserProfile() {
               control={form.control}
               name="address"
               render={({ field }) => (
-                <FormItem className="flex flex-col text-black">
+                <FormItem className="flex flex-col">
                   <FormLabel>address</FormLabel>
                   <FormControl>
                     <Input
@@ -152,7 +157,7 @@ function UserProfile() {
               control={form.control}
               name="email"
               render={({ field }) => (
-                <FormItem className="flex flex-col text-black">
+                <FormItem className="flex flex-col ">
                   <FormLabel>email</FormLabel>
                   <FormControl>
                     <Input
@@ -166,16 +171,23 @@ function UserProfile() {
                 </FormItem>
               )}
             />
+            <Button
+              className="w-96 absolute mt-5"
+              size="lg"
+              type="submit"
+              disabled={isPending}
+            >
+              Submit
+            </Button>
           </div>
-
-          <Button
-            className="w-3/5 absolute"
+          {/* <Button
+            className="w-96 absolute"
             size="lg"
             type="submit"
             disabled={isPending}
           >
             Submit
-          </Button>
+          </Button> */}
         </form>
       </Form>
     </div>
