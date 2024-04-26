@@ -7,13 +7,13 @@ const CarImage: React.FC<{ data: CarItem }> = ({ data }) => {
   const [state, setState] = useState(0);
 
   return (
-    <div className="flex flex-col w-[765px] gap-5 p-8  rounded-md">
-      <div className="w-[700px] h-[400px] relative">
+    <div className="flex flex-col h-[680px] w-full gap-5  rounded-md">
+      <div className="w-full h-[400px] relative">
         <Image
           src={data.img[state]}
           alt="image"
           fill
-          className="rounded-xl absolute object-cover"
+          className="rounded-xl absolute object-cover object-center"
         />
       </div>
       <div className="flex gap-5">

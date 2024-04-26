@@ -14,6 +14,12 @@ export const NewPasswordSchema = z.object({
   }),
 });
 
+export const commentSchema = z.object({
+  comment: z.string().min(1, {
+    message: "Field is required",
+  }),
+});
+
 export const NewCategory = z.object({
   category: z.string().min(1, {
     message: "Enter name",
