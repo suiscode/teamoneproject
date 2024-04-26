@@ -23,9 +23,9 @@ const PaymentTotal: React.FC<ChildProps> = ({ carData, dateRange }) => {
   console.log(dateDifference);
 
   return (
-    <div className="w-[36%] p-4 h-[380px] border-2 border-red-500 rounded-[10px] bg-[#FFFFFF] flex flex-col gap-[30px]">
+    <div className="w-[36%] p-4 h-[380px] rounded-[10px] backdrop-blur-sm text-white bg-black/50 flex flex-col gap-[30px]">
       <div className="w-full flex flex-col gap-[6px]">
-        <div className="text-xl font-bold text-[#1A202C]">Rental Summary</div>
+        <div className="text-xl font-bold text-white">Rental Summary</div>
         <div className="text-[#90A3BF] text-[14px] font-medium w-full">
           Prices may change depending on the length of the rental and the price
           of your rental car.
