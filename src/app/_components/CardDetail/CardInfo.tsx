@@ -8,7 +8,6 @@ import { FaRegHeart } from "react-icons/fa";
 
 const CardInfo: React.FC<{ data: CarItem }> = ({ data }) => {
   const session = useSession();
-  console.log(session);
 
   const { push } = useRouter();
   const handleRentNow = () => {
@@ -20,10 +19,10 @@ const CardInfo: React.FC<{ data: CarItem }> = ({ data }) => {
     push("/payment");
   };
   return (
-    <div className=" w-[700px] p-8 bg-black text-secondary rounded-md ">
+    <div className="w-full  text-secondary space-y-4  rounded-md ">
       <div className="flex w-full justify-between items-center">
         <div>
-          <h1>{data.name}</h1>
+          <h1 className="font-bold text-4xl">{data.name}</h1>
         </div>
         <div>
           <FaRegHeart />
@@ -34,9 +33,9 @@ const CardInfo: React.FC<{ data: CarItem }> = ({ data }) => {
       </div>
 
       <div className="flex justify-between items-center mt-[30px]">
-        <div className="space-y-4 w-[40%]">
+        <div className="space-y-4 w-[44%]">
           <div className="flex justify-between w-full">
-            <h1 className="text-[25px]">Car type :</h1>
+            <h1 className="text-[25px]">Car type:</h1>
             <h1 className="text-[23px] text-[#8C8C8C]">{data.type}</h1>
           </div>
           <div className="flex justify-between w-full">
@@ -44,7 +43,7 @@ const CardInfo: React.FC<{ data: CarItem }> = ({ data }) => {
             <h1 className="text-[23px] text-[#8C8C8C]">{data.steering}</h1>
           </div>
         </div>
-        <div className="space-y-4 w-[40%]">
+        <div className="space-y-4 w-[44%]">
           <div className="flex justify-between w-full">
             <h1 className="text-[25px]">Capacity :</h1>
             <h1 className="text-[23px] text-[#8C8C8C]">{data.capacity}</h1>

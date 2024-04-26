@@ -1,4 +1,7 @@
+import AddReview from "@/app/_components/CardDetail/AddReview";
 import CardDetail from "@/app/_components/CardDetail/CardDetail";
+import CardInfo from "@/app/_components/CardDetail/CardInfo";
+import Reviews from "@/app/_components/CardDetail/Reviews";
 import { getOneCar } from "@/app/fetch";
 import { CarItem } from "@/lib/interface";
 import { Metadata } from "next";
@@ -15,10 +18,14 @@ type SearchPageType = {
 
 async function CarDetailPage({ params }: { params: { id: string } }) {
   const { id } = params || "";
-  let data = await getOneCar(id)
+  let data = await getOneCar(id);
   return (
-    <div className="w-full flex justify-center items-center">
+    <div className="w-[1440px] relative border flex justify-between items-center">
       <CardDetail data={data as CarItem} />
+      <div className="flex flex-col fixed w-[44%] border top-[100px] right-[100px] h-[620px] justify-between">
+        <CardInfo data={data as CarItem} />
+        <AddReview />
+      </div>
     </div>
   );
 }
