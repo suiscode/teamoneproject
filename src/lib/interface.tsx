@@ -37,8 +37,12 @@ export interface CategoryItem {
 
 export interface Review {
   id: string;
-  car: CarItem;
+  carId: string;
+  createdAt: Date;
+  updatedAt: Date;
+  userId: string;
   starRating: number;
+  User: UserInterface;
   comment?: string | null;
 }
 

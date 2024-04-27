@@ -52,7 +52,6 @@ model Order {
   amount         Float
   car            Car    @relation(fields: [carId], references: [id])
 
-  // Foreign keys
   userId String @db.ObjectId
   carId  String @db.ObjectId
 }
@@ -78,7 +77,6 @@ model Car {
   category    CarCategory? @relation(fields: [categoryId], references: [id])
   reviews     Review[] // Added relation to reviews
 
-  // Foreign key
   categoryId String? @db.ObjectId
   Order      Order[]
 
@@ -90,7 +88,6 @@ model Bookmark {
   user User   @relation(fields: [userId], references: [id])
   car  Car    @relation(fields: [carId], references: [id], onDelete: Cascade)
 
-  // Foreign keys
   userId String @db.ObjectId
   carId  String @db.ObjectId
 
@@ -103,9 +100,11 @@ model Review {
   starRating Int
   comment    String?
 
-  carId  String  @db.ObjectId
-  User   User?   @relation(fields: [userId], references: [id])
-  userId String? @db.ObjectId
+  carId     String   @db.ObjectId
+  User      User?    @relation(fields: [userId], references: [id])
+  userId    String?  @db.ObjectId
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
 }
 
 model Account {
@@ -161,5 +160,3 @@ model TwoFactorConfirmation {
 
   @@unique([userId])
 }
-
-//// ADD BOOK MARK DO IT IT IT ////
