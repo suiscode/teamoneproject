@@ -34,7 +34,7 @@ export const PUT = async (req, res) => {
 
   const { userId, carId } = body;
   try {
-    const bookmarkToDelete = await prisma.bookmark.findUnique({
+    const bookmarkToDelete = await db.bookmark.findUnique({
       where: {
         userId_carId: {
           userId: userId,
@@ -44,7 +44,7 @@ export const PUT = async (req, res) => {
     });
     console.log(bookmarkToDelete);
 
-    await prisma.bookmark.delete({
+    await db.bookmark.delete({
       where: {
         id: bookmarkToDelete.id,
       },
