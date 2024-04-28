@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { useGlobalContext } from "@/app/context/Context";
 import { SessionInterface } from "@/lib/interface";
 import { Session } from "next-auth";
+import { toast } from "@/components/ui/use-toast";
 
 const HeartFavorite: React.FC<{ id: string; session: Session }> = ({
   id,
@@ -32,6 +33,10 @@ const HeartFavorite: React.FC<{ id: string; session: Session }> = ({
   const addToBookMark = async () => {
     if (!userId) {
       push("/auth/login");
+      toast({
+        variant: "default",
+        title: "Log in to bookmark",
+      });
     } else {
       setState(true);
       const res = await axios.post("/api/bookmark", {

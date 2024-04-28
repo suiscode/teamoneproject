@@ -7,7 +7,7 @@ import Reviews from "./Reviews";
 
 const CardDetail: React.FC<{ data: CarItem }> = ({ data }) => {
   return (
-    <div className="w-[48%] flex flex-col py-5 gap-8 rounded-md">
+    <div className="w-[48%] flex flex-col py-5 rounded-md">
       <CarImage data={data} />
       <Reviews />
     </div>

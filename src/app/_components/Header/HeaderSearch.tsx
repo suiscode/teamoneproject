@@ -18,6 +18,7 @@ function HeaderSearch() {
         input,
       });
       setData(res.data.hits);
+      console.log("res");
     };
     fetchData();
     if (!input) setShow(false);

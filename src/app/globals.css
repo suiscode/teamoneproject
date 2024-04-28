@@ -132,5 +132,13 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   background-image: radial-gradient(closest-side at 50% 55%, #990000, #0b0b0b);
 }
 #page {
-  background-image: radial-gradient(closest-side at 50% 35%, #990000, #0b0b0b);
+  background-image: linear-gradient(
+    to right,
+    #0b0b0b 0%,
+    #0b0b0b 20%,
+    #990000 20%,
+    #990000 80%,
+    #0b0b0b 80%,
+    #0b0b0b 100%
+  );
 }

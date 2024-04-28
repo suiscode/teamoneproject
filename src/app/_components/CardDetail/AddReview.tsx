@@ -19,6 +19,8 @@ import axios from "axios";
 import { Textarea } from "@/components/ui/textarea";
 import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
+import Link from "next/link";
+import { useGlobalContext } from "@/app/context/Context";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
@@ -33,6 +35,7 @@ const AddReview = () => {
   const [isPending, startTransition] = useTransition();
   const getPath = usePathname();
   const carId = getPath.split("/");
+  const { refresh, setRefresh } = useGlobalContext();
 
   const form = useForm<z.infer<typeof commentSchema>>({
     resolver: zodResolver(commentSchema),
@@ -52,13 +55,16 @@ const AddReview = () => {
           carId: carId[2],
           userId: session?.data?.user.id,
         });
+        setRefresh(!refresh);
+        form.reset();
+
         toast({
           variant: "default",
           title: "Successfully added review",
         });
       } catch (e: any) {
         console.log(e);
-
+        form.reset();
         toast({
           variant: "destructive",
           title: "Error Occured",
@@ -70,7 +76,18 @@ const AddReview = () => {
   if (session.status === "loading") {
     return <h1>Loading</h1>;
   } else if (session.status !== "authenticated") {
-    return <h1>Please sign in to leave a review</h1>;
+    return (
+      <h1 className="text-white">
+        Please{" "}
+        <Link
+          className="text-blue-500 cursor-pointer hover:underline"
+          href="/auth/login"
+        >
+          login
+        </Link>{" "}
+        to leave a review
+      </h1>
+    );
   } else {
     return (
       <div className="w-full items-start space-y-4">

@@ -37,7 +37,7 @@ function TopSellers() {
 
   return (
     <div id="page" className="w-full h-[5300px] z-10 relative flex flex-col ">
-      <div className="absolute top-0 bg-gradient-to-b from-black to-transparent h-1/3 w-full"></div>
+      <div className="absolute top-0 bg-gradient-to-b from-black to-transparent h-1/4 w-full"></div>
       <div className="z-50 flex items-end text-end mr-[10%] flex-col gap-8">
         <motion.div
           variants={{
@@ -67,7 +67,7 @@ function TopSellers() {
           top-quality vehicles has you covered.
         </motion.p>
       </div>
-      <h1 className="text-center text-[200px] font-bold  mt-[600px] leading-[200px] text-white">
+      <h1 className="text-center text-[200px] font-bold  mt-[600px] leading-[200px] text-black">
         OUR TOP SELLERS
       </h1>
       <div className="flex flex-col gap-[500px] mt-[500px]">
@@ -81,7 +81,7 @@ function TopSellers() {
         ))}
       </div>
       <motion.div
-        className="fixed z-10 left-0 right-0 h-1 bg-black bottom-[100px]"
+        className="fixed z-10 left-0 right-0 h-1 bg-white bottom-[100px]"
         style={{ scaleX }}
       />
       <div className="absolute bottom-0 bg-gradient-to-t from-black to-transparent h-1/4 w-full"></div>

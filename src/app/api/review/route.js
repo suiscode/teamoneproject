@@ -44,6 +44,7 @@ export const POST = async (req) => {
 export const GET = async (req) => {
   try {
     const carId = req.nextUrl.searchParams.get("carId");
+    console.log(carId);
     const data = await db.review.findMany({
       where: {
         carId: carId,
@@ -58,6 +59,7 @@ export const GET = async (req) => {
         },
       },
     });
+    console.log(data);
     return NextResponse.json(data, { status: 200 });
   } catch (error) {
     return NextResponse.json({ error: "Failed" }, { status: 200 });

@@ -58,13 +58,13 @@ const CarCart: React.FC<CarCartProps> = ({ car, session }) => {
             </span>
             days
           </p>
-          <p className="line-through text-red-800">
+          <p className="line-through text-gray-500">
             {car.salePrice && car.price}
           </p>
         </div>
         <Link
           href={`/cars/${car.id}`}
-          className="w-24 h-10 border-2 hover:bg-white/10 transition-all rounded-md flex items-center justify-center text-white "
+          className="h-10 px-2 border-2 hover:bg-white/10 transition-all rounded-md flex items-center justify-center text-white "
         >
           View detail
         </Link>

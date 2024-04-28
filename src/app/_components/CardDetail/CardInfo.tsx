@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@/components/ui/button";
+import { toast } from "@/components/ui/use-toast";
 import { CarItem } from "@/lib/interface";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
@@ -13,6 +14,10 @@ const CardInfo: React.FC<{ data: CarItem }> = ({ data }) => {
   const handleRentNow = () => {
     if (session.status != "authenticated") {
       push("/auth/login");
+      toast({
+        variant: "default",
+        title: "Please log in to rent a car",
+      });
       return;
     }
     localStorage.setItem("BUY", JSON.stringify(data));
@@ -56,16 +61,14 @@ const CardInfo: React.FC<{ data: CarItem }> = ({ data }) => {
       </div>
 
       <div className="flex justify-between mt-[70px]">
-        <div>
-          <div>
-            <h1>
-              <span className="font-bold text-[28px]">
-                {data.salePrice ? data.salePrice : data.price} ₮/
-              </span>
-              days
-            </h1>
-          </div>
-          <div className="line-through text-black/50">
+        <div className="space-y-[-10px]">
+          <h1>
+            <span className="font-bold text-[28px]">
+              {data.salePrice ? data.salePrice : data.price} ₮/
+            </span>
+            days
+          </h1>
+          <div className="line-through text-gray-500">
             {data.salePrice ? data.price : ""}
           </div>
         </div>
