@@ -17,11 +17,8 @@ export default function RootLayout({
   return (
     <div className="w-screen flex flex-col justify-between bg-black min-h-screen">
       <Header />
-      <div
-        id="cars"
-        className="w-full flex items-center justify-center px-4 py-4 h-full"
-      >
-        <div className="w-[1440px] flex justify-between">
+      <div id="cars" className="w-full flex  justify-center px-4 py-4 h-full">
+        <div className="w-[1440px] py-12 flex justify-between">
           <Navbar />
           {children}
         </div>

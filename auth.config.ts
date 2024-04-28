@@ -103,6 +103,7 @@ export default {
     async jwt({ token }) {
       if (!token.sub) return token;
 
+      
       const existingUser = await getUserById(token.sub);
       if (!existingUser) return token;
       token.role = existingUser.role;

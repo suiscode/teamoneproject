@@ -10,7 +10,6 @@ import { RiSettingsLine } from "react-icons/ri";
 
 const Navbar = () => {
   const pathname = usePathname();
-  console.log(pathname);
 
   return (
     <div className="w-[186px] h-[580px] flex flex-col justify-between text-gray-500  ">

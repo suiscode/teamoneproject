@@ -29,12 +29,12 @@ async function UserButton() {
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
-        <Link href="/profile">
+        <Link href="/user/profile">
           <DropdownMenuItem className="hover:bg-black/10 cursor-pointer">
             Profile
           </DropdownMenuItem>
         </Link>
-        <Link href="/user">
+        <Link href="/user/dashboard">
           <DropdownMenuItem className="hover:bg-black/10 cursor-pointer">
             Orders
           </DropdownMenuItem>

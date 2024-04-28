@@ -63,6 +63,12 @@ export const OrderSchema = z.object({
     }, "Date is required"),
 });
 
+export const UserEditSchema = z.object({
+  firstName: z.string().optional(),
+  lastName: z.string().optional(),
+  phoneNumber: z.string().optional(),
+});
+
 export const NewCarSchema = z.object({
   name: z.string().min(1, {
     message: "Must fill",
