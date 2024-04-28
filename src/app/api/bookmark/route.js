@@ -33,19 +33,24 @@ export const PUT = async (req, res) => {
   const body = await req.json();
 
   const { userId, carId } = body;
-  const bookmarkToDelete = await prisma.bookmark.findUnique({
-    where: {
-      userId_carId: {
-        userId: userId,
-        carId: carId,
+  try {
+    const bookmarkToDelete = await prisma.bookmark.findUnique({
+      where: {
+        userId_carId: {
+          userId: userId,
+          carId: carId,
+        },
       },
-    },
-  });
+    });
+    console.log(bookmarkToDelete);
 
-  await prisma.bookmark.delete({
-    where: {
-      id: bookmarkToDelete.id,
-    },
-  });
-  return NextResponse.json("Added", { status: 200 });
+    await prisma.bookmark.delete({
+      where: {
+        id: bookmarkToDelete.id,
+      },
+    });
+    return NextResponse.json("Added", { status: 200 });
+  } catch (error) {
+    return NextResponse.json("Error", { status: 400 });
+  }
 };

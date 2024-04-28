@@ -49,10 +49,14 @@ const HeartFavorite: React.FC<{ id: string; session: Session }> = ({
   const removeFromBookMark = async () => {
     setState(false);
 
-    const res = await axios.put("/api/bookmark", {
-      userId,
-      carId: id,
-    });
+    try {
+      const res = await axios.put("/api/bookmark", {
+        userId,
+        carId: id,
+      });
+    } catch (error: any) {
+      console.log(error.response.data);
+    }
   };
 
   return (
