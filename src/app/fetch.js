@@ -50,7 +50,7 @@ export const fetchUserOrder = async (userId) => {
         car: true,
       },
     });
-    return sortCars;
+    return userOrder;
   } catch (e) {
     console.log(e);
   }

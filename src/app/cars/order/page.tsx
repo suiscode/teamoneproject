@@ -129,28 +129,6 @@ export default function Order() {
       className="w-[1440px] flex py-5 items-center justify-center "
     >
       <div className="w-full flex gap-[20px] pt-6 ">
-        <div className="w-[186px] h-[580px] flex flex-col justify-between text-white  ">
-          <div className="gap-[20px] w-full pl-2">
-            <p className="text-[12px]">M A I N M E N U</p>
-            <div className="w-[256px] h-[56px] flex items-center  rounded-lg px-6 gap-[10px]">
-              <CgProfile className=" w-[24px] h-[24px]" />
-              <p className="text-[16px] ">Profile</p>
-            </div>
-            <div className="w-[256px] h-[56px] flex items-center   rounded-lg px-6 gap-[10px]">
-              <IoCarSportOutline className=" w-[24px] h-[24px]" />
-              <p className="text-[16px] ">Dashboard</p>
-            </div>
-            <p className="text-[12px] pt-10">P R E F E R E N C E S</p>
-            <div className="w-[256px] h-[56px] flex items-center  ] rounded-lg px-6 gap-[10px]">
-              <RiSettingsLine className="w-[24px] h-[24px]" />
-              <p className="text-[16px] ">Settings</p>
-            </div>
-            <div className="w-[256px] h-[56px] flex items-center  rounded-lg px-6 gap-[10px]">
-              <CiCircleInfo className=" w-[24px] h-[24px]" />
-              <p className="text-[16px] ">Help & Center</p>
-            </div>
-          </div>
-        </div>
         <div className="flex justify-around gap-[20px]   ">
           <OrderDetail data={data} />
           <div className="w-[486px] h-fit  flex items-center justify-start gap-[20px] py-6 px-6 backdrop-blur-sm  bg-black/50 rounded-lg">
