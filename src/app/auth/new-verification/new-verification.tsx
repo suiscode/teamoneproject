@@ -6,7 +6,6 @@ import { BeatLoader } from "react-spinners";
 import { FormError } from "@/lib/form-error";
 import { FormSuccess } from "@/lib/form-success";
 import Wrapper from "../Wrapper";
-import { toast } from "@/components/ui/use-toast";
 
 function NewVerificationForm() {
   const [error, setError] = useState<string | undefined>();
@@ -24,15 +23,9 @@ function NewVerificationForm() {
       if (success || error) return;
       try {
         const res = await axios.post("/api/auth/newverification", { token });
-        toast({
-          variant: "default",
-          title: "Verification email sent",
-        });
+        setSuccess(res.data.success);
       } catch (e) {
-        toast({
-          variant: "destructive",
-          title: "Something went wrong ",
-        });
+        setError("Something went wrong");
       }
     };
     verify();

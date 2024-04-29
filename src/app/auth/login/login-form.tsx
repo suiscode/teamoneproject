@@ -46,7 +46,15 @@ export default function LoginForm() {
     startTransition(async () => {
       try {
         const res = await axios.post("/api/auth/login", values);
-        setSuccess(res.data.success);
+        console.log(res.data);
+        if (
+          res.data.success === "Email is not verified, verification email sent"
+        ) {
+          setSuccess(res.data.success);
+
+          return;
+        }
+
         router.push("/cars");
         if (res.data.twoFactor) {
           setShowTwoFactor(true);
