@@ -16,19 +16,13 @@ function ButtonAuth() {
       <h1 className="text-xl">or</h1>
       <div className="flex justify-between w-full">
         <Button
-          className="w-[47%] flex gap-2"
+          className="w-full flex gap-2"
           onClick={() => onClick("google")}
         >
           <FaGoogle />
           Google
         </Button>
-        <Button
-          className="w-[47%] flex gap-2"
-          onClick={() => onClick("github")}
-        >
-          <FaGithub />
-          GitHub
-        </Button>
+
       </div>
     </div>
   );

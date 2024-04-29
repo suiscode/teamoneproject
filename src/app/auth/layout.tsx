@@ -18,7 +18,7 @@ export default function RootLayout({
         autoPlay
         loop
         muted
-        className="object-cover w-full h-full"
+        className="object-cover w-full h-full bg-black"
       >
         Your browser does not support the video tag.
       </video>
