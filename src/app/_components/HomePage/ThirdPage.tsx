@@ -26,7 +26,7 @@ export const ThirdPage = () => {
       </div>
       <Link href={"/cars"}>
         <div className=" hover:scale-[1.1]  w-full text-white px-[100px] rounded-sm py-2 duration-500 ease-in-out z-5 backdrop-blur-lg flex gap-4 items-center justify-center border">
-          <p className="text-sm">Shop now</p>
+          <p className="text-sm">Rent now</p>
         </div>
       </Link>
     </div>
