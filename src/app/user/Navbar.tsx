@@ -40,15 +40,6 @@ const Navbar = () => {
             Dashboard
           </Link>
         </div>
-        <p className="text-[12px] pt-10 text-white">P R E F E R E N C E S</p>
-        <div className="w-[256px] h-[56px] flex items-center  ] rounded-lg px-6 gap-[10px]">
-          <RiSettingsLine className="w-[24px] h-[24px]" />
-          <p className="text-[16px] ">Settings</p>
-        </div>
-        <div className="w-[256px] h-[56px] flex items-center  rounded-lg px-6 gap-[10px]">
-          <CiCircleInfo className=" w-[24px] h-[24px]" />
-          <p className="text-[16px] ">Help & Center</p>
-        </div>
       </div>
     </div>
   );

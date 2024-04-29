@@ -12,6 +12,9 @@ async function page() {
   return (
     <div className="xl:w-[1440px] lg:w-[1024px] flex md:w-[640px] text-secondary py-8 sm:max-sm:w-[390px]">
       <div className="sm:gap-8 p-8 w-full sm:flex sm:flex-col md:grid-flow-row md:gap-8 md:grid md:grid-cols-1 lg:grid lg:grid-cols-2 xl:grid-cols-3 auto-cols-max rounded-lg ">
+        {data.length === 0 && (
+          <h1 className="text-white text-2xl">No favorited cars</h1>
+        )}
         {session ? (
           data.map((item: any) => (
             <CarCart key={item.id} car={item} session={session} />
@@ -20,7 +23,7 @@ async function page() {
           <h1 className="text-secondary">
             Please
             <Link className="text-blue-400 underline" href="/auth/login">
-             <span> Sign in </span>
+              <span> Sign in </span>
             </Link>
             to show bookmarked cars
           </h1>

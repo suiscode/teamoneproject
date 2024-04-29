@@ -31,13 +31,15 @@ function CarCardAdmin({ car, index, setCarData, openDialogWithValues }: any) {
           <p className="text-white text-sm">{car.type}</p>
         </div>
         <Link href={`cars/${car._id}`}>
-          <Image
-            src={car.img[0]}
-            width={400}
-            height={200}
-            alt=""
-            className="cursor-pointer"
-          />
+          {car.img[0] && (
+            <Image
+              src={car.img[0]}
+              width={400}
+              height={200}
+              alt=""
+              className="cursor-pointer"
+            />
+          )}
         </Link>
         <div className="flex justify-between gap-4 text-white">
           <div className="flex items-center gap-2 ">

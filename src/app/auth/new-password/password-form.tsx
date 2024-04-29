@@ -38,16 +38,19 @@ export default function NewPasswordForm() {
   });
 
   const onSubmit = (values: z.infer<typeof NewPasswordSchema>) => {
-    setSuccess("");
-    setError("");
-
     startTransition(async () => {
       try {
         const res = await axios.put("/api/auth/reset", { values, token });
-        setSuccess(res.data.success);
+        toast({
+          variant: "default",
+          title: "Password reset successful",
+        });
+        form.reset();
       } catch (e: any) {
-        // toast
-        setError(e.response.data.error);
+        toast({
+          variant: "destructive",
+          title: "Password reset failed ",
+        });
       }
     });
   };

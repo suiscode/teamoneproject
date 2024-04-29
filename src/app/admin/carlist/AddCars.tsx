@@ -24,6 +24,7 @@ import { Input } from "@/components/ui/input";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
 import { CarItem, CategoryItem } from "@/lib/interface";
 import CarCardAdmin from "./CarCardAdmin";
+import { toast } from "@/components/ui/use-toast";
 
 function AddCars({ data, setCarData, carData }: any) {
   //// SUBMIT HANDLE
@@ -75,6 +76,8 @@ function AddCars({ data, setCarData, carData }: any) {
             ...values,
             carId,
           });
+          console.log(res);
+
           setCarData((prev: any) => ({
             ...prev,
             cars: prev.cars.map((car: any) =>
@@ -93,7 +96,12 @@ function AddCars({ data, setCarData, carData }: any) {
           setCarData((prev: any) => ({
             ...prev,
             cars: [
-              { ...values, tyspe: data.name, categoryId: data.id },
+              {
+                ...values,
+                type: data.name,
+                categoryId: data.id,
+                img: imageArray,
+              },
               ...prev.cars,
             ],
           }));
@@ -102,10 +110,23 @@ function AddCars({ data, setCarData, carData }: any) {
         setOpen(false);
         setUploadImages([]);
         setImages([null, null, null]);
-        // setSuccess(res.data.success);
+        toast({
+          variant: "default",
+          title: "Car added",
+        });
         form.reset();
       } catch (e: any) {
-        setError(e.response.data.error);
+        if (e.response.data.code == "P2002") {
+          toast({
+            variant: "destructive",
+            title: "Car already exists",
+          });
+        } else {
+          toast({
+            variant: "destructive",
+            title: e.response.data.error,
+          });
+        }
       }
     });
   };

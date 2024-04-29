@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Menu from "./Menu";
+import { Toaster } from "@/components/ui/toaster";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -12,9 +13,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-        <div className="flex flex-col w-full bg-black min-h-screen">
-            <Menu />
-            {children}
-        </div>
+    <div className="flex flex-col w-full bg-black min-h-screen">
+      <Toaster />
+
+      <Menu />
+
+      {children}
+    </div>
   );
 }

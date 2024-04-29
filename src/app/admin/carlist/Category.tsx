@@ -23,6 +23,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Dialog, DialogContent, DialogTrigger } from "@/components/ui/dialog";
+import { toast } from "@/components/ui/use-toast";
 
 function Category() {
   const searchParams = useSearchParams();
@@ -49,9 +50,16 @@ function Category() {
         setCategory((prev: CategoryItem[]) => [res.data.data, ...prev]);
 
         form.reset();
-        setSuccess(res.data.success);
+        toast({
+          variant: "default",
+          title: "Category added",
+        });
+        console.log("toast worked");
       } catch (e: any) {
-        setError(e.response.data.error);
+        toast({
+          variant: "destructive",
+          title: e.response.data.error,
+        });
       }
     });
   };

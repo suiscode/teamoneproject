@@ -16,17 +16,20 @@ import * as z from "zod";
 import { UserEditSchema } from "@/lib/schema";
 import { Input } from "@/components/ui/input";
 import axios from "axios";
+import { useSession } from "next-auth/react";
 
-const UserEdit = ({ session, state, setState }: any) => {
+const UserEdit = ({ state, setState }: any) => {
+  const session = useSession();
+
   const [isPending, startTransition] = useTransition();
   console.log(session);
 
   const form = useForm<z.infer<typeof UserEditSchema>>({
     resolver: zodResolver(UserEditSchema),
     defaultValues: {
-      firstName: session.user.firstName,
-      lastName: session.user.lastName,
-      phoneNumber: session.user.phoneNumber,
+      firstName: session?.data?.user.firstName || undefined,
+      lastName: session?.data?.user.lastName || undefined,
+      phoneNumber: session?.data?.user.phoneNumber || undefined,
     },
   });
 
@@ -36,7 +39,7 @@ const UserEdit = ({ session, state, setState }: any) => {
       try {
         const res = await axios.put("/api/user/", {
           ...values,
-          userId: session.user.id,
+          userId: session?.data?.user.id,
         });
         console.log(res);
         setState(!state);
@@ -57,7 +60,7 @@ const UserEdit = ({ session, state, setState }: any) => {
             <div className="flex flex-col items-center w-full">
               <div className="flex  items-center justify-center gap-2 flex-col w-48 h-48">
                 <Avatar className="w-32 h-32">
-                  <AvatarImage src={session.user.image} />
+                  <AvatarImage src={session?.data?.user.image || undefined} />
                   <AvatarFallback className="text-black">CN</AvatarFallback>
                 </Avatar>
               </div>
