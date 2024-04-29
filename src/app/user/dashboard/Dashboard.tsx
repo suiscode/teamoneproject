@@ -5,19 +5,41 @@ import { RiSettingsLine } from "react-icons/ri";
 import { CiCircleInfo } from "react-icons/ci";
 import { SlLogout } from "react-icons/sl";
 import { CgProfile } from "react-icons/cg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Header from "../../_components/Header/Header";
 import React from "react";
 import { OrderDetail } from "@/app/cars/order/OrderDetail";
 import { OrderMap } from "@/app/cars/order/OrderMap";
 import { OrderInterface } from "@/lib/interface";
+import { fetchUserOrder } from "@/app/fetch";
+import axios from "axios";
 
-interface DashboardProps {
-  orders: OrderInterface[];
-}
+interface DashboardProps {}
+const Dashboard: React.FC<DashboardProps> = () => {
+  const [orders, setOrders] = useState<OrderInterface[]>([]);
+  const [loading, setLoading] = useState(true);
 
-const Dashboard: React.FC<DashboardProps> = ({ orders }) => {
   const [data, setData] = useState<OrderInterface>(orders[0]);
+
+  useEffect(() => {
+    const getOrders = async () => {
+      const orders = await axios.get("/api/order");
+      setOrders(orders.data.data);
+      setData(orders.data.data[0]);
+      setLoading(false);
+      console.log(orders);
+    };
+
+    getOrders();
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="text-white text-center self-center justify-self-center mr-[500px]">
+        Loading...
+      </div>
+    );
+  }
 
   return (
     <div id="cars" className="w-[1440px]">

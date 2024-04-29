@@ -19,7 +19,7 @@ const UserShow = ({ setState, state }: any) => {
                 <>
                   <AvatarImage src={session?.data?.user.image || undefined} />
                   <AvatarFallback className="text-black">
-                    {session.data.user.name}
+                    {session.data.user.name || session.data.user.firstName}
                   </AvatarFallback>
                 </>
               ) : (

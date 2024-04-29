@@ -4,6 +4,7 @@ export const publicRoutes = [
   "/aboutUs",
   "/api/review",
   "/api/car",
+  "/api/order",
 ];
 
 export const authRoutes = [

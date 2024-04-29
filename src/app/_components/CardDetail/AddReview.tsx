@@ -21,6 +21,7 @@ import { usePathname } from "next/navigation";
 import { useSession } from "next-auth/react";
 import Link from "next/link";
 import { useGlobalContext } from "@/app/context/Context";
+import AddReviewSkeleton from "./AddReviewSkeleton";
 
 const AddReview = () => {
   const [rating, setRating] = useState(0);
@@ -74,7 +75,7 @@ const AddReview = () => {
     });
   };
   if (session.status === "loading") {
-    return <h1>Loading</h1>;
+    return <AddReviewSkeleton />;
   } else if (session.status !== "authenticated") {
     return (
       <h1 className="text-white">

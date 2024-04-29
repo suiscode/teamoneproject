@@ -68,7 +68,7 @@ const RentalInfo: React.FC<ChildProps> = ({
 }) => {
   const [isPending, startTransition] = useTransition();
   const { toast } = useToast();
-  const { push } = useRouter();
+  const { replace } = useRouter();
 
   interface DateRange {
     from: Date;
@@ -107,7 +107,7 @@ const RentalInfo: React.FC<ChildProps> = ({
           amount,
         });
 
-        // push("/profile");
+        replace("/user/dashboard");
         toast({
           variant: "default",
           title: "Success",

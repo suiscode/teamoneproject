@@ -22,7 +22,7 @@ async function CarDetailPage({ params }: { params: { id: string } }) {
   return (
     <div className="w-[1440px] relative flex justify-between items-center">
       <CardDetail data={data as CarItem} />
-      <div className="flex flex-col fixed w-[34%] top-[100px] right-[240px] h-[620px] justify-between">
+      <div className="flex flex-col fixed w-[34%] top-[100px] right-[240px] h-[520px] justify-between">
         <CardInfo data={data as CarItem} />
         <AddReview />
       </div>
